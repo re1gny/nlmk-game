@@ -4,7 +4,6 @@ import { ScratchGame } from './ScratchGame';
 import { InfoPanel } from './InfoPanel';
 import { Text } from './Text';
 import { Modal } from './Modal';
-import { ScreenTemplate } from '../ScreenTemplate';
 import { ModalInfoPanel } from './ModalInfoPanel';
 import { Button } from './Button';
 
@@ -49,7 +48,7 @@ export function BaseScratchGameScreen({ image, finishText, onNext }) {
   }
 
   return (
-    <ScreenTemplate>
+    <>
       <TopWrapper>
         <Info>
           <Text>
@@ -62,6 +61,6 @@ export function BaseScratchGameScreen({ image, finishText, onNext }) {
         <ScratchGame image={image} onFinish={handleFinish} />
       </BottomWrapper>
       {finishModalOpened && <FinishModal onNext={onNext}>{finishText}</FinishModal>}
-    </ScreenTemplate>
+    </>
   );
 }
