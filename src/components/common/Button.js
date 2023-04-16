@@ -10,7 +10,7 @@ const Wrapper = styled.button`
   text-align: center;
   color: #FFFFFF;
   border: none;
-  padding: 20px 0;
+  padding: 20px;
   width: 100%;
   cursor: pointer;
 `;

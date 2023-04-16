@@ -8,42 +8,18 @@ import { ScreenTemplate } from '../ScreenTemplate';
 import { ModalInfoPanel } from './ModalInfoPanel';
 import { Button } from './Button';
 
-const Wrapper = styled(ScreenTemplate)`
-  display: flex;
-  flex-direction: column;
+const TopWrapper = styled.div`
+  padding: 60px 20px 30px;
+  flex-shrink: 0;
 `;
 
 const Info = styled(InfoPanel)`
   padding: 14px 20px;
 `;
 
-const TopWrapper = styled.div`
-  padding: 60px 20px 30px;
-  flex-shrink: 0;
-`;
-
 const BottomWrapper = styled.div`
   padding: 30px 40px 60px;
   flex-grow: 1;
-`;
-
-const FinishModalWrapper = styled(Modal)`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 40px 20px;
-  animation: contentAppear 0.4s both;
-
-  @keyframes contentAppear {
-    0% {
-      opacity: 0;
-      transform: translateY(40%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 `;
 
 const ModalPanel = styled(ModalInfoPanel)`
@@ -56,12 +32,12 @@ const FinishButton = styled(Button)`
 
 function FinishModal({ children, onNext }) {
   return (
-    <FinishModalWrapper>
+    <Modal placement='bottom'>
       <ModalPanel>
         <div>{children}</div>
         <FinishButton onClick={onNext}>ДАЛЕЕ</FinishButton>
       </ModalPanel>
-    </FinishModalWrapper>
+    </Modal>
   );
 }
 
@@ -73,7 +49,7 @@ export function BaseScratchGameScreen({ image, finishText, onNext }) {
   }
 
   return (
-    <Wrapper>
+    <ScreenTemplate>
       <TopWrapper>
         <Info>
           <Text>
@@ -86,6 +62,6 @@ export function BaseScratchGameScreen({ image, finishText, onNext }) {
         <ScratchGame image={image} onFinish={handleFinish} />
       </BottomWrapper>
       {finishModalOpened && <FinishModal onNext={onNext}>{finishText}</FinishModal>}
-    </Wrapper>
+    </ScreenTemplate>
   );
 }

@@ -2,10 +2,25 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Panel } from './Panel';
 
+const VARIANT_TO_BACKGROUND = {
+  dark: '#003399',
+  light: '#FFFFFF',
+}
+
+const VARIANT_TO_BORDER = {
+  dark: undefined,
+  light: '1px solid #003399',
+}
+
+const VARIANT_TO_COLOR = {
+  dark: '#FFFFFF',
+  light: '#003399',
+}
+
 const Wrapper = styled(Panel)`
-  background: ${({ variant }) => variant === 'dark' ? '#003399' : '#FFFFFF'};
-  border: ${({ variant }) => variant === 'light' ? '1px solid #003399' : undefined};
-  color: ${({ variant }) => variant === 'dark' ? '#FFFFFF' : '#003399'};
+  background: ${({ variant }) => VARIANT_TO_BACKGROUND[variant]};
+  border: ${({ variant }) => VARIANT_TO_BORDER[variant]};
+  color: ${({ variant }) => VARIANT_TO_COLOR[variant]};
   text-align: center;
 `;
 
