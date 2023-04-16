@@ -1,5 +1,6 @@
 import React from 'react';
+import { ScreenTemplate } from '../../ScreenTemplate';
 
 export function Screen31() {
-  return <div>Screen-3-1</div>
+  return <ScreenTemplate>Screen-3-1</ScreenTemplate>
 }

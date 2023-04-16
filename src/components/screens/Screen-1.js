@@ -1,5 +1,6 @@
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
+import { ScreenTemplate } from '../ScreenTemplate';
 
 export function Screen1() {
   const { next } = useScreen();
@@ -9,9 +10,9 @@ export function Screen1() {
   }
 
   return (
-    <div>
+    <ScreenTemplate>
       <div>Screen-1</div>
       <button onClick={handleNext}>next</button>
-    </div>
+    </ScreenTemplate>
   )
 }
