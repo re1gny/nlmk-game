@@ -47,6 +47,7 @@ const PLACEMENT_TO_END_TRANSFORM = {
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: ${({ placement }) => PLACEMENT_TO_JUSTIFY_CONTENT[placement]};
   height: 100%;
   padding: 40px 20px;
@@ -64,7 +65,7 @@ const Content = styled.div`
   }
 `;
 
-export function Modal({ children, className, placement }) {
+export function Modal({ children, className, placement = 'center' }) {
   return (
     <Wrapper>
       <Backdrop />

@@ -2,11 +2,6 @@ import { useCallback, useMemo, useState } from 'react';
 import { ScreenContext } from '../contexts/Screen';
 import { SCREENS } from '../constants/screens';
 
-const BACKGROUND_TOGGLE_MAP = {
-  dark: 'light',
-  light: 'dark',
-};
-
 export const SCREEN_SWITCH_DURATION = 200;
 
 export function ScreenProvider({ children }) {
@@ -22,13 +17,17 @@ export function ScreenProvider({ children }) {
     }, SCREEN_SWITCH_DURATION)
   }, []);
 
-  const toggleBackground = useCallback(() => {
-    setBackground(prev => BACKGROUND_TOGGLE_MAP[prev]);
+  const setDarkBackground = useCallback(() => {
+    setBackground('dark');
+  }, []);
+
+  const setLightBackground = useCallback(() => {
+    setBackground('light');
   }, []);
 
   const config = useMemo(
-    () => ({ background, toggleBackground, screenSwitchingDuration: SCREEN_SWITCH_DURATION }),
-    [background, toggleBackground],
+    () => ({ background, setDarkBackground, setLightBackground, screenSwitchingDuration: SCREEN_SWITCH_DURATION }),
+    [background, setDarkBackground, setLightBackground],
     );
   const value = useMemo(
     () => ({ screen, next, config, screenSwitching }),

@@ -6,7 +6,8 @@ export const INITIAL_SCREEN = {
   config: {
     background: null,
     screenSwitchingDuration: 0,
-    toggleBackground: () => undefined,
+    setDarkBackground: () => undefined,
+    setLightBackground: () => undefined,
   },
   next: () => undefined,
 }
