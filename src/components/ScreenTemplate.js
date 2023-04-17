@@ -23,7 +23,7 @@ const Screen = styled.div`
   background-image: url(${screenBackdrop});
   background-size: 100% 100%;
   background-color: ${({ background }) => BACKGROUND_TO_COLOR[background]};
-  transition: background-color 0.2s;
+  transition: background-color 0.6s;
   overflow: hidden;
 
   @media (min-width: 480px) {
