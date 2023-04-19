@@ -1,5 +1,14 @@
 import React from 'react';
+import { BaseTetrisGameScreen } from '../../common/BaseTetrisGameScreen';
+import { useScreen } from '../../../hooks/useScreen';
+import { SCREENS } from '../../../constants/screens';
 
 export function Screen13() {
-  return <>Screen-1-3</>
+  const { next } = useScreen();
+
+  function handleNext() {
+    next(SCREENS.SCREEN_1);
+  }
+
+  return <BaseTetrisGameScreen onNext={handleNext} />;
 }

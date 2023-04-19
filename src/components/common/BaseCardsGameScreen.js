@@ -76,8 +76,9 @@ function InfoModal({ onClose }) {
       <InfoModalPanel>
         <Text>
           Переворачивай по очереди пары
-          карточек: <Text bold>твоя задача — открыть все зеленые карточки успехов.</Text> Попробуй
-          достичь эту цель <Text bold>за минимальное количество шагов.</Text>
+          карточек: <Text bold>твоя задача — открыть все зеленые карточки успехов.</Text>
+          <br/>
+          Попробуй достичь эту цель <Text bold>за минимальное количество шагов.</Text>
         </Text>
       </InfoModalPanel>
       <CloseInfoButton onClick={onClose}>Адаптироваться</CloseInfoButton>

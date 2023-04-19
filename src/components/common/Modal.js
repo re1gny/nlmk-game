@@ -44,6 +44,11 @@ const PLACEMENT_TO_END_TRANSFORM = {
   bottom: 'translateY(0)',
 }
 
+const PLACEMENT_TO_DURATION = {
+  center: '0.2s',
+  bottom: '0.4s',
+}
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,7 +56,7 @@ const Content = styled.div`
   justify-content: ${({ placement }) => PLACEMENT_TO_JUSTIFY_CONTENT[placement]};
   height: 100%;
   padding: 40px 20px;
-  animation: contentAppear 0.4s both;
+  animation: contentAppear ${({ placement }) => PLACEMENT_TO_DURATION[placement]} both;
 
   @keyframes contentAppear {
     0% {
