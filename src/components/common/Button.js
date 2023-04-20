@@ -3,11 +3,13 @@ import styled from '@emotion/styled';
 
 const VARIANT_TO_BACKGROUND = {
   primary: '#FF6600',
+  secondary: '#FFFFFF',
   outlined: 'transparent',
 };
 
 const VARIANT_TO_BORDER = {
   primary: 'none',
+  secondary: 'none',
   outlined: '1px solid #FFFFFF',
 };
 
