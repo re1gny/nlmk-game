@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { Button } from './Button';
 import { Text } from './Text';
@@ -196,17 +196,21 @@ function TetrisGameComponent({ className, onFinish }, ref) {
   const [board, setBoard] = useState(createBoard());
   const [figures, setFigures] = useState(createFigures());
   const [nextButtonVisible, setNextButtonVisible] = useState(true);
+  const [selectedFigureIndex, setSelectedFigureIndex] = useState(null);
 
   function handleRestart() {
     setBoard(createBoard());
     setFigures(createFigures());
   }
 
-  function handleDrop() {
-    const { offsetHeight, scrollHeight } = figuresListRef.current || {};
+  function handleSelectFigure(index) {
+    setSelectedFigureIndex(index);
+  }
 
-    if (scrollHeight <= offsetHeight) {
-      setNextButtonVisible(false);
+  function handleDrop() {
+    if (selectedFigureIndex !== null) {
+      setFigures(prev => prev.filter((_, index) => index !== selectedFigureIndex));
+      setSelectedFigureIndex(null);
     }
   }
 
@@ -219,30 +223,37 @@ function TetrisGameComponent({ className, onFinish }, ref) {
   }
 
   function handleNext() {
-    figuresListRef.current?.scrollTo({
-      top: figuresListRef.current?.scrollHeight,
-      left: 0,
-      behavior: 'smooth'
-    });
+    const { scrollTo, scrollHeight } = figuresListRef.current || {};
+    scrollTo?.({ top: scrollHeight, left: 0, behavior: 'smooth' });
   }
 
-  function handleListScroll() {
+  function handleNextExistence(withOffset = true) {
     const { scrollTop, offsetHeight, scrollHeight } = figuresListRef.current || {};
-    setNextButtonVisible(scrollTop + offsetHeight + FIGURE_LIST_FOOTER_SIZE < scrollHeight);
+    setNextButtonVisible(scrollTop + offsetHeight + (withOffset ? FIGURE_LIST_FOOTER_SIZE : 0) < scrollHeight);
   }
 
   useImperativeHandle(ref, () => ({
     restart: handleRestart,
   }), [handleRestart]);
 
+  useEffect(() => {
+    handleNextExistence(false);
+  }, [figures]);
+
   return (
     <Wrapper className={className}>
       <TopWrapper>
         <FigureListOuter>
-          <FigureList ref={figuresListRef} onScroll={handleListScroll}>
+          <FigureList ref={figuresListRef} onScroll={handleNextExistence}>
             <FigureListInner>
               {figures.map((id, index) => (
-                <FigureItem key={index} id={id} src={FIGURES[id]} alt="" />
+                <FigureItem
+                  key={index}
+                  id={id}
+                  src={FIGURES[id]}
+                  alt=""
+                  onClick={() => handleSelectFigure(index)}
+                />
               ))}
             </FigureListInner>
           </FigureList>
