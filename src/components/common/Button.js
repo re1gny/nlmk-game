@@ -16,26 +16,47 @@ const VARIANT_TO_FONT_WEIGHT = {
   outlined: 400,
 };
 
+const VARIANT_TO_COLOR = {
+  primary: '#FFFFFF',
+  outlined: '#FFFFFF',
+};
+
+const VARIANT_TO_DISABLED_COLOR = {
+  primary: '#E2E2E2',
+  outlined: '#E2E2E2',
+};
+
+const VARIANT_TO_DISABLED_BORDER = {
+  primary: 'none',
+  outlined: '1px solid #E2E2E2',
+};
+
+const VARIANT_TO_DISABLED_BACKGROUND = {
+  primary: '#E35C01',
+  outlined: 'transparent',
+};
+
 const Wrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ variant }) => VARIANT_TO_BACKGROUND[variant]};
+  background: ${({ variant, disabled }) => disabled ? VARIANT_TO_DISABLED_BACKGROUND[variant] : VARIANT_TO_BACKGROUND[variant]};
   border-radius: 10px;
-  font-weight: ${({ variant }) => VARIANT_TO_FONT_WEIGHT[variant]};;
+  font-weight: ${({ variant }) => VARIANT_TO_FONT_WEIGHT[variant]};
   font-size: 21px;
   line-height: 120%;
   text-align: center;
-  color: #FFFFFF;
-  border: ${({ variant }) => VARIANT_TO_BORDER[variant]};;
+  color: ${({ variant, disabled }) => disabled ? VARIANT_TO_DISABLED_COLOR[variant] : VARIANT_TO_COLOR[variant]};
+  border: ${({ variant, disabled }) => disabled ? VARIANT_TO_DISABLED_BORDER[variant] : VARIANT_TO_BORDER[variant]};
   padding: 20px;
   width: 100%;
-  cursor: pointer;
+  cursor: ${({ disabled }) => disabled ? 'auto' : 'pointer'};
+  transition: background 0.2s, color 0.2s;
 `;
 
-export function Button({ children, className, variant = 'primary', onClick }) {
+export function Button({ children, className, disabled, variant = 'primary', onClick }) {
   return (
-    <Wrapper className={className} variant={variant} onClick={onClick}>
+    <Wrapper className={className} disabled={disabled} variant={variant} onClick={onClick}>
       {children}
     </Wrapper>
   );

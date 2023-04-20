@@ -1,4 +1,5 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
+import chunk from 'lodash/chunk';
 import styled from '@emotion/styled';
 import { Button } from './Button';
 import { Text } from './Text';
@@ -25,6 +26,9 @@ const FIGURE_LIST_SIZE = 70;
 const FIGURE_LIST_FOOTER_SIZE = 40;
 const BOARD_TO_FIGURE_LIST_OFFSET = 20;
 const FIGURE_PREVIEW_BASE_POINT_SIZE = 15;
+const FIGURE_BASE_POINT_SIZE = 30;
+const BASE_VERTICAL_POINT_DURATION = 60;
+const BASE_HORIZONTAL_POINT_DURATION = 200;
 
 const FIGURE_SIZE_POINTS = {
   '1': { width: 1, height: 1 },
@@ -36,7 +40,7 @@ const FIGURE_SIZE_POINTS = {
   '7': { width: 4, height: 1 },
 };
 
-const FIGURES = {
+const FIGURE_IMAGES = {
   '1': figure1,
   '2': figure2,
   '3': figure3,
@@ -46,7 +50,7 @@ const FIGURES = {
   '7': figure7,
 };
 
-const FIGURE_PLACEHOLDERS = {
+const FIGURE_PLACEHOLDER_IMAGES = {
   '1': figurePlaceholder1,
   '2': figurePlaceholder2,
   '3': figurePlaceholder3,
@@ -56,13 +60,64 @@ const FIGURE_PLACEHOLDERS = {
   '7': figurePlaceholder7,
 };
 
-function createBoard() {
-  return new Array(HORIZONTAL_SIZE).fill(0).map(() => new Array(VERTICAL_SIZE).fill(0));
+function createInitialBoard() {
+  return new Array(VERTICAL_SIZE).fill(0).map(() => new Array(HORIZONTAL_SIZE).fill(0));
 }
 
-function createFigures() {
+function createInitialFiguresForSelect() {
   return ['1', '6', '2', '5', '4', '3', '1', '4', '5', '6', '1', '7'];
 }
+
+function createInitialFigures() {
+  return [];
+}
+
+function createFigureTemplate(id, ...config) {
+  return chunk(config, FIGURE_SIZE_POINTS[id].width);
+}
+
+function createFigure(id, verticalStart, horizontalStart) {
+  return {
+    id,
+    verticalStart,
+    horizontalStart,
+    verticalEnd: verticalStart + FIGURE_SIZE_POINTS[id].height - 1,
+    horizontalEnd: horizontalStart + FIGURE_SIZE_POINTS[id].width - 1,
+  };
+}
+
+function createSelectedFigure(id, index, verticalStart, horizontalStart) {
+  const { width } = FIGURE_SIZE_POINTS[id];
+  return {
+    ...createFigure(id, verticalStart ?? 0, horizontalStart ?? Math.ceil((HORIZONTAL_SIZE - width) / 2)),
+    index,
+  };
+}
+
+const FIGURE_TEMPLATES = {
+  '1': createFigureTemplate('1', 1),
+  '2': createFigureTemplate('2', 0, 1, 1, 1),
+  '3': createFigureTemplate('3', 1, 0, 1, 1),
+  '4': createFigureTemplate('4', 1, 1, 0, 1),
+  '5': createFigureTemplate('5', 1, 1, 1, 1),
+  '6': createFigureTemplate('6', 1, 1, 1, 1),
+  '7': createFigureTemplate('7', 1, 1, 1, 1),
+};
+
+const PLACEHOLDERS = [
+  createFigure('1', 6, 3),
+  createFigure('2', 7, 2),
+  createFigure('7', 9, 2),
+  createFigure('1', 10, 3),
+  createFigure('5', 10, 1),
+  createFigure('5', 12, 2),
+  createFigure('6', 8, 0),
+  createFigure('3', 12, 0),
+  createFigure('1', 13, 4),
+  createFigure('4', 11, 3),
+  createFigure('4', 10, 4),
+  createFigure('6', 10, 6),
+];
 
 const Wrapper = styled.div`
   display: flex;
@@ -86,7 +141,7 @@ const BottomWrapper = styled.div`
   margin-top: 30px;
 `;
 
-const FigureListOuter = styled.div`
+const FigurePreviewListOuter = styled.div`
   position: relative;
   flex-shrink: 0;
   background: #FFFFFF;
@@ -94,7 +149,7 @@ const FigureListOuter = styled.div`
   overflow: hidden;
 `;
 
-const FigureList = styled.div`
+const FigurePreviewList = styled.div`
   max-height: 100%;
   overflow: auto;
   
@@ -103,7 +158,7 @@ const FigureList = styled.div`
   }
 `;
 
-const FigureListFooter = styled.div`
+const FigurePreviewListFooter = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
@@ -120,7 +175,7 @@ const FigureListFooter = styled.div`
   pointer-events: ${({ visible }) => visible ? 'auto' : 'none'};
 `;
 
-const FigureListInner = styled.div`
+const FigurePreviewListInner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,7 +183,7 @@ const FigureListInner = styled.div`
   padding: 22px 0;
 `;
 
-const FigureItem = styled.img`
+const FigurePreviewItem = styled.img`
   width: ${({ id }) => FIGURE_PREVIEW_BASE_POINT_SIZE * FIGURE_SIZE_POINTS[id].width}px;
   height: ${({ id }) => FIGURE_PREVIEW_BASE_POINT_SIZE * FIGURE_SIZE_POINTS[id].height}px;
   cursor: pointer;
@@ -143,10 +198,24 @@ const FigureItem = styled.img`
 `;
 
 const Board = styled.div`
+  position: relative;
   flex-grow: 1;
   background: #FFFFFF;
   border-radius: 10px;
   margin-left: ${BOARD_TO_FIGURE_LIST_OFFSET}px;
+`;
+
+const FigureItem = styled.img`
+  position: absolute;
+  bottom: ${({ verticalEnd, pointSize }) => pointSize * (VERTICAL_SIZE - verticalEnd - 1)}px;
+  left: ${({ horizontalStart, pointSize }) => pointSize * horizontalStart}px;
+  width: ${({ id, pointSize }) => pointSize * FIGURE_SIZE_POINTS[id].width}px;
+  height: ${({ id, pointSize }) => pointSize * FIGURE_SIZE_POINTS[id].height}px;
+`;
+
+const SelectedFigureItem = styled(FigureItem)`
+  transition: ${({ verticalStart }) => `left ${BASE_HORIZONTAL_POINT_DURATION}ms, bottom ${verticalStart * BASE_VERTICAL_POINT_DURATION}ms ease-in`};
+  will-change: left, bottom;
 `;
 
 const DropButton = styled(Button)`
@@ -193,33 +262,73 @@ const NextText = styled(Text)`
 
 function TetrisGameComponent({ className, onFinish }, ref) {
   const figuresListRef = useRef();
-  const [board, setBoard] = useState(createBoard());
-  const [figures, setFigures] = useState(createFigures());
+  const boardRef = useRef();
+  const [board, setBoard] = useState(createInitialBoard());
+  const [figures, setFigures] = useState(createInitialFigures());
+  const [figuresForSelect, setFiguresForSelect] = useState(createInitialFiguresForSelect());
   const [nextButtonVisible, setNextButtonVisible] = useState(true);
-  const [selectedFigureIndex, setSelectedFigureIndex] = useState(null);
+  const [selectedFigure, setSelectedFigure] = useState(null);
+  const [figurePointSize, setFigurePointSize] = useState(FIGURE_BASE_POINT_SIZE);
+  const [isDropping, setIsDropping] = useState(false);
+  const lastSelectedFigureFinalVerticalStartRef = useRef(0);
+
+  function calculateBoardLayout() {
+    const { offsetWidth, offsetHeight } = boardRef.current || {};
+    const verticalPointSize = offsetHeight / VERTICAL_SIZE;
+    const horizontalPointSize = offsetWidth / HORIZONTAL_SIZE;
+    const pointSize = Math.min(verticalPointSize, horizontalPointSize);
+    setFigurePointSize(pointSize);
+  }
 
   function handleRestart() {
-    setBoard(createBoard());
-    setFigures(createFigures());
+    setBoard(createInitialBoard());
+    setFigures(createInitialFigures());
+    setFiguresForSelect(createInitialFiguresForSelect());
+    setSelectedFigure(null);
   }
 
   function handleSelectFigure(index) {
-    setSelectedFigureIndex(index);
+    setSelectedFigure(createSelectedFigure(figuresForSelect[index], index));
+  }
+
+  function handleDropped() {
+    if (selectedFigure) {
+      const { id, horizontalStart } = selectedFigure;
+      const figure = createFigure(id, lastSelectedFigureFinalVerticalStartRef.current, horizontalStart);
+      setFigures(prev => [...prev, figure]);
+      setSelectedFigure(null);
+      setIsDropping(false);
+      lastSelectedFigureFinalVerticalStartRef.current = 0;
+    }
   }
 
   function handleDrop() {
-    if (selectedFigureIndex !== null) {
-      setFigures(prev => prev.filter((_, index) => index !== selectedFigureIndex));
-      setSelectedFigureIndex(null);
+    if (selectedFigure) {
+      const { id, index, verticalStart, horizontalStart } = selectedFigure;
+
+      setIsDropping(true);
+      setFiguresForSelect(prev => prev.filter((_, prevIndex) => index !== prevIndex));
+
+      lastSelectedFigureFinalVerticalStartRef.current = 12;
+
+      if (lastSelectedFigureFinalVerticalStartRef.current <= verticalStart) {
+        handleDropped();
+      } else {
+        setSelectedFigure(createSelectedFigure(id, index, lastSelectedFigureFinalVerticalStartRef.current, horizontalStart));
+      }
     }
   }
 
   function handleMoveLeft() {
-
+    if (selectedFigure && selectedFigure.horizontalStart > 0) {
+      setSelectedFigure(prev => createSelectedFigure(prev.id, prev.index, 0,selectedFigure.horizontalStart - 1));
+    }
   }
 
   function handleMoveRight() {
-
+    if (selectedFigure && selectedFigure.horizontalEnd < HORIZONTAL_SIZE - 1) {
+      setSelectedFigure(prev => createSelectedFigure(prev.id, prev.index, 0,selectedFigure.horizontalStart + 1));
+    }
   }
 
   function handleNext() {
@@ -238,38 +347,70 @@ function TetrisGameComponent({ className, onFinish }, ref) {
 
   useEffect(() => {
     handleNextExistence(false);
-  }, [figures]);
+  }, [figuresForSelect]);
+
+  useLayoutEffect(() => {
+    calculateBoardLayout();
+  }, []);
 
   return (
     <Wrapper className={className}>
       <TopWrapper>
-        <FigureListOuter>
-          <FigureList ref={figuresListRef} onScroll={handleNextExistence}>
-            <FigureListInner>
-              {figures.map((id, index) => (
-                <FigureItem
+        <FigurePreviewListOuter>
+          <FigurePreviewList ref={figuresListRef} onScroll={handleNextExistence}>
+            <FigurePreviewListInner>
+              {figuresForSelect.map((id, index) => (
+                <FigurePreviewItem
                   key={index}
                   id={id}
-                  src={FIGURES[id]}
+                  src={FIGURE_IMAGES[id]}
                   alt=""
                   onClick={() => handleSelectFigure(index)}
                 />
               ))}
-            </FigureListInner>
-          </FigureList>
-          <FigureListFooter visible={nextButtonVisible}>
+            </FigurePreviewListInner>
+          </FigurePreviewList>
+          <FigurePreviewListFooter visible={nextButtonVisible}>
             <NextText bold onClick={handleNext}>далее</NextText>
-          </FigureListFooter>
-        </FigureListOuter>
-        <Board></Board>
+          </FigurePreviewListFooter>
+        </FigurePreviewListOuter>
+        <Board ref={boardRef}>
+          {PLACEHOLDERS.map((placeholder, index) => (
+            <FigureItem
+              key={index}
+              {...placeholder}
+              pointSize={figurePointSize}
+              src={FIGURE_PLACEHOLDER_IMAGES[placeholder.id]}
+              alt=""
+            />
+          ))}
+          {figures.map((figure, index) => (
+            <FigureItem
+              key={index}
+              {...figure}
+              pointSize={figurePointSize}
+              src={FIGURE_IMAGES[figure.id]}
+              alt=""
+            />
+          ))}
+          {!!selectedFigure && (
+            <SelectedFigureItem
+              {...selectedFigure}
+              pointSize={figurePointSize}
+              src={FIGURE_IMAGES[selectedFigure.id]}
+              alt=""
+              onTransitionEnd={isDropping ? handleDropped : undefined}
+            />
+          )}
+        </Board>
       </TopWrapper>
       <BottomWrapper>
-        <DropButton onClick={handleDrop}>опустить</DropButton>
+        <DropButton disabled={isDropping} onClick={handleDrop}>опустить</DropButton>
         <MoveButtons>
-          <MoveButton onClick={handleMoveLeft}>
+          <MoveButton disabled={isDropping} onClick={handleMoveLeft}>
             <MoveIcon src={arrowLeftIcon} alt="" />
           </MoveButton>
-          <MoveButton onClick={handleMoveRight}>
+          <MoveButton disabled={isDropping} onClick={handleMoveRight}>
             <MoveIcon src={arrowRightIcon} alt="" />
           </MoveButton>
         </MoveButtons>
