@@ -17,6 +17,9 @@ const VARIANT_TO_FONT_WEIGHT = {
 };
 
 const Wrapper = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: ${({ variant }) => VARIANT_TO_BACKGROUND[variant]};
   border-radius: 10px;
   font-weight: ${({ variant }) => VARIANT_TO_FONT_WEIGHT[variant]};;

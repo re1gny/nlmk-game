@@ -20,6 +20,7 @@ const TopWrapper = styled.div`
 const BottomWrapper = styled.div`
   padding: 12px 20px 40px;
   flex-grow: 1;
+  min-height: 0;
 `;
 
 const RightActions = styled.div`

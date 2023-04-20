@@ -7,9 +7,9 @@ const Wrapper = styled.span`
   font-weight: ${({ bold }) => bold ? 700 : 350};
 `;
 
-export function Text({ children, className, bold }) {
+export function Text({ children, className, bold, onClick }) {
   return (
-    <Wrapper className={className} bold={bold}>
+    <Wrapper className={className} bold={bold} onClick={onClick}>
       {children}
     </Wrapper>
   );
