@@ -223,8 +223,8 @@ function TetrisGameComponent({ className, onFinish }, ref) {
   }
 
   function handleNext() {
-    const { scrollTo, scrollHeight } = figuresListRef.current || {};
-    scrollTo?.({ top: scrollHeight, left: 0, behavior: 'smooth' });
+    const { scrollHeight } = figuresListRef.current || {};
+    figuresListRef.current?.scrollTo({ top: scrollHeight, left: 0, behavior: 'smooth' });
   }
 
   function handleNextExistence(withOffset = true) {
