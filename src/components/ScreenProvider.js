@@ -5,7 +5,12 @@ import { SCREENS } from '../constants/screens';
 export const SCREEN_SWITCH_DURATION = 200;
 
 export function ScreenProvider({ children }) {
-  const [screen, setScreen] = useState(SCREENS.SCREEN_1);
+  /////////////////// for development ////////////////////////////////////
+  const urlParams = new URLSearchParams(window.location.search);
+  const screenParam = urlParams.get('screen');
+  ////////////////////////////////////////////////////////////////////////
+
+  const [screen, setScreen] = useState(SCREENS[screenParam] ?? SCREENS.SCREEN_1);
   const [screenSwitching, setScreenSwitching] = useState(false);
   const [background, setBackground] = useState('light');
 

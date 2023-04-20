@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Wrapper = styled.span`
+  display: inline-block;
   font-size: 16px;
   line-height: 120%;
   font-weight: ${({ bold }) => bold ? 700 : 350};
