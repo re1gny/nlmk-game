@@ -203,7 +203,11 @@ function TetrisGameComponent({ className, onFinish }, ref) {
   }
 
   function handleDrop() {
+    const { offsetHeight, scrollHeight } = figuresListRef.current || {};
 
+    if (scrollHeight <= offsetHeight) {
+      setNextButtonVisible(false);
+    }
   }
 
   function handleMoveLeft() {
