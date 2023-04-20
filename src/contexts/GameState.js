@@ -1,12 +1,12 @@
 import { createContext } from 'react';
 
 export const INITIAL_GAME_STATE = {
-  track: [],
   character: null,
+  track: null,
   grade: null,
-  addTrackPoint: () => undefined,
-  selectCharacter: () => undefined,
-  upGrade: () => undefined,
+  path: null,
+  setCharacter: () => undefined,
+  setProgress: () => undefined,
 }
 
 export const GameStateContext = createContext(INITIAL_GAME_STATE)
