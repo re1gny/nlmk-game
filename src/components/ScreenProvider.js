@@ -10,7 +10,7 @@ export function ScreenProvider({ children }) {
   const screenParam = urlParams.get('screen');
   ////////////////////////////////////////////////////////////////////////
 
-  const [screen, setScreen] = useState(SCREENS[screenParam] ?? SCREENS.SCREEN_1);
+  const [screen, setScreen] = useState(screenParam ?? SCREENS.SCREEN_1);
   const [screenSwitching, setScreenSwitching] = useState(false);
   const [background, setBackground] = useState('light');
 
