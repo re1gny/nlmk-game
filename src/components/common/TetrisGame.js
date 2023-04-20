@@ -243,7 +243,7 @@ function TetrisGameComponent({ className, onFinish }, ref) {
             </FigureListInner>
           </FigureList>
           <FigureListFooter visible={nextButtonVisible}>
-            <NextText onClick={handleNext}>далее</NextText>
+            <NextText bold onClick={handleNext}>далее</NextText>
           </FigureListFooter>
         </FigureListOuter>
         <Board></Board>
