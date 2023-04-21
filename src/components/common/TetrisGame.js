@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import chunk from 'lodash/chunk';
+import cloneDeep from 'lodash/cloneDeep';
 import styled from '@emotion/styled';
 import { Button } from './Button';
 import { Text } from './Text';
@@ -118,6 +119,87 @@ const PLACEHOLDERS = [
   createFigure('4', 10, 4),
   createFigure('6', 10, 6),
 ];
+
+function checkFigurePlacementAvailable(id, verticalStart, horizontalStart, board) {
+  const template = FIGURE_TEMPLATES[id];
+  const { width, height } = FIGURE_SIZE_POINTS[id];
+  const verticalEnd = verticalStart + height - 1;
+  const horizontalEnd = horizontalStart + width - 1;
+
+  if (verticalEnd >= VERTICAL_SIZE || horizontalEnd >= HORIZONTAL_SIZE) {
+    return false;
+  }
+
+  for (let i = 0; i < template.length; i++) {
+    for (let j = 0; j < template[i].length; j++) {
+      if (template[i][j] && board[verticalStart + i][horizontalStart + j]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function placeFigure(figure, board) {
+  const { id, verticalStart, horizontalStart } = figure;
+  const template = FIGURE_TEMPLATES[id];
+  const newBoard = cloneDeep(board);
+
+  if (!checkFigurePlacementAvailable(id, verticalStart, horizontalStart, board)) {
+    return newBoard;
+  }
+
+  for (let i = 0; i < template.length; i++) {
+    for (let j = 0; j < template[i].length; j++) {
+      if (template[i][j]) {
+        newBoard[verticalStart + i][horizontalStart + j] = figure;
+      }
+    }
+  }
+
+  return newBoard;
+}
+
+function getMaxAvailableVerticalStart(figure, board) {
+  const { id, verticalStart, horizontalStart } = figure;
+  let maxVerticalStart = verticalStart;
+
+  for (let i = verticalStart + 1; i < VERTICAL_SIZE; i++) {
+    if (checkFigurePlacementAvailable(id, i, horizontalStart, board)) {
+      maxVerticalStart = i;
+    } else {
+      return maxVerticalStart;
+    }
+  }
+
+  return maxVerticalStart;
+}
+
+function checkCorrectFiguresPlacement(figures) {
+  for (let i = 0; i < figures.length; i++) {
+    const figure = figures[i];
+    const placeholders = PLACEHOLDERS.filter(({ id }) => id === figure.id);
+
+    const currentPlaceholder = placeholders.find(({ verticalStart, horizontalStart }) =>
+      verticalStart === figure.verticalStart && horizontalStart === figure.horizontalStart
+    );
+
+    if (!currentPlaceholder) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function checkGameFail(figures) {
+  return !checkCorrectFiguresPlacement(figures);
+}
+
+function checkGameSuccess(figures) {
+  return figures.length === PLACEHOLDERS.length && checkCorrectFiguresPlacement(figures);
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -297,6 +379,7 @@ function TetrisGameComponent({ className, onFinish }, ref) {
       const figure = createFigure(id, lastSelectedFigureFinalVerticalStartRef.current, horizontalStart);
       setFigures(prev => [...prev, figure]);
       setSelectedFigure(null);
+      setBoard(prev => placeFigure(figure, prev));
       setIsDropping(false);
       lastSelectedFigureFinalVerticalStartRef.current = 0;
     }
@@ -309,7 +392,7 @@ function TetrisGameComponent({ className, onFinish }, ref) {
       setIsDropping(true);
       setFiguresForSelect(prev => prev.filter((_, prevIndex) => index !== prevIndex));
 
-      lastSelectedFigureFinalVerticalStartRef.current = 12;
+      lastSelectedFigureFinalVerticalStartRef.current = getMaxAvailableVerticalStart(selectedFigure, board);
 
       if (lastSelectedFigureFinalVerticalStartRef.current <= verticalStart) {
         handleDropped();
@@ -348,6 +431,16 @@ function TetrisGameComponent({ className, onFinish }, ref) {
   useEffect(() => {
     handleNextExistence(false);
   }, [figuresForSelect]);
+
+  useEffect(() => {
+    if (checkGameFail(figures)) {
+      onFinish?.(false);
+    }
+
+    if (checkGameSuccess(figures)) {
+      onFinish?.(true);
+    }
+  }, [figures]);
 
   useLayoutEffect(() => {
     calculateBoardLayout();
