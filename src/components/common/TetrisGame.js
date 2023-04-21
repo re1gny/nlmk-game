@@ -28,8 +28,10 @@ const FIGURE_LIST_FOOTER_SIZE = 40;
 const BOARD_TO_FIGURE_LIST_OFFSET = 20;
 const FIGURE_PREVIEW_BASE_POINT_SIZE = 15;
 const FIGURE_BASE_POINT_SIZE = 30;
-const BASE_VERTICAL_POINT_DURATION = 60;
+const BASE_VERTICAL_POINT_DURATION = 40;
 const BASE_HORIZONTAL_POINT_DURATION = 200;
+const INITIAL_SELECTED_FIGURE_VERTICAL_START = 2;
+const DROP_FIX_DELAY = 15;
 
 const FIGURE_SIZE_POINTS = {
   '1': { width: 1, height: 1 },
@@ -90,7 +92,11 @@ function createFigure(id, verticalStart, horizontalStart) {
 function createSelectedFigure(id, index, verticalStart, horizontalStart) {
   const { width } = FIGURE_SIZE_POINTS[id];
   return {
-    ...createFigure(id, verticalStart ?? 0, horizontalStart ?? Math.ceil((HORIZONTAL_SIZE - width) / 2)),
+    ...createFigure(
+      id,
+      verticalStart ?? INITIAL_SELECTED_FIGURE_VERTICAL_START,
+      horizontalStart ?? Math.ceil((HORIZONTAL_SIZE - width) / 2),
+    ),
     index,
   };
 }
@@ -296,7 +302,9 @@ const FigureItem = styled.img`
 `;
 
 const SelectedFigureItem = styled(FigureItem)`
-  transition: ${({ verticalStart }) => `left ${BASE_HORIZONTAL_POINT_DURATION}ms, bottom ${verticalStart * BASE_VERTICAL_POINT_DURATION}ms ease-in`};
+  transition: ${({ verticalStart }) => 
+    `left ${BASE_HORIZONTAL_POINT_DURATION}ms, bottom ${(verticalStart - INITIAL_SELECTED_FIGURE_VERTICAL_START) * BASE_VERTICAL_POINT_DURATION}ms ease-in`
+  };
   will-change: left, bottom;
 `;
 
@@ -352,7 +360,6 @@ function TetrisGameComponent({ className, onFinish }, ref) {
   const [selectedFigure, setSelectedFigure] = useState(null);
   const [figurePointSize, setFigurePointSize] = useState(FIGURE_BASE_POINT_SIZE);
   const [isDropping, setIsDropping] = useState(false);
-  const lastSelectedFigureFinalVerticalStartRef = useRef(0);
 
   function calculateBoardLayout() {
     const { offsetWidth, offsetHeight } = boardRef.current || {};
@@ -373,15 +380,16 @@ function TetrisGameComponent({ className, onFinish }, ref) {
     setSelectedFigure(createSelectedFigure(figuresForSelect[index], index));
   }
 
-  function handleDropped() {
+  function handleDropped(finalVerticalStart) {
     if (selectedFigure) {
       const { id, horizontalStart } = selectedFigure;
-      const figure = createFigure(id, lastSelectedFigureFinalVerticalStartRef.current, horizontalStart);
+      const figure = createFigure(id, finalVerticalStart, horizontalStart);
       setFigures(prev => [...prev, figure]);
-      setSelectedFigure(null);
       setBoard(prev => placeFigure(figure, prev));
-      setIsDropping(false);
-      lastSelectedFigureFinalVerticalStartRef.current = 0;
+      setTimeout(() => {
+        setSelectedFigure(null);
+        setIsDropping(false);
+      }, DROP_FIX_DELAY);
     }
   }
 
@@ -392,25 +400,29 @@ function TetrisGameComponent({ className, onFinish }, ref) {
       setIsDropping(true);
       setFiguresForSelect(prev => prev.filter((_, prevIndex) => index !== prevIndex));
 
-      lastSelectedFigureFinalVerticalStartRef.current = getMaxAvailableVerticalStart(selectedFigure, board);
+      const finalVerticalStart = getMaxAvailableVerticalStart(selectedFigure, board);
 
-      if (lastSelectedFigureFinalVerticalStartRef.current <= verticalStart) {
-        handleDropped();
+      if (finalVerticalStart <= verticalStart) {
+        handleDropped(finalVerticalStart);
       } else {
-        setSelectedFigure(createSelectedFigure(id, index, lastSelectedFigureFinalVerticalStartRef.current, horizontalStart));
+        setSelectedFigure(createSelectedFigure(id, index, finalVerticalStart, horizontalStart));
+        setTimeout(
+          () => handleDropped(finalVerticalStart),
+          (finalVerticalStart - INITIAL_SELECTED_FIGURE_VERTICAL_START) * BASE_VERTICAL_POINT_DURATION,
+        );
       }
     }
   }
 
   function handleMoveLeft() {
     if (selectedFigure && selectedFigure.horizontalStart > 0) {
-      setSelectedFigure(prev => createSelectedFigure(prev.id, prev.index, 0,selectedFigure.horizontalStart - 1));
+      setSelectedFigure(prev => createSelectedFigure(prev.id, prev.index, INITIAL_SELECTED_FIGURE_VERTICAL_START,selectedFigure.horizontalStart - 1));
     }
   }
 
   function handleMoveRight() {
     if (selectedFigure && selectedFigure.horizontalEnd < HORIZONTAL_SIZE - 1) {
-      setSelectedFigure(prev => createSelectedFigure(prev.id, prev.index, 0,selectedFigure.horizontalStart + 1));
+      setSelectedFigure(prev => createSelectedFigure(prev.id, prev.index, INITIAL_SELECTED_FIGURE_VERTICAL_START,selectedFigure.horizontalStart + 1));
     }
   }
 
@@ -492,7 +504,6 @@ function TetrisGameComponent({ className, onFinish }, ref) {
               pointSize={figurePointSize}
               src={FIGURE_IMAGES[selectedFigure.id]}
               alt=""
-              onTransitionEnd={isDropping ? handleDropped : undefined}
             />
           )}
         </Board>
