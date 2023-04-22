@@ -27,12 +27,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const SizeChecker = styled.img`
+const MapImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  visibility: hidden;
 `;
 
 const BASE_WIDTH = 1127;
@@ -182,7 +181,7 @@ function CanvasImage({ src, ...rest }) {
 export function Map(props) {
   const { className } = props;
   const { path } = useGameState();
-  const sizeCheckerRef = useRef();
+  const mapRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
@@ -196,17 +195,16 @@ export function Map(props) {
   }, []);
 
   function updateSize() {
-    const { height, width } = sizeCheckerRef.current || {};
+    const { height, width } = mapRef.current || {};
     setHeight(height);
     setWidth(width);
   }
 
   return (
     <Wrapper className={className}>
-      <SizeChecker ref={sizeCheckerRef} src={map} alt="" onLoad={updateSize} />
+      <MapImage ref={mapRef} src={map} alt="" onLoad={updateSize} />
       <Stage width={width} height={height}>
         <Layer>
-          <CanvasImage src={map} x={0} y={0} width={width} height={height} />
           {lines?.map((line, index) => (
             <Line
               key={index}
