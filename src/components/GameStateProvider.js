@@ -3,30 +3,36 @@ import { GameStateContext } from '../contexts/GameState';
 import { PATH_POINTS } from '../constants/pathPoints';
 import { useScreen } from '../hooks/useScreen';
 
+const INITIAL_PATH = null;
+const INITIAL_CHARACTER = null;
+const INITIAL_TRACK = null;
+const INITIAL_GRADE = null;
+
 export function GameStateProvider({ children }) {
   const { reset } = useScreen();
 
-  const [path, setPath] = useState([])
-  const [character, setCharacter] = useState(null)
-  const [track, setTrack] = useState(null)
-  const [grade, setGrade] = useState(null)
+  const [path, setPath] = useState(INITIAL_PATH)
+  const [character, setCharacter] = useState(INITIAL_CHARACTER)
+  const [track, setTrack] = useState(INITIAL_TRACK)
+  const [grade, setGrade] = useState(INITIAL_GRADE)
 
   const handleReset = useCallback(() => {
     reset();
-    setPath([]);
-    setCharacter(null);
-    setTrack(null);
-    setGrade(null);
+    setPath(INITIAL_PATH);
+    setCharacter(INITIAL_CHARACTER);
+    setTrack(INITIAL_TRACK);
+    setGrade(INITIAL_GRADE);
   }, [reset]);
 
   const handleSetCharacter = useCallback((character) => {
-    setCharacter(character)
+    setCharacter(character);
+    setPath([PATH_POINTS.START]);
   }, []);
 
   const handleSetProgress = useCallback((track, grade) => {
-    setTrack(track)
-    setGrade(grade)
-    setPath(prev => [...prev, PATH_POINTS[track][grade]])
+    setTrack(track);
+    setGrade(grade);
+    setPath(prev => [...prev, PATH_POINTS[track][grade]]);
   }, []);
 
   const value = useMemo(() => ({

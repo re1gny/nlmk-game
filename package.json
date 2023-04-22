@@ -5,12 +5,15 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "konva": "^9.0.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-konva": "^18.2.7",
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
-    "scratchcard-js": "^1.4.10"
+    "scratchcard-js": "^1.4.10",
+    "use-image": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

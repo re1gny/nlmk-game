@@ -2,6 +2,7 @@ import { TRACKS } from './tracks';
 import { GRADES } from './grades';
 
 export const PATH_POINTS = {
+  START: 'START',
   [TRACKS.TRACK_1]: {
     [GRADES.START]: 'TRACK_1.START',
     [GRADES.GRADE_1]: 'TRACK_1.GRADE_1',
