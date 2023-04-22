@@ -26,6 +26,9 @@ export function GameStateProvider({ children }) {
 
   const handleSetCharacter = useCallback((character) => {
     setCharacter(character);
+  }, []);
+
+  const handleStart = useCallback(() => {
     setPath([PATH_POINTS.START]);
   }, []);
 
@@ -42,8 +45,9 @@ export function GameStateProvider({ children }) {
     path,
     setCharacter: handleSetCharacter,
     setProgress: handleSetProgress,
+    start: handleStart,
     reset: handleReset,
-  }), [track, character, grade, path, handleSetCharacter, handleSetProgress, handleReset]);
+  }), [track, character, grade, path, handleSetCharacter, handleSetProgress, handleReset, handleStart]);
 
   return (
     <GameStateContext.Provider value={value}>

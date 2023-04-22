@@ -38,11 +38,12 @@ const CharacterWrapper = styled.div`
 
 export const Screen3 = () => {
     const {next} = useScreen();
-    const {character} = useGameState();
+    const {character, start} = useGameState();
     const picture = getCharacterPicture(character, 'casual', 0);
 
     function handleNext() {
         next(SCREENS.SCREEN_4)
+        start()
     }
 
     return (

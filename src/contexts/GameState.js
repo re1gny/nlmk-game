@@ -7,6 +7,7 @@ export const INITIAL_GAME_STATE = {
   path: null,
   setCharacter: () => undefined,
   setProgress: () => undefined,
+  start: () => undefined,
   reset: () => undefined,
 }
 
