@@ -5,17 +5,21 @@ const VARIANT_TO_BACKGROUND = {
   primary: '#FF6600',
   secondary: '#FFFFFF',
   outlined: 'transparent',
+  icon: 'transparent'
 };
 
 const VARIANT_TO_BORDER = {
   primary: 'none',
   secondary: 'none',
   outlined: '1px solid #FFFFFF',
+  icon: 'none'
 };
 
 const VARIANT_TO_FONT_WEIGHT = {
   primary: 700,
+  secondary: 700,
   outlined: 400,
+  icon: 400,
 };
 
 const VARIANT_TO_COLOR = {
