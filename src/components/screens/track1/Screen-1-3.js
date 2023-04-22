@@ -7,7 +7,7 @@ export function Screen13() {
   const { next } = useScreen();
 
   function handleNext() {
-    next(SCREENS.SCREEN_1);
+    next(SCREENS.TRACK_1.SCREEN_4);
   }
 
   return <BaseTetrisGameScreen onNext={handleNext} />;

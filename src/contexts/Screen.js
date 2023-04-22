@@ -10,6 +10,7 @@ export const INITIAL_SCREEN = {
     setLightBackground: () => undefined,
   },
   next: () => undefined,
+  reset: () => undefined,
 }
 
 export const ScreenContext = createContext(INITIAL_SCREEN)

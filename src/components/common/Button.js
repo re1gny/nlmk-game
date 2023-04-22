@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 const VARIANT_TO_BACKGROUND = {
   primary: '#FF6600',
   secondary: '#FFFFFF',
+  tertiary: '#003399',
   outlined: 'transparent',
   icon: 'transparent'
 };
@@ -11,6 +12,7 @@ const VARIANT_TO_BACKGROUND = {
 const VARIANT_TO_BORDER = {
   primary: 'none',
   secondary: 'none',
+  tertiary: '3px solid #FFFFFF',
   outlined: '1px solid #FFFFFF',
   icon: 'none'
 };
@@ -18,27 +20,32 @@ const VARIANT_TO_BORDER = {
 const VARIANT_TO_FONT_WEIGHT = {
   primary: 700,
   secondary: 700,
+  tertiary: 700,
   outlined: 400,
   icon: 400,
 };
 
 const VARIANT_TO_COLOR = {
   primary: '#FFFFFF',
+  tertiary: '#FFFFFF',
   outlined: '#FFFFFF',
 };
 
 const VARIANT_TO_DISABLED_COLOR = {
   primary: '#E2E2E2',
+  tertiary: '#E2E2E2',
   outlined: '#E2E2E2',
 };
 
 const VARIANT_TO_DISABLED_BORDER = {
   primary: 'none',
+  tertiary: '3px solid #E2E2E2',
   outlined: '1px solid #E2E2E2',
 };
 
 const VARIANT_TO_DISABLED_BACKGROUND = {
   primary: '#E35C01',
+  tertiary: '#003399',
   outlined: 'transparent',
 };
 

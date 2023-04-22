@@ -6,12 +6,12 @@ import { ScreenTemplate } from './components/ScreenTemplate';
 
 export function App() {
   return (
-    <GameStateProvider>
-      <ScreenProvider>
+    <ScreenProvider>
+      <GameStateProvider>
         <ScreenTemplate>
           <ScreenResolver />
         </ScreenTemplate>
-      </ScreenProvider>
-    </GameStateProvider>
+      </GameStateProvider>
+    </ScreenProvider>
   );
 }
