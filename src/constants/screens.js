@@ -9,10 +9,12 @@ import { Screen31 } from '../components/screens/track3/Screen-3-1';
 import { Screen32 } from '../components/screens/track3/Screen-3-2';
 import { Screen33 } from '../components/screens/track3/Screen-3-3';
 import { Screen2 } from '../components/screens/Screen-2';
+import { Screen3 } from '../components/screens/Screen-3';
 
 export const SCREENS = {
   SCREEN_1: 'SCREEN_1',
   SCREEN_2: 'SCREEN_2',
+  SCREEN_3: 'SCREEN_3',
   TRACK_1: {
     SCREEN_1: 'TRACK_1.SCREEN_1',
     SCREEN_2: 'TRACK_1.SCREEN_2',
@@ -33,6 +35,7 @@ export const SCREENS = {
 export const SCREEN_COMPONENTS = {
   [SCREENS.SCREEN_1]: Screen1,
   [SCREENS.SCREEN_2]: Screen2,
+  [SCREENS.SCREEN_3]: Screen3,
   [SCREENS.TRACK_1.SCREEN_1]: Screen11,
   [SCREENS.TRACK_1.SCREEN_2]: Screen12,
   [SCREENS.TRACK_1.SCREEN_3]: Screen13,
