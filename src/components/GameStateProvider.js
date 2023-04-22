@@ -4,7 +4,7 @@ import { PATH_POINTS } from '../constants/pathPoints';
 import { useScreen } from '../hooks/useScreen';
 
 const INITIAL_PATH = null;
-const INITIAL_CHARACTER = null;
+const INITIAL_CHARACTER = 5;
 const INITIAL_TRACK = null;
 const INITIAL_GRADE = null;
 
