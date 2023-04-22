@@ -2,9 +2,11 @@ import { useCallback, useMemo, useState } from 'react';
 import { GameStateContext } from '../contexts/GameState';
 import { PATH_POINTS } from '../constants/pathPoints';
 
+const DEFAULT_CHARACTER = 5;
+
 export function GameStateProvider({ children }) {
   const [path, setPath] = useState([])
-  const [character, setCharacter] = useState(null)
+  const [character, setCharacter] = useState(DEFAULT_CHARACTER);
   const [track, setTrack] = useState(null)
   const [grade, setGrade] = useState(null)
 

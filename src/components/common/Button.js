@@ -10,7 +10,7 @@ const VARIANT_TO_BACKGROUND = {
 
 const VARIANT_TO_BORDER = {
   primary: 'none',
-  secondary: 'none',
+  secondary: '1px solid #2C5697',
   outlined: '1px solid #FFFFFF',
   icon: 'none'
 };
@@ -25,6 +25,7 @@ const VARIANT_TO_FONT_WEIGHT = {
 const VARIANT_TO_COLOR = {
   primary: '#FFFFFF',
   outlined: '#FFFFFF',
+  secondary: '#2C5697',
 };
 
 const VARIANT_TO_DISABLED_COLOR = {

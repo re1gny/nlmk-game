@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { Text } from '../common/Text';
-import { InfoPanel } from '../common/InfoPanel';
-import { charactersInfo } from '../../constants/characters';
-import { Slider } from '../common/Slider';
-import { Button } from '../common/Button';
 import arrowLeft from '../../assets/icons/sliderArrowFilledLeft.svg';
 import arrowRight from '../../assets/icons/sliderArrowFilledRight.svg';
-import { SCREENS } from '../../constants/screens';
+import done from '../../assets/icons/done.svg';
 import { useScreen } from '../../hooks/useScreen';
 import { useGameState } from '../../hooks/useGameState';
+import { charactersInfo } from '../../constants/characters';
+import { SCREENS } from '../../constants/screens';
+import { Text } from '../common/Text';
+import { InfoPanel } from '../common/InfoPanel';
+import { Slider } from '../common/Slider';
+import { Button } from '../common/Button';
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ const Info = styled(InfoPanel)`
 `;
 
 const ButtonStyled = styled(Button)`
+  transition: background-color 350ms ease-in, border 350ms ease-in;
   max-width: 249px;
 `;
 
@@ -93,20 +95,37 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
+const DoneIcon = styled.img`
+    width: 45px;
+    height: 45px;
+    animation: appear 500ms ease-in;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+
 export const Screen2 = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isChosen, setIsChosen] = useState(false);
     const { next } = useScreen();
     const { setCharacter } = useGameState();
 
     const slideData = Object
         .values(charactersInfo)
-        .map(character => ({id: character.id, image: character.pictures?.casual}));
+        .map(character => ({id: character.id, image: character.pictures?.casual[0]}));
 
     const sliderInfo = Array.from({length: slideData.length});
 
     function handleNext() {
+        setIsChosen(true);
         setCharacter(slideData[currentIndex].id);
-        next(SCREENS.SCREEN_3);
+        setTimeout(() => next(SCREENS.SCREEN_3), 2500);
     }
 
     return <Wrapper>
@@ -121,7 +140,6 @@ export const Screen2 = () => {
             {sliderInfo.map((_, id) => (<SliderInfoItem key={id} active={id===currentIndex} />))}
         </SliderInfo>
         <SliderStyled
-            slides={slideData}
             onChangeIndex={setCurrentIndex}
             length={slideData.length}
             renderArrows={({nextSlide, prevSlide}) => (
@@ -137,7 +155,12 @@ export const Screen2 = () => {
             )}
         />
         <ButtonWrapper>
-            <ButtonStyled onClick={handleNext}> Выбрать </ButtonStyled>
+            <ButtonStyled
+                onClick={handleNext}
+                variant={isChosen ? 'secondary' : 'primary'}
+            >
+                {isChosen ? <DoneIcon src={done} /> : 'Выбрать'}
+            </ButtonStyled>
         </ButtonWrapper>
     </Wrapper>;
 };
