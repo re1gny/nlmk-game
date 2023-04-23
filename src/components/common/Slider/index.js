@@ -26,7 +26,7 @@ export const Slider = ({ length, renderArrows, renderContent, onChangeIndex, cla
     const nextSlide = () => {
         setCurrentIndex(cur => (cur + 1) % length);
         setSide('slide-right');
-        onChangeIndex?.(cur => cur === length - 1 ? 0 : cur + 1);
+        onChangeIndex?.(cur => (cur + 1) % length);
     };
 
     const prevSlide = () => {

@@ -56,7 +56,7 @@ export const questions = {
                     В каком направлении <b>ты хочешь разбираться?</b>
                 </Text>
             ),
-            nextGrade: [GRADES.GRADE_1],
+            nextGrade: GRADES.GRADE_1,
             answers: [
                 {
                     track: TRACKS.TRACK_1,
@@ -91,12 +91,12 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_2],
+                    nextGrade: GRADES.GRADE_2,
                     getText: () => <Text> <b>Заменить Мастера</b> на время отпуска и поработать с бригадой</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_1],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_1,
                     getText: () => (
                         <Text>
                             <b>Откликнуться на вакансию ведущего специалиста</b> по внутреннему конкурсу
@@ -104,8 +104,8 @@ export const questions = {
                     )
                 },
                 {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_1],
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_1,
                     getText: () => <Text bold>Начать участвовать в проектах</Text>
                 },
             ]
@@ -121,22 +121,22 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_3],
+                    nextGrade: GRADES.GRADE_3,
                     getText: () => <Text bold> Я готов к дальнейшему развитию  в производстве</Text>
                 },
                 {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_2],
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_2,
                     getText: () => <Text bold> Хочу попробовать себя в проектах</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_2],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_2,
                     getText: () => <Text bold>Начну развиваться в бизнес-направлениях</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [],
+                    nextGrade: null,
                     getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
                 },
             ]
@@ -152,22 +152,22 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_4],
+                    nextGrade: GRADES.GRADE_4,
                     getText: () => <Text bold> Я готов к дальнейшему развитию  в производстве</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_3],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_3,
                     getText: () => <Text bold> Хочу попробовать себя в новой должности бизнес-управленца</Text>
                 },
                 {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_3],
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_3,
                     getText: () => <Text bold>У меня есть все навыки для управления проектами — хочу попробовать свои силы</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [],
+                    nextGrade: null,
                     getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
                 },
             ]
@@ -183,12 +183,12 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.FINAL],
+                    nextGrade: GRADES.FINAL,
                     getText: () => <Text bold> Я люблю свою работу и готов брать на себя больше ответственности за процессы</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [],
+                    nextGrade: null,
                     getText: () => (
                         <Text>
                             Я хочу применять свои управленческие навыки на других площадках,
@@ -210,12 +210,12 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [],
+                    nextGrade: null,
                     getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    nextGrade: [],
+                    nextGrade: null,
                     getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
                 },
             ]
@@ -229,7 +229,7 @@ export const questions = {
                     Какое направление выберешь?
                 </Text>
             ),
-            nextGrade: [GRADES.GRADE_1],
+            nextGrade: GRADES.GRADE_1,
             answers: [
                 {
                     track: TRACKS.TRACK_2,
@@ -256,190 +256,18 @@ export const questions = {
         [GRADES.GRADE_1]: {
             getQuestion: () => (
                 <Text>
-                    Ты <b>эффективно влился в проектную команду</b>,
-                    классно себя <b>проявил и прокачал много полезных навыков.</b>
-                    Каким будет твой <b>следующий шаг?</b>
-                </Text>
-            ),
-            answers: [
-                {
-                    track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_2],
-                    getText: () => <Text bold>Хочу уйти в производственное направление</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_2],
-                    getText: () => (
-                        <Text bold>
-                            Мой интерес к проектной деятельности непрерывно растет.{'\n'}Хочу продолжить
-                        </Text>
-                    )
-                },
-                {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_1],
-                    getText: () => <Text bold>Я хочу попробовать себя в роли специалиста</Text>
-                },
-            ]
-        },
-        [GRADES.GRADE_2]: {
-            getQuestion: () => (
-                <Text>
-                    Теперь ты <b>обладаешь опытом работы с проектами </b>
-                    и можешь делиться им со своими коллегами. Под твоим руководством
-                    <b>проект стал успешен. {'\n'}Готов ли ты к новому карьерному шагу?</b>
-                </Text>
-            ),
-            answers: [
-                {
-                    track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_3],
-                    getText: () => <Text bold> Я хочу перенести полученный опыт из проектной деятельности в производство</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_3],
-                    getText: () => <Text bold> Я готов к большей ответственности и хочу брать больше проектов</Text>
-                },
-                {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_2],
-                    getText: () => <Text bold>Мне хочется попробовать свои силы в бизнес-задачах</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [],
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
-                },
-            ]
-        },
-        [GRADES.GRADE_3]: {
-            getQuestion: () => (
-                <Text>
-                    Ты уже <b>участвуешь далеко не в одном проекте</b>,
-                    а твоему искусству тайм-менеджмента можно позавидовать.
-                    <b>Выбери, что тебе ближе:</b>
-                </Text>
-            ),
-            answers: [
-                {
-                    track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_4],
-                    getText: () => <Text bold> Меня манит романтика производства</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_4],
-                    getText: () => <Text bold> У меня еще много идей, реализация которых улучшит процессы компании</Text>
-                },
-                {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_3],
-                    getText: () => <Text bold>Я помогу бизнесу и компании своими решениями</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [],
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
-                },
-            ]
-        },
-        [GRADES.GRADE_4]: {
-            getQuestion: () => (
-                <Text>
-                    <b>Эти овации — для тебя!</b> Твои достижения не остались незамеченными.
-                    <b>Тебя хотят перевести на новую должность.</b> Догадываешься, на какую?
-                </Text>
-            ),
-            answers: [
-                {
-                    track: TRACKS.TRACK_1,
-                    nextGrade: [GRADES.GRADE_4],
-                    getText: () => <Text bold> Я предпочту заняться прикладной деятельностью на производстве </Text>
-                },
-                {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_4],
-                    getText: () => <Text bold> Контроль бизнеса — мой конек. Я готов к новым задачам! </Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [],
-                    getText: () => <Text>Остаться развивать мастерство на этой позиции</Text>
-                },
-            ]
-        },
-        [GRADES.FINAL]: {
-            getQuestion: () => (
-                <Text>
-                    <b>Поздравляем!{'\n'}</b>
-                    Ты добился больших высот. В глазах сотрудников
-                    Группы НЛМК <b>ты образец для подражания</b>. Уровень доверия к тебе очень высок.
-                    <b>Выше только звезды :)</b>
-                </Text>
-            ),
-            answers: [
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [],
-                    getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [],
-                    getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
-                },
-            ]
-        }
-    },
-    [TRACKS.TRACK_3]: {
-        [GRADES.START]: {
-            getQuestion: () => (
-                <Text>
-                    <b>Прекрасный выбор</b> для старта!{'\n'}
-                    В какой сфере <b>тебе было бы интересно применить свои знания?</b>
-                </Text>
-            ),
-            nextGrade: [GRADES.GRADE_1],
-            answers: [
-                {
-                    track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Логистика</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Продажи</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Снабжение</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Экология</Text>
-                },
-                {
-                    track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Инновации</Text>
-                },
-            ]
-        },
-        [GRADES.GRADE_1]: {
-            getQuestion: () => (
-                <Text>
                     Поздравляем! Ты круто «подрос» и стал ведущим специалистом! Но тебе еще точно есть куда расти. Что выберешь?
                 </Text>
             ),
             answers: [
                 {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_2],
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_2,
                     getText: () => <Text bold>Начать участвовать в проектах</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_2],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_2,
                     getText: () => <Text bold>Продолжить развитие {'\n'} по текущему вектору</Text>
                 },
             ]
@@ -454,18 +282,18 @@ export const questions = {
             ),
             answers: [
                 {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_3],
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_3,
                     getText: () => <Text bold> Хочу попробовать себя в проектной деятельности и других задачах</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_3],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_3,
                     getText: () => <Text bold> Класс! Я готов к расширению зон своей ответственности и росту в должности</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: null,
                     getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
                 },
             ]
@@ -480,18 +308,18 @@ export const questions = {
             ),
             answers: [
                 {
-                    track: TRACKS.TRACK_2,
-                    nextGrade: [GRADES.GRADE_4],
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_4,
                     getText: () => <Text bold> Меня заинтересовала проектная деятельность, хочу попробовать</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.GRADE_4],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_4,
                     getText: () => <Text bold> Хочу выйти за рамки деятельности одного отдела и изучить задачи верхнеуровневой структуры</Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: null,
                     getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
                 },
             ]
@@ -505,13 +333,13 @@ export const questions = {
             ),
             answers: [
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [GRADES.FINAL],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.FINAL,
                     getText: () => <Text bold> Я люблю свою работу и готов брать на себя больше ответственности за процессы </Text>
                 },
                 {
-                    track: TRACKS.TRACK_3,
-                    nextGrade: [],
+                    track: TRACKS.TRACK_2,
+                    nextGrade: null,
                     getText: () => <Text bold> Я хочу применять свои навыки в управлении на других площадках, в том числе, при международной ротации </Text>
                 },
             ]
@@ -527,13 +355,186 @@ export const questions = {
             ),
             answers: [
                 {
+                    track: TRACKS.TRACK_2,
+                    nextGrade: null,
+                    getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
+                },
+                {
+                    track: TRACKS.TRACK_2,
+                    nextGrade: null,
+                    getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
+                },
+            ]
+        }
+
+    },
+    [TRACKS.TRACK_3]: {
+        [GRADES.START]: {
+            getQuestion: () => (
+                <Text>
+                    <b>Прекрасный выбор</b> для старта!{'\n'}
+                    В какой сфере <b>тебе было бы интересно применить свои знания?</b>
+                </Text>
+            ),
+            nextGrade: GRADES.GRADE_1,
+            answers: [
+                {
                     track: TRACKS.TRACK_3,
-                    nextGrade: [],
+                    getText: () => <Text bold>Логистика</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    getText: () => <Text bold>Продажи</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    getText: () => <Text bold>Снабжение</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    getText: () => <Text bold>Экология</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    getText: () => <Text bold>Инновации</Text>
+                },
+            ]
+        },
+        [GRADES.GRADE_1]: {
+            getQuestion: () => (
+                <Text>
+                    Ты <b>эффективно влился в проектную команду</b>,
+                    классно себя <b>проявил и прокачал много полезных навыков.</b>
+                    Каким будет твой <b>следующий шаг?</b>
+                </Text>
+            ),
+                answers: [
+                {
+                    track: TRACKS.TRACK_1,
+                    nextGrade: GRADES.GRADE_2,
+                    getText: () => <Text bold>Хочу уйти в производственное направление</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_2,
+                    getText: () => (
+                        <Text bold>
+                            Мой интерес к проектной деятельности непрерывно растет.{'\n'}Хочу продолжить
+                        </Text>
+                    )
+                },
+                {
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_1,
+                    getText: () => <Text bold>Я хочу попробовать себя в роли специалиста</Text>
+                },
+            ]
+        },
+        [GRADES.GRADE_2]: {
+            getQuestion: () => (
+                <Text>
+                    Теперь ты <b>обладаешь опытом работы с проектами </b>
+                    и можешь делиться им со своими коллегами. Под твоим руководством
+                    <b>проект стал успешен. {'\n'}Готов ли ты к новому карьерному шагу?</b>
+                </Text>
+            ),
+                answers: [
+                {
+                    track: TRACKS.TRACK_1,
+                    nextGrade: GRADES.GRADE_3,
+                    getText: () => <Text bold> Я хочу перенести полученный опыт из проектной деятельности в производство</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_3,
+                    getText: () => <Text bold> Я готов к большей ответственности и хочу брать больше проектов</Text>
+                },
+                {
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_2,
+                    getText: () => <Text bold>Мне хочется попробовать свои силы в бизнес-задачах</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: null,
+                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                },
+            ]
+        },
+        [GRADES.GRADE_3]: {
+            getQuestion: () => (
+                <Text>
+                    Ты уже <b>участвуешь далеко не в одном проекте</b>,
+                    а твоему искусству тайм-менеджмента можно позавидовать.
+                    <b>Выбери, что тебе ближе:</b>
+                </Text>
+            ),
+                answers: [
+                {
+                    track: TRACKS.TRACK_1,
+                    nextGrade: GRADES.GRADE_4,
+                    getText: () => <Text bold> Меня манит романтика производства</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: GRADES.GRADE_4,
+                    getText: () => <Text bold> У меня еще много идей, реализация которых улучшит процессы компании</Text>
+                },
+                {
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_3,
+                    getText: () => <Text bold>Я помогу бизнесу и компании своими решениями</Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: null,
+                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                },
+            ]
+        },
+        [GRADES.GRADE_4]: {
+            getQuestion: () => (
+                <Text>
+                    <b>Эти овации — для тебя!</b> Твои достижения не остались незамеченными.
+                    <b>Тебя хотят перевести на новую должность.</b> Догадываешься, на какую?
+                </Text>
+            ),
+                answers: [
+                {
+                    track: TRACKS.TRACK_1,
+                    nextGrade: GRADES.GRADE_4,
+                    getText: () => <Text bold> Я предпочту заняться прикладной деятельностью на производстве </Text>
+                },
+                {
+                    track: TRACKS.TRACK_2,
+                    nextGrade: GRADES.GRADE_4,
+                    getText: () => <Text bold> Контроль бизнеса — мой конек. Я готов к новым задачам! </Text>
+                },
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: null,
+                    getText: () => <Text>Остаться развивать мастерство на этой позиции</Text>
+                },
+            ]
+        },
+        [GRADES.FINAL]: {
+            getQuestion: () => (
+                <Text>
+                    <b>Поздравляем!{'\n'}</b>
+                    Ты добился больших высот. В глазах сотрудников
+                    Группы НЛМК <b>ты образец для подражания</b>. Уровень доверия к тебе очень высок.
+                    <b>Выше только звезды :)</b>
+                </Text>
+            ),
+                answers: [
+                {
+                    track: TRACKS.TRACK_3,
+                    nextGrade: null,
                     getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    nextGrade: [],
+                    nextGrade: null,
                     getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
                 },
             ]

@@ -6,6 +6,7 @@ import { useGameState } from '../../hooks/useGameState';
 import { getCharacterPicture } from '../../utils/getCharacterPicture';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
+import { Map } from '../common/Map';
 
 const Wrapper = styled.div`
   background: black;
@@ -15,8 +16,6 @@ const Wrapper = styled.div`
 `;
 
 const Info = styled(InfoPanel)`
-  color: #2C5697;
-  background-color: #FFFFFF;
   margin: 20vh 9px 4.7vh 19px;
   white-space: pre-line;
   padding: 16px;
@@ -36,6 +35,26 @@ const CharacterWrapper = styled.div`
   overflow: hidden;
 `;
 
+const Backdrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.6;
+`;
+
+const Content = styled.div`
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+
 export const Screen3 = () => {
     const {next} = useScreen();
     const {character, start} = useGameState();
@@ -48,17 +67,21 @@ export const Screen3 = () => {
 
     return (
         <Wrapper>
-            <Info>
-                <Text>
-                    Сейчас ты будешь <b>перемещаться между разными позициями</b> в компании.{'\n'}
-                    Обрати внимание: на карте есть <b> синие объекты — </b>они все сделаны с использованием
-                    <b> продукции НЛМК!</b>
-                </Text>
-            </Info>
-            <ButtonStyled onClick={handleNext}>СТАРТ →</ButtonStyled>
-            <CharacterWrapper>
-                <img src={picture} alt={''}/>
-            </CharacterWrapper>
+            <Map />
+            <Backdrop />
+            <Content>
+                <Info variant={'light'}>
+                    <Text>
+                        Сейчас ты будешь <b>перемещаться между разными позициями</b> в компании.{'\n'}
+                        Обрати внимание: на карте есть <b> синие объекты — </b>они все сделаны с использованием
+                        <b> продукции НЛМК!</b>
+                    </Text>
+                </Info>
+                <ButtonStyled onClick={handleNext}>СТАРТ →</ButtonStyled>
+                <CharacterWrapper>
+                    <img src={picture} alt={''}/>
+                </CharacterWrapper>
+            </Content>
         </Wrapper>
     )
 }

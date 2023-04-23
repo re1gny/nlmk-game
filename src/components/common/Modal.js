@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -10,6 +11,15 @@ const Wrapper = styled.div`
   z-index: 998;
 `;
 
+const backdropAppear = (opacity) => keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: ${opacity};
+  }
+`;
+
 const Backdrop = styled.div`
   position: absolute;
   top: 0;
@@ -17,16 +27,7 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background: #000000;
-  animation: backdropAppear 0.2s both;
-  
-  @keyframes backdropAppear {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0.3;
-    }
-  }
+  animation: ${({opacity}) => backdropAppear(opacity)} 0.2s both;
 `;
 
 const PLACEMENT_TO_JUSTIFY_CONTENT = {
@@ -70,10 +71,10 @@ const Content = styled.div`
   }
 `;
 
-export function Modal({ children, className, placement = 'center' }) {
+export function Modal({ children, className, opacity = '0.3', placement = 'center' }) {
   return (
     <Wrapper>
-      <Backdrop />
+      <Backdrop opacity={opacity}/>
       <Content className={className} placement={placement}>{children}</Content>
     </Wrapper>
   );

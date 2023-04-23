@@ -103,7 +103,7 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
         const chosenAnswer = answers[currentIndex];
         const chosenGrade = question.nextGrade ?? chosenAnswer.nextGrade;
         setProgress(chosenAnswer.track, chosenGrade);
-        onChoose?.(chosenAnswer.track, chosenGrade);
+        onChoose?.(chosenAnswer.track, chosenGrade, track);
     }
 
     useEffect(() => {

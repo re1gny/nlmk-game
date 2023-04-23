@@ -1,5 +1,23 @@
 import React from 'react';
+import { useScreen } from '../../../hooks/useScreen';
+import { Text } from '../../common/Text';
+import { SCREENS } from '../../../constants/screens';
+import { BaseScratchGameScreen } from '../../common/BaseScratchGameScreen';
+import scratchResultTrack3 from '../../../assets/images/scratchResultTrack3.png';
 
 export function Screen31() {
-  return <>Screen-3-1</>
+  const { next } = useScreen();
+
+  const finishText = (
+      <Text>
+        <b>Тебя ждут комфортные и современные лаборатории!</b> А коллеги помогут тебе
+        адаптироваться! <b>А пока пора двигаться дальше…</b>
+      </Text>
+  );
+
+  function handleNext() {
+    next(SCREENS.TRACK_3.SCREEN_2);
+  }
+
+  return <BaseScratchGameScreen image={scratchResultTrack3} finishText={finishText} onNext={handleNext} />
 }

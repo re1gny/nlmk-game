@@ -7,6 +7,7 @@ const INITIAL_PATH = [];
 const INITIAL_CHARACTER = 5;
 const INITIAL_TRACK = null;
 const INITIAL_GRADE = null;
+const INITIAL_MESSAGE_ID = 0;
 
 export function GameStateProvider({ children }) {
   const { reset } = useScreen();
@@ -15,6 +16,8 @@ export function GameStateProvider({ children }) {
   const [character, setCharacter] = useState(INITIAL_CHARACTER)
   const [track, setTrack] = useState(INITIAL_TRACK)
   const [grade, setGrade] = useState(INITIAL_GRADE)
+  const [isHorizontalGameShown, setIsHorizontalGameShown] = useState(false);
+  const [messageId, setMessageId] = useState(INITIAL_MESSAGE_ID);
 
   const handleReset = useCallback(() => {
     reset();
@@ -22,6 +25,8 @@ export function GameStateProvider({ children }) {
     setCharacter(INITIAL_CHARACTER);
     setTrack(INITIAL_TRACK);
     setGrade(INITIAL_GRADE);
+    setIsHorizontalGameShown(false);
+    setMessageId(INITIAL_MESSAGE_ID);
   }, [reset]);
 
   const handleSetCharacter = useCallback((character) => {
@@ -30,6 +35,14 @@ export function GameStateProvider({ children }) {
 
   const handleStart = useCallback(() => {
     setPath([PATH_POINTS.START]);
+  }, []);
+
+  const handleSetNextMessageId = useCallback(() => {
+    setMessageId(prev => ++prev);
+  }, []);
+
+  const handleSetHorizontalGameShown = useCallback(() => {
+    setIsHorizontalGameShown(true);
   }, []);
 
   const handleSetProgress = useCallback((track, grade) => {
@@ -43,11 +56,20 @@ export function GameStateProvider({ children }) {
     character,
     grade,
     path,
+    messageId,
+    isHorizontalGameShown,
     setCharacter: handleSetCharacter,
     setProgress: handleSetProgress,
     start: handleStart,
     reset: handleReset,
-  }), [track, character, grade, path, handleSetCharacter, handleSetProgress, handleReset, handleStart]);
+    setNextMessageId: handleSetNextMessageId,
+    setIsHorizontalGameShown: handleSetHorizontalGameShown
+  }),
+[
+    track, character, grade, path, handleSetCharacter, handleSetProgress,
+    handleReset, handleStart, handleSetHorizontalGameShown, isHorizontalGameShown,
+    handleSetNextMessageId, messageId
+]);
 
   return (
     <GameStateContext.Provider value={value}>

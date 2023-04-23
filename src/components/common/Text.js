@@ -6,6 +6,10 @@ const Wrapper = styled.span`
   font-size: 16px;
   line-height: 120%;
   font-weight: ${({ bold }) => bold ? 700 : 350};
+  
+  @media screen and (max-width: 325px) {
+    font-size: 13px;
+  }
 `;
 
 export function Text({ children, className, bold, onClick }) {
