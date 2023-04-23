@@ -30,6 +30,7 @@ export const Screen36 = () => {
             track={TRACKS.TRACK_3}
             grade={1}
             onChoose={handleNext}
+            post={'Руководитель проектного офиса'}
         />
     )
 }

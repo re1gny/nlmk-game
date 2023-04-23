@@ -48,6 +48,7 @@ export function GameStateProvider({ children }) {
   const handleSetProgress = useCallback((track, grade) => {
     setTrack(track);
     setGrade(grade);
+    if (!grade) return;
     setPath(prev => [...prev, PATH_POINTS[track][grade]]);
   }, []);
 

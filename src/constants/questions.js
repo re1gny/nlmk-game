@@ -60,7 +60,7 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold> Горнодобывающее производство</Text>
+                    getText: () => <Text bold>Горнодобывающее производство</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
@@ -92,7 +92,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text> <b>Заменить Мастера</b> на время отпуска и поработать с бригадой</Text>
+                    getText: () => <Text> <b>Заменить Мастера</b> на время отпуска{'\n'}и поработать с бригадой</Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
@@ -122,7 +122,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Я готов к дальнейшему развитию  в производстве</Text>
+                    getText: () => <Text bold> Я готов к дальнейшему развитию {'\n'}в производстве</Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
@@ -132,7 +132,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text bold>Начну развиваться в бизнес-направлениях</Text>
+                    getText: () => <Text bold>Начну развиваться в бизнес-{'\n'}направлениях</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
@@ -158,12 +158,12 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Хочу попробовать себя в новой должности бизнес-управленца</Text>
+                    getText: () => <Text bold> Хочу попробовать себя в новой{'\n'} должности бизнес-управленца</Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold>У меня есть все навыки для управления проектами — хочу попробовать свои силы</Text>
+                    getText: () => <Text bold>У меня есть все навыки{'\n'} для управления проектами — хочу попробовать свои силы</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,

@@ -11,10 +11,6 @@ export function Screen14() {
   const { next } = useScreen();
   const {setProgress} = useGameState();
 
-  // function handleBack() {
-  //   next(SCREENS.TRACK_1.SCREEN_3);
-  // }
-
   function handleNext(nextTrack, grade, currentTrack) {
     if (!grade) {
       next(SCREENS.SCREEN_8);
@@ -35,7 +31,7 @@ export function Screen14() {
           track={TRACKS.TRACK_1}
           grade={1}
           onChoose={handleNext}
+          post={'Мастер'}
       />
   )
-  // return <BaseMapViewScreen onBack={handleBack} />;
 }

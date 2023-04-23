@@ -25,6 +25,7 @@ export function Screen13() {
       questionNumber={3}
       track={TRACKS.TRACK_1}
       grade={0}
+      post={'Высококвалифицированный рабочий'}
       onChoose={handleNext}
     />
 }

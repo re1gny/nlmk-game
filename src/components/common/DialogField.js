@@ -16,6 +16,7 @@ const TextWrapper = styled.div`
   border: 1px solid #003399;
   text-align: center;
   color: #003399;
+  white-space: pre-line;
 `;
 
 const DialogTail = styled.div`

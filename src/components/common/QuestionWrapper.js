@@ -8,13 +8,13 @@ import { InfoPanel } from './InfoPanel';
 import { Slider } from './Slider';
 import { Button } from './Button';
 import { DialogField } from './DialogField';
+import { Text } from './Text';
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 25px 45vh auto;
+  grid-template-rows: 40px 48vh auto;
   padding: 20px 0;
-  grid-gap: 15px;
 `;
 
 const Info = styled(InfoPanel)`
@@ -88,10 +88,20 @@ const Character = styled.img`
 `;
 
 const DialogFieldStyled = styled(DialogField)`
-    margin: 0 20px;
+  margin: 0 20px;
 `;
 
-export const QuestionWrapper = ({question, questionNumber, track, grade, onChoose}) => {
+const PostWrapper = styled.div`
+  margin: 0 20px 10px 20px;
+  background: #0099FF;
+  border: 1px solid #002366;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+`;
+
+export const QuestionWrapper = ({question, questionNumber, track, grade, onChoose, post}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const answers = question.answers;
     const {character, setProgress} = useGameState();
@@ -108,13 +118,18 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
 
     useEffect(() => {
         if (!contentRef?.current?.clientHeight) return;
-        setContentHeight(contentRef.current.clientHeight + 22 + 'px');
+        setContentHeight(contentRef.current.clientHeight + 24 + 'px');
     }, [currentIndex]);
 
     return (
         <Wrapper>
             <Title>Вопрос №{questionNumber}</Title>
             <QuestionPart>
+                {post && (
+                    <PostWrapper>
+                        <Text bold>Ты {post} </Text>
+                    </PostWrapper>
+                )}
                 <Info>
                     {question.getQuestion()}
                 </Info>

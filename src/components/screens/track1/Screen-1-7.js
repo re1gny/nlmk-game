@@ -19,6 +19,7 @@ export const Screen17 = () => {
             track={TRACKS.TRACK_1}
             grade={2}
             onChoose={handleNext}
+            post={'Директор'}
         />
     )
 }
