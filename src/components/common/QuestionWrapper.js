@@ -1,27 +1,25 @@
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import { InfoPanel } from './InfoPanel';
-import { Slider } from './Slider';
-import React, { useState } from 'react';
-import { Button } from './Button';
-import { DialogField } from './DialogField';
 import arrowLeft from '../../assets/icons/sliderArrowOutlinedLeft.svg';
 import arrowRight from '../../assets/icons/sliderArrowOutlinedRight.svg';
 import { getCharacterPicture } from '../../utils/getCharacterPicture';
 import { useGameState } from '../../hooks/useGameState';
-import { useScreen } from '../../hooks/useScreen';
-import { SCREENS } from '../../constants/screens';
+import { InfoPanel } from './InfoPanel';
+import { Slider } from './Slider';
+import { Button } from './Button';
+import { DialogField } from './DialogField';
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 25px 45vh auto;
-  padding: 20px;
+  padding: 20px 0;
   grid-gap: 15px;
 `;
 
 const Info = styled(InfoPanel)`
   padding: 14px 21px;
-  margin-bottom: 20px;
+  margin: 0 20px 20px;
 `;
 
 const Title = styled.p`
@@ -29,12 +27,13 @@ const Title = styled.p`
   font-size: 25px;
   line-height: 25px;
   color: #2C5697;
+  margin-left: 20px;
 `;
 
 const ArrowButton = styled(Button)`
   position: absolute;
   z-index: 3;
-  top: 50%;
+  top: calc(50% - 11px);
   transform: translateY(-50%);
   width: 25px;
   background-repeat: no-repeat;
@@ -54,14 +53,16 @@ const ArrowRight = styled(ArrowButton)`
 const QuestionPart = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const SliderStyled = styled(Slider)`
-  height: 20.2vh;
+  height: ${({height}) => height}
 `;
 
 const ButtonStyled = styled(Button)`
   max-width: 190px;
+  margin-left: 20px;
 `;
 
 const CharacterWrapper = styled.div`
@@ -86,11 +87,17 @@ const Character = styled.img`
   max-height: 780px;
 `;
 
+const DialogFieldStyled = styled(DialogField)`
+    margin: 0 20px;
+`;
+
 export const QuestionWrapper = ({question, questionNumber, track, grade, onChoose}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const answers = question.answers;
-    const {character} = useGameState();
-    const {setProgress} = useGameState();
+    const {character, setProgress} = useGameState();
+    const [contentHeight, setContentHeight] = useState('');
+
+    const contentRef = useRef(null);
 
     function handleClick() {
         const chosenAnswer = answers[currentIndex];
@@ -98,6 +105,11 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
         setProgress(chosenAnswer.track, chosenGrade);
         onChoose?.(chosenAnswer.track, chosenGrade);
     }
+
+    useEffect(() => {
+        if (!contentRef?.current?.clientHeight) return;
+        setContentHeight(contentRef.current.clientHeight + 22 + 'px');
+    }, [currentIndex]);
 
     return (
         <Wrapper>
@@ -108,6 +120,7 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
                 </Info>
                 <SliderStyled
                     onChangeIndex={setCurrentIndex}
+                    height={contentHeight}
                     length={answers.length}
                     renderArrows={({nextSlide, prevSlide}) => (
                         <>
@@ -116,7 +129,11 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
                         </>
                     )}
                     renderContent={() => (
-                        <DialogField>{answers[currentIndex]?.getText()}</DialogField>
+                        <DialogFieldStyled
+                            innerRef={contentRef}
+                        >
+                            {answers[currentIndex]?.getText()}
+                        </DialogFieldStyled>
                     )}
                 />
             </QuestionPart>

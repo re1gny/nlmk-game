@@ -3,6 +3,7 @@ import dialogTail from '../../assets/icons/dialorTail.svg';
 
 const Wrapper = styled.div`
   height: auto;
+  width: 100%;
 `;
 
 const TextWrapper = styled.div`
@@ -32,7 +33,7 @@ const DialogTail = styled.div`
 export const DialogField = (props) => {
     return (
         <Wrapper className={props.className}>
-            <TextWrapper>
+            <TextWrapper ref={props.innerRef}>
                 {props.children}
                 <DialogTail/>
             </TextWrapper>
