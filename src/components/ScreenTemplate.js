@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled'
 import { Transition } from 'react-transition-group';
 import screenBackdrop from '../assets/images/screenBackdrop.svg';
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: ${({height}) => height};
 `
 
 const BACKGROUND_TO_COLOR = {
@@ -44,9 +44,11 @@ const ScreenContent = styled.div`
 `;
 
 export function ScreenTemplate({ children, className }) {
+  const [height, setHeight] = useState('100vh');
   const { config, screenSwitching } = useScreen();
   const { background, screenSwitchingDuration } = config;
   const screenContentRef = useRef();
+  const wrapperRef = useRef();
 
   const defaultStyle = {
     transition: `opacity ${screenSwitchingDuration}ms ease-in-out`,
@@ -60,8 +62,23 @@ export function ScreenTemplate({ children, className }) {
     exited:  { opacity: 0 },
   };
 
+  useEffect(() => {
+    function handleResize() {
+      const viewportHeight = document.documentElement.clientHeight;
+      setHeight(viewportHeight + 'px');
+    }
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <Wrapper>
+    <Wrapper ref={wrapperRef} height={height}>
       <Screen className={className} background={background}>
         <Transition nodeRef={screenContentRef} in={!screenSwitching} timeout={screenSwitchingDuration}>
           {state => (

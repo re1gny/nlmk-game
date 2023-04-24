@@ -125,7 +125,7 @@ export const Screen2 = () => {
     function handleNext() {
         setIsChosen(true);
         setCharacter(slideData[currentIndex].id);
-        setTimeout(() => next(SCREENS.SCREEN_3), 2500);
+        setTimeout(() => next(SCREENS.SCREEN_3), 1500);
     }
 
     return <Wrapper>

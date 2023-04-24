@@ -20,7 +20,7 @@ export const questions = {
                         <Text bold>
                             Мне нравится технология производства!
                         </Text>
-                        <Text>{'\n'}Хочу плавить металл и заниматься изготовлением продуктов</Text>
+                        <Text>Хочу плавить металл и заниматься изготовлением продуктов</Text>
                     </>
                 )
             },
@@ -31,7 +31,7 @@ export const questions = {
                         <Text bold>
                             Оптимизация процессов — это мое!
                         </Text>
-                        <Text>{'\n'}Хочу разрабатывать методологии</Text>
+                        <Text>Хочу разрабатывать методологии</Text>
                     </>
                 )
             },
@@ -42,7 +42,7 @@ export const questions = {
                         <Text bold>
                             Поддерживающие функции и бизнес-направления — звучит круто!
                         </Text>
-                        <Text>{'\n'}Хочу работать с контрагентамии сопровождать продажи</Text>
+                        <Text>Хочу работать с контрагентамии сопровождать продажи</Text>
                     </>
                 )
             },
@@ -184,7 +184,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.FINAL,
-                    getText: () => <Text bold> Я люблю свою работу и готов брать на себя больше ответственности за процессы</Text>
+                    getText: () => <Text bold> Я люблю свою работу и готов брать{'\n'} на себя больше ответственности{'\n'} за процессы</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
@@ -211,7 +211,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
-                    getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
+                    getText: () => <Text bold> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
@@ -335,7 +335,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.FINAL,
-                    getText: () => <Text bold> Я люблю свою работу и готов брать на себя больше ответственности за процессы </Text>
+                    getText: () => <Text bold> Я люблю свою работу и готов брать {'\n'}на себя больше ответственности {'\n'}за процессы </Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
@@ -357,7 +357,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
-                    getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
+                    getText: () => <Text bold> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
@@ -530,7 +530,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
-                    getText: () => <Text bold> Я люблю свою работу! Хочу развить другие площадки Группы</Text>
+                    getText: () => <Text bold> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</Text>
                 },
                 {
                     track: TRACKS.TRACK_3,

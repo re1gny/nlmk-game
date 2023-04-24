@@ -11,9 +11,6 @@ import { DialogField } from './DialogField';
 import { Text } from './Text';
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 40px 48vh auto;
   padding: 20px 0;
 `;
 
@@ -28,6 +25,7 @@ const Title = styled.p`
   line-height: 25px;
   color: #2C5697;
   margin-left: 20px;
+  margin-bottom: 15px;
 `;
 
 const ArrowButton = styled(Button)`
@@ -54,6 +52,7 @@ const QuestionPart = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 48vh;
 `;
 
 const SliderStyled = styled(Slider)`
@@ -61,8 +60,11 @@ const SliderStyled = styled(Slider)`
 `;
 
 const ButtonStyled = styled(Button)`
+  position: absolute;
+  top: calc(48vh + 40px);
+  left: 20px;
+  z-index: 4;
   max-width: 190px;
-  margin-left: 20px;
 `;
 
 const CharacterWrapper = styled.div`
@@ -119,7 +121,7 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
     useEffect(() => {
         if (!contentRef?.current?.clientHeight) return;
         setContentHeight(contentRef.current.clientHeight + 24 + 'px');
-    }, [currentIndex]);
+    }, [contentRef?.current?.clientHeight, currentIndex]);
 
     return (
         <Wrapper>

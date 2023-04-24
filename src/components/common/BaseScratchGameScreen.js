@@ -41,7 +41,7 @@ function FinishModal({ children, onNext }) {
 }
 
 export function BaseScratchGameScreen({ image, finishText, onNext }) {
-  const [finishModalOpened, setFinishModalOpened] = useState(false);
+  const [finishModalOpened, setFinishModalOpened] = useState(true);
 
   function handleFinish() {
     setFinishModalOpened(true);
