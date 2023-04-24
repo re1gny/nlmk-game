@@ -8,7 +8,7 @@ import heart from '../../assets/icons/heart.svg';
 import { Button } from '../common/Button';
 
 const Wrapper = styled.div`
-  padding: 8vw 10px;
+  padding: 4.5vh 10px;
   height: 100%;
   width: 100%;
   background: url(${startScreenBackground});

@@ -57,7 +57,7 @@ const QuestionPart = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 85vw;
+  min-height: min(85vw, 48vh);
 `;
 
 const SliderStyled = styled(Slider)`
@@ -66,13 +66,13 @@ const SliderStyled = styled(Slider)`
 
 const ButtonStyled = styled(Button)`
   position: absolute;
-  top: calc(85vw + 40px);
+  top: calc(min(85vw, 48vh) + 40px);
   left: 20px;
   z-index: 4;
   max-width: 190px;
   
   @media screen and (max-height: 590px) {
-    top: calc(90vw + 50px);
+    top: calc(min(90vw, 50vh) + 50px);
   }
 `;
 
