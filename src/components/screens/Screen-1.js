@@ -8,7 +8,7 @@ import heart from '../../assets/icons/heart.svg';
 import { Button } from '../common/Button';
 
 const Wrapper = styled.div`
-  padding: 4.5vh 10px;
+  padding: 8vw 10px;
   height: 100%;
   width: 100%;
   background: url(${startScreenBackground});
@@ -34,11 +34,19 @@ const StartText = styled.p`
 
 const Title = styled(StartText)`
   font-size: 40px;
+  
+  @media screen and (max-width: 320px) {
+    font-size: 32px;
+  }
 `;
 
 const Subtitle = styled(StartText)`
   font-size: 30px;
   margin-top: 10px;
+
+  @media screen and (max-width: 320px) {
+    font-size: 22px;
+  }
 `;
 
 const IconsBlock = styled.div`

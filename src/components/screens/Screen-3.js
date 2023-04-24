@@ -30,7 +30,8 @@ const CharacterWrapper = styled.div`
   position: absolute;
   bottom: 0;
   left: 14px;
-  height: 37vh;
+  height: 64vw;
+  max-height: 242px;
   width: 100%;
   overflow: hidden;
 `;

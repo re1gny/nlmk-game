@@ -26,6 +26,11 @@ const Title = styled.p`
   color: #2C5697;
   margin-left: 20px;
   margin-bottom: 15px;
+  
+  @media screen and (max-width: 320px) {
+    font-size: 22px;
+    line-height: 22px;
+  }
 `;
 
 const ArrowButton = styled(Button)`
@@ -52,7 +57,7 @@ const QuestionPart = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 48vh;
+  min-height: 85vw;
 `;
 
 const SliderStyled = styled(Slider)`
@@ -61,10 +66,14 @@ const SliderStyled = styled(Slider)`
 
 const ButtonStyled = styled(Button)`
   position: absolute;
-  top: calc(48vh + 40px);
+  top: calc(85vw + 40px);
   left: 20px;
   z-index: 4;
   max-width: 190px;
+  
+  @media screen and (max-height: 590px) {
+    top: calc(90vw + 50px);
+  }
 `;
 
 const CharacterWrapper = styled.div`
@@ -77,14 +86,14 @@ const CharacterWrapper = styled.div`
   width: 67.466vw;
   max-width: 255px;
   overflow: hidden;
-  height: 36.43vh;
+  height: 65.333vw;
   max-height: 245px;
 `;
 
 const Character = styled.img`
   transform: scale(-1, 1);
   width: 89vw;
-  height: 116vh;
+  height: 206vw;
   max-width: 335px;
   max-height: 780px;
 `;

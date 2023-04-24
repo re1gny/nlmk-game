@@ -13,7 +13,7 @@ export const Screen5 = () => {
         path
     } = useGameState();
 
-    const [message, setMessage] = useState(messages[messageId].text);
+    const [message] = useState(messages[messageId].text);
 
     function handleNext() {
         const hadChangeTrack = [...path].slice(1)

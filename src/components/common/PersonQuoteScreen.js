@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { useScreen } from '../../hooks/useScreen';
 import { InfoPanel } from './InfoPanel';
@@ -20,11 +20,25 @@ const Info = styled(InfoPanel)`
 
 const Quote = styled.div`
   color: #FFFFFF;
-  background: #003399;
   white-space: pre-line;
-  margin-top: 3.7vh;
+  margin-top: 6.6vw;
   position: relative;
   z-index: 1;
+  animation: bgAppear 1000ms both;
+  animation-delay: 300ms;
+
+  @media screen and (max-width: 310px) {
+    white-space: normal;
+  }
+
+  @keyframes bgAppear {
+    0% {
+      background-color: initial;
+    }
+    100% {
+      background-color: #003399;
+    }
+  }
 `;
 
 const Person = styled.div`
@@ -34,7 +48,7 @@ const Person = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  height: 45.97vh;
+  height: 80.333vw;
   max-height: 320px;
   width: 58.8vw;
   max-width: 228px;
@@ -60,12 +74,14 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const PersonQuote = ({text, quote, person}) => {
+    const [isBackgroundChanged, setIsBackgroundChanged] = useState(false);
     const { next, config } = useScreen();
 
     useLayoutEffect(() => {
         config.setDarkBackground();
-
+        setIsBackgroundChanged(true);
         return () => {
+            setIsBackgroundChanged(false);
             config.setLightBackground();
         };
     }, []);
@@ -81,7 +97,7 @@ export const PersonQuote = ({text, quote, person}) => {
                     {text}
                 </Text>
             </Info>
-            <Quote>
+            <Quote isBackgroundChanged={isBackgroundChanged}>
                 <Text>{quote}</Text>
                 <SmallText bold>© {person.name}</SmallText>
                 <br/>

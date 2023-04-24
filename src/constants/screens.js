@@ -31,7 +31,7 @@ import { Screen26 } from '../components/screens/track2/Screen-2-6';
 import { Screen16 } from '../components/screens/track1/Screen-1-6';
 import { TetrisScreen } from '../components/screens/Screen-11';
 import { FinalScreen } from '../components/screens/Screen-12';
-import { MapScreen } from '../components/screens/Screen13';
+import { MapScreen } from '../components/screens/Screen-13';
 import { Screen37 } from '../components/screens/track3/Screen-3-7';
 import { Screen27 } from '../components/screens/track2/Screen-2-7';
 import { Screen17 } from '../components/screens/track1/Screen-1-7';
