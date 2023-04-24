@@ -77,7 +77,7 @@ const SliderInfoItem = styled.div`
   border-radius: 50%;
   background-color: ${({active}) => active ? '#2C5697' : '#FFFFFF'};
   margin-left: 19px;
-  transition: background-color 1000ms ease-in;
+  transition: background-color 400ms ease-in;
   &:first-of-type {
     margin-left: 0;
   }
@@ -125,7 +125,7 @@ export const Screen2 = () => {
     function handleNext() {
         setIsChosen(true);
         setCharacter(slideData[currentIndex].id);
-        setTimeout(() => next(SCREENS.SCREEN_3), 1500);
+        setTimeout(() => next(SCREENS.SCREEN_3), 800);
     }
 
     return <Wrapper>

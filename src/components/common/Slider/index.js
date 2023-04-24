@@ -49,7 +49,7 @@ export const Slider = ({ length, renderArrows, renderContent, onChangeIndex, cla
                     <CSSTransition
                         key={currentIndex}
                         classNames={side}
-                        timeout={1000}
+                        timeout={400}
                     >
                         <div className={'slide'}>
                             {renderContent({side})}

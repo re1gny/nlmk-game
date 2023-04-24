@@ -11,7 +11,7 @@
 
 .slide-left-enter-active {
     transform: translateX(0%);
-    transition: transform 1000ms ease-in-out;
+    transition: transform 400ms ease-in-out;
 }
 
 .slide-left-exit {
@@ -20,7 +20,7 @@
 
 .slide-left-exit-active {
     transform: translateX(-100%);
-    transition: transform 1000ms ease-in-out;
+    transition: transform 400ms ease-in-out;
 }
 
 .slide-right-enter {
@@ -29,7 +29,7 @@
 
 .slide-right-enter-active {
     transform: translateX(0%);
-    transition: transform 1000ms ease-in-out;
+    transition: transform 400ms ease-in-out;
 }
 
 .slide-right-exit {
@@ -38,5 +38,5 @@
 
 .slide-right-exit-active {
     transform: translateX(100%);
-    transition: transform 1000ms ease-in-out;
+    transition: transform 400ms ease-in-out;
 }
