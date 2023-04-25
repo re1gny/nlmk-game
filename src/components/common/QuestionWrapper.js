@@ -56,7 +56,7 @@ const ArrowRight = styled(ArrowButton)`
 const QuestionPart = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${({centered}) => centered ? 'center' : 'flex-start'};
   min-height: min(85vw, 48vh);
 `;
 
@@ -112,7 +112,7 @@ const PostWrapper = styled.div`
   color: white;
 `;
 
-export const QuestionWrapper = ({question, questionNumber, track, grade, onChoose, post}) => {
+export const QuestionWrapper = ({question, questionNumber, track, grade, onChoose, post, centered = false}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const answers = question.answers;
     const {character, setProgress} = useGameState();
@@ -135,7 +135,7 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
     return (
         <Wrapper>
             <Title>Вопрос №{questionNumber}</Title>
-            <QuestionPart>
+            <QuestionPart centered={centered}>
                 {post && (
                     <PostWrapper>
                         <Text bold>Ты {post} </Text>
