@@ -69,7 +69,8 @@ const Image = styled.img`
 `;
 
 const ButtonStyled = styled(Button)`
-    margin-top: auto;
+  margin: auto auto 0;
+  max-width: 249px;
 `;
 
 const HeartIcon = styled.img`
