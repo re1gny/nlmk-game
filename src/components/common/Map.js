@@ -195,9 +195,9 @@ export function Map(props) {
   }, []);
 
   function updateSize() {
-    const { height, width } = mapRef.current || {};
-    setHeight(height);
-    setWidth(width);
+    const { offsetHeight, offsetWidth } = mapRef.current || {};
+    setHeight(offsetHeight);
+    setWidth(offsetWidth);
   }
 
   return (

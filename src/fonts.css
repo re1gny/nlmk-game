@@ -1,31 +1,27 @@
 @font-face {
     font-family: 'BebasNeue';
-    src: local('BebasNeue'),
-    url('./assets/fonts/BebasNeue/BebasNeue-Regular.ttf') format('truetype');
+    src: url('./assets/fonts/BebasNeue/BebasNeue-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Circe';
-    src: local('Circe Bold'), local('Circe-Bold'),
-    url('./assets/fonts/Circe/circe-bold.ttf') format('truetype');
+    src: url('./assets/fonts/Circe/circe-bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Circe';
-    src: local('Circe Regular'), local('Circe-Regular'),
-    url('./assets/fonts/Circe/circe.ttf') format('truetype');
+    src: url('./assets/fonts/Circe/circe.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Circe';
-    src: local('Circe Light'), local('Circe-Light'),
-    url('./assets/fonts/Circe/circe-light.ttf') format('truetype');
+    src: url('./assets/fonts/Circe/circe-light.ttf') format('truetype');
     font-weight: 350;
     font-style: normal;
 }

@@ -18,7 +18,6 @@ export const Screen30 = () => {
             track={TRACKS.TRACK_3}
             grade={0}
             onChoose={handleChoose}
-            centered={true}
         />
     );
 };
