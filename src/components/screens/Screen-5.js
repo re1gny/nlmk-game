@@ -8,8 +8,8 @@ import { useState } from 'react';
 export const Screen5 = () => {
     const {next} = useScreen();
     const {
-        messageId, isHorizontalGameShown, track,
-        grade, setIsHorizontalGameShown, setNextMessageId,
+        messageId, track,
+        grade, setNextMessageId,
         path
     } = useGameState();
 
@@ -21,11 +21,10 @@ export const Screen5 = () => {
             .length !== (path.length - 1);
 
         setNextMessageId();
-        if (isHorizontalGameShown || !hadChangeTrack) {
+        if (!hadChangeTrack) {
             next(SCREENS[track][grade]);
             return;
         }
-        setIsHorizontalGameShown();
         next(SCREENS.SCREEN_6);
     }
     return <MapModalScreen onNext={handleNext} text={message}/>

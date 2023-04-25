@@ -24,17 +24,16 @@ export const Slider = ({ length, renderArrows, renderContent, onChangeIndex, cla
     const [side, setSide] = useState('');
 
     const nextSlide = () => {
-        setCurrentIndex(cur => (cur + 1) % length);
-        setSide('slide-right');
-        onChangeIndex?.(cur => (cur + 1) % length);
-    };
-
-    const prevSlide = () => {
         setCurrentIndex(cur => cur === 0 ? length - 1 : cur - 1);
-        setSide('slide-left');
+        setSide('slide-right');
         onChangeIndex?.(cur => cur === 0 ? length - 1 : cur - 1)
     };
 
+    const prevSlide = () => {
+        setCurrentIndex(cur => (cur + 1) % length);
+        setSide('slide-left');
+        onChangeIndex?.(cur => (cur + 1) % length);
+    };
 
     const childFactory = (side) => (child) =>
         React.cloneElement(child, {

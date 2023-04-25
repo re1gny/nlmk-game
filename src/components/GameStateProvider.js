@@ -16,7 +16,6 @@ export function GameStateProvider({ children }) {
   const [character, setCharacter] = useState(INITIAL_CHARACTER)
   const [track, setTrack] = useState(INITIAL_TRACK)
   const [grade, setGrade] = useState(INITIAL_GRADE)
-  const [isHorizontalGameShown, setIsHorizontalGameShown] = useState(false);
   const [messageId, setMessageId] = useState(INITIAL_MESSAGE_ID);
 
   const handleReset = useCallback(() => {
@@ -25,7 +24,6 @@ export function GameStateProvider({ children }) {
     setCharacter(INITIAL_CHARACTER);
     setTrack(INITIAL_TRACK);
     setGrade(INITIAL_GRADE);
-    setIsHorizontalGameShown(false);
     setMessageId(INITIAL_MESSAGE_ID);
   }, [reset]);
 
@@ -41,10 +39,6 @@ export function GameStateProvider({ children }) {
     setMessageId(prev => ++prev);
   }, []);
 
-  const handleSetHorizontalGameShown = useCallback(() => {
-    setIsHorizontalGameShown(true);
-  }, []);
-
   const handleSetProgress = useCallback((track, grade) => {
     setTrack(track);
     setGrade(grade);
@@ -58,18 +52,15 @@ export function GameStateProvider({ children }) {
     grade,
     path,
     messageId,
-    isHorizontalGameShown,
     setCharacter: handleSetCharacter,
     setProgress: handleSetProgress,
     start: handleStart,
     reset: handleReset,
     setNextMessageId: handleSetNextMessageId,
-    setIsHorizontalGameShown: handleSetHorizontalGameShown
   }),
 [
     track, character, grade, path, handleSetCharacter, handleSetProgress,
-    handleReset, handleStart, handleSetHorizontalGameShown, isHorizontalGameShown,
-    handleSetNextMessageId, messageId
+    handleReset, handleStart, handleSetNextMessageId, messageId
 ]);
 
   return (
