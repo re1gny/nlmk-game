@@ -6,7 +6,7 @@ import { useGameState } from '../../hooks/useGameState';
 import { PATH_POINTS } from '../../constants/pathPoints';
 import { TRACKS } from '../../constants/tracks';
 import { GRADES } from '../../constants/grades';
-import map from '../../assets/images/map.png';
+import map from '../../assets/images/map.jpg';
 import startPoint from '../../assets/icons/startPoint.svg';
 import finalPoint from '../../assets/icons/finalPoint.svg';
 import track1GradePoint from '../../assets/icons/track1GradePoint.svg';
