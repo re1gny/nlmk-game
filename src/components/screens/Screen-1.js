@@ -34,6 +34,7 @@ const StartText = styled.p`
 
 const Title = styled(StartText)`
   font-size: 40px;
+  font-weight: 400;
   
   @media screen and (max-width: 320px) {
     font-size: 32px;
@@ -43,6 +44,7 @@ const Title = styled(StartText)`
 const Subtitle = styled(StartText)`
   font-size: 30px;
   margin-top: 10px;
+  font-weight: 400;
 
   @media screen and (max-width: 320px) {
     font-size: 22px;
@@ -70,7 +72,9 @@ const Image = styled.img`
 
 const ButtonStyled = styled(Button)`
   margin: auto auto 0;
-  max-width: 249px;
+  width: auto;
+  padding: 15px 30px;
+  border: none;
 `;
 
 const HeartIcon = styled.img`

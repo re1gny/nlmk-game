@@ -19,6 +19,7 @@ export const Screen4 = () => {
             question={questions[TRACKS.UNSPECIFIED]}
             questionNumber={1}
             grade={0}
+            withHint
             onChoose={handleChoose}
         />
     );

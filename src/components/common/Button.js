@@ -11,7 +11,7 @@ const VARIANT_TO_BACKGROUND = {
 
 const VARIANT_TO_BORDER = {
   primary: 'none',
-  secondary: '1px solid #2C5697',
+  secondary: '3px solid #003399',
   tertiary: '3px solid #FFFFFF',
   outlined: '1px solid #FFFFFF',
   icon: 'none'
@@ -27,7 +27,7 @@ const VARIANT_TO_FONT_WEIGHT = {
 
 const VARIANT_TO_COLOR = {
   primary: '#FFFFFF',
-  secondary: '#2C5697',
+  secondary: '#003399',
   tertiary: '#FFFFFF',
   outlined: '#FFFFFF',
 };
@@ -66,6 +66,9 @@ const Wrapper = styled.button`
   width: 100%;
   cursor: ${({ disabled }) => disabled ? 'auto' : 'pointer'};
   transition: background 0.2s, color 0.2s;
+  font-family: Circe, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
 `;
 
 export function Button({ children, className, disabled, variant = 'primary', onClick }) {

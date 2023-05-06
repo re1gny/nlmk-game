@@ -6,9 +6,9 @@ const Wrapper = styled(InfoPanel)`
   box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.25);
 `;
 
-export function ModalInfoPanel({ children, className }) {
+export function ModalInfoPanel({ children, title, className }) {
   return (
-    <Wrapper className={className} variant='light'>
+    <Wrapper className={className} title={title} variant='light'>
       {children}
     </Wrapper>
   );

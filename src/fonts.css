@@ -1,7 +1,21 @@
 @font-face {
     font-family: 'BebasNeue';
+    src: url('./assets/fonts/BebasNeue/BebasNeue-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BebasNeue';
     src: url('./assets/fonts/BebasNeue/BebasNeue-Regular.ttf') format('truetype');
     font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('./assets/fonts/BebasNeue/BebasNeue-Light.ttf') format('truetype');
+    font-weight: 350;
     font-style: normal;
 }
 

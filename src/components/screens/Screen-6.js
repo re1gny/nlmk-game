@@ -22,5 +22,5 @@ export const Screen6 = () => {
     function handleNext() {
         next(SCREENS.SCREEN_7)
     }
-    return <MapModalScreen text={text} onNext={handleNext}/>
+    return <MapModalScreen title='Ротация внутри компании' text={text} onNext={handleNext}/>
 }

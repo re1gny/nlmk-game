@@ -14,11 +14,11 @@ const ButtonStyled = styled(Button)`
   padding-bottom: 28px;
 `;
 
-export const MapModalScreen = ({text, onNext, children, buttonText = 'ВПЕРЕД'}) => {
+export const MapModalScreen = ({text, title, onNext, children, buttonText = 'ВПЕРЕД'}) => {
     return <>
         <Map />
         <Modal opacity={'0.6'}>
-            <Info>
+            <Info title={title}>
                 {text}
             </Info>
             {children}

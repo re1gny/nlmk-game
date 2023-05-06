@@ -16,14 +16,15 @@ const Wrapper = styled.div`
 `;
 
 const Info = styled(InfoPanel)`
-  margin: 20vh 9px 4.7vh 19px;
+  margin: 18vh 9px 1.8vh 19px;
   white-space: pre-line;
   padding: 16px;
 `;
 
 const ButtonStyled = styled(Button)`
   max-width: 249px;
-  margin: 0 26px 0 auto;
+  margin: 0 auto;
+  padding: 25px 0;
 `;
 
 const CharacterWrapper = styled.div`
@@ -73,12 +74,12 @@ export const Screen3 = () => {
             <Content>
                 <Info variant={'light'}>
                     <Text>
-                        Сейчас ты будешь <b>перемещаться между разными позициями</b> в компании.{'\n'}
-                        Обрати внимание: на карте есть <b> синие объекты — </b>они все сделаны с использованием
-                        <b> продукции НЛМК!</b>
+                        Ты будешь <b>перемещаться между разными позициями</b> в компании.{'\n'}
+                        Обрати внимание: на карте есть <b>синие объекты — </b>они все сделаны с использованием <b>продукции НЛМК!</b>{'\n'}
+                        <b>Кликай по ним,</b> чтобы узнать интересные факты
                     </Text>
                 </Info>
-                <ButtonStyled onClick={handleNext}>СТАРТ →</ButtonStyled>
+                <ButtonStyled onClick={handleNext}>СТАРТ ➔</ButtonStyled>
                 <CharacterWrapper>
                     <img src={picture} alt={''}/>
                 </CharacterWrapper>

@@ -8,6 +8,8 @@ const INITIAL_CHARACTER = 5;
 const INITIAL_TRACK = null;
 const INITIAL_GRADE = null;
 const INITIAL_MESSAGE_ID = 0;
+const INITIAL_CARDS_GAME_PASSED = false;
+const INITIAL_FINISH_CONFIRMED = false;
 
 export function GameStateProvider({ children }) {
   const { reset } = useScreen();
@@ -17,6 +19,10 @@ export function GameStateProvider({ children }) {
   const [track, setTrack] = useState(INITIAL_TRACK)
   const [grade, setGrade] = useState(INITIAL_GRADE)
   const [messageId, setMessageId] = useState(INITIAL_MESSAGE_ID);
+  const [cardsGamePassed, setCardsGamePassed] = useState(INITIAL_CARDS_GAME_PASSED);
+  const [finishConfirmed, setFinishConfirmed] = useState(INITIAL_FINISH_CONFIRMED);
+  const [afterConfirmTrack, setAfterConfirmTrack] = useState(INITIAL_TRACK);
+  const [afterConfirmGrade, setAfterConfirmGrade] = useState(INITIAL_GRADE);
 
   const handleReset = useCallback(() => {
     reset();
@@ -25,10 +31,22 @@ export function GameStateProvider({ children }) {
     setTrack(INITIAL_TRACK);
     setGrade(INITIAL_GRADE);
     setMessageId(INITIAL_MESSAGE_ID);
+    setCardsGamePassed(INITIAL_CARDS_GAME_PASSED);
+    setAfterConfirmTrack(INITIAL_TRACK);
+    setAfterConfirmGrade(INITIAL_GRADE);
+    setFinishConfirmed(INITIAL_FINISH_CONFIRMED);
   }, [reset]);
 
   const handleSetCharacter = useCallback((character) => {
     setCharacter(character);
+  }, []);
+
+  const handlePassCardsGame = useCallback(() => {
+    setCardsGamePassed(true);
+  }, []);
+
+  const handleConfirmFinish = useCallback(() => {
+    setFinishConfirmed(true);
   }, []);
 
   const handleStart = useCallback(() => {
@@ -52,15 +70,29 @@ export function GameStateProvider({ children }) {
     grade,
     path,
     messageId,
+    cardsGamePassed,
     setCharacter: handleSetCharacter,
     setProgress: handleSetProgress,
     start: handleStart,
     reset: handleReset,
     setNextMessageId: handleSetNextMessageId,
+    passCardsGame: handlePassCardsGame,
+    afterConfirmTrack,
+    setAfterConfirmTrack,
+    afterConfirmGrade,
+    setAfterConfirmGrade,
+    finishConfirmed,
+    confirmFinish: handleConfirmFinish,
   }),
 [
     track, character, grade, path, handleSetCharacter, handleSetProgress,
-    handleReset, handleStart, handleSetNextMessageId, messageId
+    handleReset, handleStart, handleSetNextMessageId, messageId, cardsGamePassed, handlePassCardsGame,
+    afterConfirmTrack,
+    setAfterConfirmTrack,
+    afterConfirmGrade,
+    setAfterConfirmGrade,
+    finishConfirmed,
+    handleConfirmFinish,
 ]);
 
   return (

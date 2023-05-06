@@ -4,6 +4,7 @@ import { Text } from '../common/Text';
 import { Button } from '../common/Button';
 import { SCREENS } from '../../constants/screens';
 import { useScreen } from '../../hooks/useScreen';
+import { useGameState } from '../../hooks/useGameState';
 
 const Wrapper = styled.div`
   padding: min(17.8vh, 119px) 19px 20px;
@@ -27,9 +28,21 @@ const ButtonStyled = styled(Button)`
 
 export const Screen8 = () => {
     const {next} = useScreen();
+    const {confirmFinish, afterConfirmTrack, afterConfirmGrade, setAfterConfirmGrade, setAfterConfirmTrack, setProgress} = useGameState();
+
+    function handleFinish() {
+        next(SCREENS.SCREEN_12);
+        setAfterConfirmGrade(null);
+        setAfterConfirmTrack(null);
+        confirmFinish();
+    }
 
     function handleNext() {
-        next(SCREENS.SCREEN_12);
+        next(SCREENS[afterConfirmTrack][afterConfirmGrade]);
+        setProgress(afterConfirmTrack, afterConfirmGrade);
+        setAfterConfirmGrade(null);
+        setAfterConfirmTrack(null);
+        confirmFinish();
     }
 
     return (
@@ -50,7 +63,7 @@ export const Screen8 = () => {
                 </Text>
             </Info>
             <ButtonWrapper>
-                <Button variant={'secondary'}>Остаюсь на этой позиции</Button>
+                <Button variant={'secondary'} onClick={handleFinish}>Остаюсь на этой позиции</Button>
                 <ButtonStyled onClick={handleNext}>ДАЛЕЕ</ButtonStyled>
             </ButtonWrapper>
         </Wrapper>

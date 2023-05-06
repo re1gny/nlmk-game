@@ -35,6 +35,7 @@ import { MapScreen } from '../components/screens/Screen-13';
 import { Screen37 } from '../components/screens/track3/Screen-3-7';
 import { Screen27 } from '../components/screens/track2/Screen-2-7';
 import { Screen17 } from '../components/screens/track1/Screen-1-7';
+import { PreTetrisScreen } from '../components/screens/Screen-14';
 
 import { GRADES } from './grades';
 
@@ -52,6 +53,7 @@ export const SCREENS = {
   SCREEN_11: 'SCREEN_11',
   SCREEN_12: 'SCREEN_12',
   SCREEN_13: 'SCREEN_13',
+  SCREEN_14: 'SCREEN_14',
   TRACK_1: {
     [GRADES.START]: 'TRACK_1.START',
     SCREEN_1: 'TRACK_1.SCREEN_1',
@@ -98,6 +100,7 @@ export const SCREEN_COMPONENTS = {
   [SCREENS.SCREEN_11]: TetrisScreen,
   [SCREENS.SCREEN_12]: FinalScreen,
   [SCREENS.SCREEN_13]: MapScreen,
+  [SCREENS.SCREEN_14]: PreTetrisScreen,
   [SCREENS.TRACK_1[GRADES.START]]: Screen10,
   [SCREENS.TRACK_1.SCREEN_1]: Screen11,
   [SCREENS.TRACK_1.SCREEN_2]: Screen12,

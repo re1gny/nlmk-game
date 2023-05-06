@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import arrowLeft from '../../assets/icons/sliderArrowOutlinedLeft.svg';
 import arrowRight from '../../assets/icons/sliderArrowOutlinedRight.svg';
@@ -61,7 +61,8 @@ const QuestionPart = styled.div`
 `;
 
 const SliderStyled = styled(Slider)`
-  height: ${({height}) => height}
+  height: ${({height}) => height};
+  transition: height 0.2s;
 `;
 
 const ButtonStyled = styled(Button)`
@@ -70,6 +71,7 @@ const ButtonStyled = styled(Button)`
   left: 20px;
   z-index: 4;
   max-width: 190px;
+  padding: 16px 48px;
   
   @media screen and (max-height: 590px) {
     top: calc(min(90vw, 50vh) + 50px);
@@ -100,6 +102,7 @@ const Character = styled.img`
 
 const DialogFieldStyled = styled(DialogField)`
   margin: 0 20px;
+  padding-bottom: 24px;
 `;
 
 const PostWrapper = styled.div`
@@ -112,25 +115,41 @@ const PostWrapper = styled.div`
   color: white;
 `;
 
-export const QuestionWrapper = ({question, questionNumber, track, grade, onChoose, post, centered = false}) => {
+const HintText = styled(Text)`
+  font-weight: 350;
+  font-size: 12px;
+  color: #003399;
+  margin-left: 20px;
+  margin-top: -10px;
+  opacity: ${({ hidden }) => hidden ? '0' : '1'};
+  transition: opacity 0.1s;
+`;
+
+export const QuestionWrapper = ({withHint, question, questionNumber, track, grade, onChoose, post, centered = false}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const answers = question.answers;
     const {character, setProgress} = useGameState();
-    const [contentHeight, setContentHeight] = useState('');
+    const [contentHeight, setContentHeight] = useState(null);
+    const [indexWasChanged, setIndexWasChanged] = useState(false);
 
     const contentRef = useRef(null);
+
+    function handleChangeIndex(index) {
+      setCurrentIndex(index);
+      setIndexWasChanged(true);
+    }
 
     function handleClick() {
         const chosenAnswer = answers[currentIndex];
         const chosenGrade = question.nextGrade ?? chosenAnswer.nextGrade;
         setProgress(chosenAnswer.track, chosenGrade);
-        onChoose?.(chosenAnswer.track, chosenGrade, track);
+        onChoose?.(chosenAnswer.track, chosenGrade, track, chosenAnswer.afterConfirmGrade);
     }
 
-    useEffect(() => {
-        if (!contentRef?.current?.clientHeight) return;
-        setContentHeight(contentRef.current.clientHeight + 24 + 'px');
-    }, [contentRef?.current?.clientHeight, currentIndex]);
+    useLayoutEffect(() => {
+      if (!contentRef?.current?.clientHeight) return;
+      setContentHeight(contentRef.current.clientHeight + 24 + 'px');
+    }, [currentIndex]);
 
     return (
         <Wrapper>
@@ -145,7 +164,7 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
                     {question.getQuestion()}
                 </Info>
                 <SliderStyled
-                    onChangeIndex={setCurrentIndex}
+                    onChangeIndex={handleChangeIndex}
                     height={contentHeight}
                     length={answers.length}
                     renderArrows={({nextSlide, prevSlide}) => (
@@ -162,6 +181,7 @@ export const QuestionWrapper = ({question, questionNumber, track, grade, onChoos
                         </DialogFieldStyled>
                     )}
                 />
+              {withHint && <HintText hidden={indexWasChanged}>Жми на стрелочки и выбирай свой ответ</HintText>}
             </QuestionPart>
             <ButtonStyled onClick={handleClick}>ВЫБРАТЬ</ButtonStyled>
             <CharacterWrapper>

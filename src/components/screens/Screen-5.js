@@ -10,7 +10,8 @@ export const Screen5 = () => {
     const {
         messageId, track,
         grade, setNextMessageId,
-        path
+        path,
+        cardsGamePassed,
     } = useGameState();
 
     const [message] = useState(messages[messageId].text);
@@ -21,11 +22,11 @@ export const Screen5 = () => {
             .length !== (path.length - 1);
 
         setNextMessageId();
-        if (!hadChangeTrack) {
+        if (!hadChangeTrack || cardsGamePassed) {
             next(SCREENS[track][grade]);
             return;
         }
         next(SCREENS.SCREEN_6);
     }
-    return <MapModalScreen onNext={handleNext} text={message}/>
+    return <MapModalScreen onNext={handleNext} text={message} title='Бонус: факт о НЛМК'/>
 }
