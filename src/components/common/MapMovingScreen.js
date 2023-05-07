@@ -23,7 +23,7 @@ const NextButton = styled(Button)`
 export const MapMovingScreen = ({onNext}) => {
     return (
       <Wrapper>
-        <Map />
+        <Map withPathMove />
         <NextButton onClick={onNext}>
           Продолжить путь
         </NextButton>

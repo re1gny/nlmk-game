@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import useImage from 'use-image';
 import { Stage, Layer, Image, Line } from 'react-konva';
 import { useGameState } from '../../hooks/useGameState';
-import { PATH_POINTS } from '../../constants/pathPoints';
+import { PATH_POINTS, PATH_POINTS_LIST } from '../../constants/pathPoints';
 import { TRACKS } from '../../constants/tracks';
 import { GRADES } from '../../constants/grades';
 import map from '../../assets/images/map.jpg';
@@ -144,44 +144,30 @@ function getPathPointPosition(point, width, height) {
   ];
 }
 
-function getPathPointSize(point, index, path) {
+function getPathPointSize(point, isLast) {
   return [
-    PATH_POINT_SIZES[point](index === path.length - 1)[0],
-    PATH_POINT_SIZES[point](index === path.length - 1)[1],
+    PATH_POINT_SIZES[point](isLast)[0],
+    PATH_POINT_SIZES[point](isLast)[1],
   ];
 }
 
-function getPathPointImage(point, index, path) {
-  return PATH_POINT_IMAGES[point](index === path.length - 1);
+function getPathPointImage(point, isLast) {
+  return PATH_POINT_IMAGES[point](isLast);
 }
 
-function getPathPointOffset(point, index, path) {
-  return PATH_POINT_OFFSETS[point](index === path.length - 1);
+function getPathPointOffset(point, isLast) {
+  return PATH_POINT_OFFSETS[point](isLast);
 }
 
-function getLineConnectionPosition(point, index, width, height, path) {
+function getLineConnectionPosition(point, width, height, isLast) {
   return getPathPointPosition(point, width, height)
     .map((position, positionIndex) =>
-      position + getPathPointSize(point, index, path)[positionIndex] / 2 + getPathPointOffset(point, index, path)[positionIndex]
+      position + getPathPointSize(point, isLast)[positionIndex] / 2 + getPathPointOffset(point, isLast)[positionIndex]
     );
 }
 
-function createLine(prevPoint, nextPoint, prevIndex, nextIndex, width, height, path) {
-  return [
-    ...getLineConnectionPosition(prevPoint, prevIndex, width, height, path),
-    ...getLineConnectionPosition(nextPoint, nextIndex, width, height, path),
-  ];
-}
-
-function createLines(path, width, height) {
-  return path?.reduce((acc, point, index) => {
-    if (index) {
-      const prevIndex = index - 1;
-      return [...acc, createLine(path[prevIndex], point, prevIndex, index, width, height, path)];
-    }
-
-    return acc;
-  }, [])
+function createLine(originalPath, path, width, height) {
+  return path?.reduce((acc, point, index) => [...acc, ...getLineConnectionPosition(point, width, height, index === originalPath.length - 1)], [])
 }
 
 function CanvasImage({ src, ...rest }) {
@@ -190,13 +176,16 @@ function CanvasImage({ src, ...rest }) {
 }
 
 export function Map(props) {
-  const { className } = props;
+  const { className, withPathMove } = props;
   const { path } = useGameState();
   const mapRef = useRef();
+  const wrapperRef = useRef();
+  const lineRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [pathWasMoved, setPathWasMoved] = useState(false);
 
-  const lines = createLines(path, width, height);
+  const line = withPathMove && !pathWasMoved ? createLine(path, path.slice(0, -1), width, height) : createLine(path, path, width, height)
 
   function updateSize() {
     const { offsetHeight, offsetWidth } = mapRef.current || {};
@@ -204,32 +193,51 @@ export function Map(props) {
     setWidth(offsetWidth);
   }
 
+  function scrollToLastPoints() {
+    const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
+    const [scrollLeftStart] = getPathPointPosition(path[path.length - 2], width, height) || [0, 0];
+    const [scrollLeftEnd] = getPathPointPosition(path[path.length - 1], width, height) || [0, 0];
+    const scrollLeft = (scrollLeftStart + scrollLeftEnd) / 2 - wrapperWidth / 2;
+    wrapperRef.current?.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+  }
+
+  function animateLastLine() {
+    const newLines = createLine(path, path, width, height);
+    lineRef.current?.to({ points: newLines, duration: 1 });
+  }
+
+  useEffect(() => {
+    if (width && withPathMove) {
+      scrollToLastPoints();
+      animateLastLine();
+      setPathWasMoved(true);
+    }
+  }, [width])
+
   return (
-    <Wrapper className={className}>
+    <Wrapper className={className} ref={wrapperRef}>
       <MapImage ref={mapRef} src={map} alt="" onLoad={updateSize} />
       <Stage width={width} height={height}>
         <Layer>
-          {lines?.map((line, index) => (
-            <Line
-              key={index}
-              points={line}
-              x={0}
-              y={0}
-              stroke='#FFFFFF'
-              strokeWidth={5}
-              shadowOffsetX={4}
-              shadowOffsetY={4}
-              shadowBlur={7}
-              shadowColor={'rgb(0, 0, 0)'}
-              shadowOpacity={0.15}
-            />
-          ))}
-          {path?.map((point, index) => (
+          <Line
+            ref={lineRef}
+            points={line}
+            x={0}
+            y={0}
+            stroke='#FFFFFF'
+            strokeWidth={5}
+            shadowOffsetX={4}
+            shadowOffsetY={4}
+            shadowBlur={7}
+            shadowColor={'rgb(0, 0, 0)'}
+            shadowOpacity={0.15}
+          />
+          {PATH_POINTS_LIST.map((point, index) => (
             <CanvasImage
               key={index}
-              src={getPathPointImage(point, index, path)}
-              width={getPathPointSize(point, index, path)[0]}
-              height={getPathPointSize(point, index, path)[1]}
+              src={getPathPointImage(point, index === path.length - 1)}
+              width={getPathPointSize(point, index === path.length - 1)[0]}
+              height={getPathPointSize(point, index === path.length - 1)[1]}
               x={getPathPointPosition(point, width, height)[0]}
               y={getPathPointPosition(point, width, height)[1]}
               shadowOffsetX={4}
