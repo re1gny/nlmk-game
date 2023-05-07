@@ -65,6 +65,7 @@ const SliderStyled = styled(Slider)`
 `;
 
 const ButtonStyled = styled(Button)`
+  position: relative;
   z-index: 4;
   max-width: 190px;
   padding: 16px 48px;

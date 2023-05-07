@@ -63,7 +63,7 @@ export function GameStateProvider({ children }) {
     setTrack(track);
     setGrade(grade);
     if (!grade) return;
-    setPath(prev => [...prev, PATH_POINTS[track][grade]]);
+    setPath(prev => prev.includes(PATH_POINTS[track][grade]) ? prev : [...prev, PATH_POINTS[track][grade]]);
   }, []);
 
   const value = useMemo(() => ({
