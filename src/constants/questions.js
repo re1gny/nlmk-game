@@ -16,34 +16,37 @@ export const questions = {
             {
                 track: TRACKS.TRACK_1,
                 getText: () => (
-                    <>
-                        <Text bold>
+                    <Text>
+                        <b>
                             Мне нравится технология производства!
-                        </Text>
-                        <Text>Хочу плавить металл и заниматься изготовлением продуктов</Text>
-                    </>
+                        </b>
+                        <br/>
+                        Хочу плавить металл и заниматься изготовлением продуктов
+                    </Text>
                 )
             },
             {
                 track: TRACKS.TRACK_2,
                 getText: () => (
-                    <>
-                        <Text bold>
+                    <Text>
+                        <b>
                             Оптимизация процессов — это мое!
-                        </Text>
-                        <Text>Хочу разрабатывать методологии</Text>
-                    </>
+                        </b>
+                        <br/>
+                        Хочу разрабатывать методологии
+                    </Text>
                 )
             },
             {
                 track: TRACKS.TRACK_3,
                 getText: () => (
-                    <>
-                        <Text bold>
+                    <Text>
+                        <b>
                             Поддерживающие функции и бизнес-{'\n'}направления — звучит круто!
-                        </Text>
-                        <Text>Хочу работать с контрагентамии сопровождать продажи</Text>
-                    </>
+                        </b>
+                        <br/>
+                        Хочу работать с контрагентамии сопровождать продажи
+                    </Text>
                 )
             },
         ]
@@ -60,31 +63,31 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Горнодобывающее производство</Text>
+                    getText: () => <Text><b>Горнодобывающее производство</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Коксохимическое производство</Text>
+                    getText: () => <Text><b>Коксохимическое производство</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Аглодоменное производство</Text>
+                    getText: () => <Text><b>Аглодоменное производство</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Сталеплавильное производство</Text>
+                    getText: () => <Text><b>Сталеплавильное производство</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Прокатное производство</Text>
+                    getText: () => <Text><b>Прокатное производство</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Энергетическое производство</Text>
+                    getText: () => <Text><b>Энергетическое производство</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
-                    getText: () => <Text bold>Ремонты</Text>
+                    getText: () => <Text><b>Ремонты</b></Text>
                 },
             ]
         },
@@ -100,7 +103,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text> <b>Заменить Мастера</b> на время отпуска{'\n'}и поработать с бригадой</Text>
+                    getText: () => <Text><b>Заменить Мастера</b> на время отпуска{'\n'}и поработать с бригадой</Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
@@ -114,7 +117,7 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_1,
-                    getText: () => <Text bold>Начать участвовать в проектах</Text>
+                    getText: () => <Text><b>Начать участвовать в проектах</b></Text>
                 },
             ]
         },
@@ -130,23 +133,23 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Я готов к дальнейшему развитию {'\n'}в производстве</Text>
+                    getText: () => <Text><b> Я готов к дальнейшему развитию {'\n'}в производстве</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text bold> Хочу попробовать себя в проектах</Text>
+                    getText: () => <Text><b> Хочу попробовать себя в проектах</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text bold>Начну развиваться в бизнес-{'\n'}направлениях</Text>
+                    getText: () => <Text><b>Начну развиваться в бизнес-{'\n'}направлениях</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
@@ -162,23 +165,23 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold> Я готов к дальнейшему развитию в производстве</Text>
+                    getText: () => <Text><b> Я готов к дальнейшему развитию в производстве</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Хочу попробовать себя в новой{'\n'} должности бизнес-управленца</Text>
+                    getText: () => <Text><b> Хочу попробовать себя в новой{'\n'} должности бизнес-управленца</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold>У меня есть все навыки{'\n'} для управления проектами — хочу попробовать свои силы</Text>
+                    getText: () => <Text><b>У меня есть все навыки{'\n'} для управления проектами — хочу попробовать свои силы</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
@@ -186,24 +189,26 @@ export const questions = {
             getQuestion: () => (
                 <Text>
                     На вечере встреч выпускников ты явно будешь сидеть во главе стола.
-                    <Text bold>Твоим навыкам</Text> планирования и принятия решений в условиях
-                    неопределенности <Text bold>можно позавидовать. Что дальше?</Text>
+                    <b>Твоим навыкам</b> планирования и принятия решений в условиях
+                    неопределенности <b>можно позавидовать. Что дальше?</b>
                 </Text>
             ),
             answers: [
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: GRADES.FINAL,
-                    getText: () => <Text bold> Я люблю свою работу и готов брать{'\n'} на себя больше ответственности{'\n'} за процессы</Text>
+                    getText: () => <Text><b> Я люблю свою работу и готов брать{'\n'} на себя больше ответственности{'\n'} за процессы</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.FINAL,
                     getText: () => (
-                        <Text bold>
-                            Я хочу применять свои управленческие навыки на других площадках,
-                            в том числе при международной ротации
+                        <Text>
+                            <b>
+                                Я хочу применять свои управленческие навыки на других площадках,
+                                в том числе при международной ротации
+                            </b>
                         </Text>
                     )
                 },
@@ -222,12 +227,14 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
-                    getText: () => <Text bold> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</Text>
+                    nextScreen: 'SCREEN_10_1',
+                    getText: () => <Text><b> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
-                    getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
+                    nextScreen: 'SCREEN_10_2',
+                    getText: () => <Text><b>Продолжить развитие{'\n'}по текущему направлению</b></Text>
                 },
             ]
         }
@@ -244,46 +251,46 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Технология и технические функции</Text>
+                    getText: () => <Text><b>Технология и технические функции</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Переработка вторичных ресурсов</Text>
+                    getText: () => <Text><b>Переработка вторичных ресурсов</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Автоматизация и цифровизация</Text>
+                    getText: () => <Text><b>Автоматизация и цифровизация</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Энергетика</Text>
+                    getText: () => <Text><b>Энергетика</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Развитие системы ремонтов</Text>
+                    getText: () => <Text><b>Развитие системы ремонтов</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
-                    getText: () => <Text bold>Исследования и разработки</Text>
+                    getText: () => <Text><b>Исследования и разработки</b></Text>
                 },
             ]
         },
         [GRADES.GRADE_1]: {
             getQuestion: () => (
                 <Text>
-                    <Text bold>Поздравляем!</Text> Ты круто «подрос» и стал ведущим специалистом! Но тебе еще точно <Text bold>есть куда расти.</Text> Что выберешь?
+                    <b>Поздравляем!</b> Ты круто «подрос» и стал ведущим специалистом! Но тебе еще точно <b>есть куда расти.</b> Что выберешь?
                 </Text>
             ),
             answers: [
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text bold>Начать участвовать в проектах</Text>
+                    getText: () => <Text><b>Начать участвовать в проектах</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text bold>Продолжить развитие {'\n'} по текущему вектору</Text>
+                    getText: () => <Text><b>Продолжить развитие {'\n'} по текущему вектору</b></Text>
                 },
             ]
         },
@@ -291,53 +298,53 @@ export const questions = {
             getQuestion: () => (
                 <Text>
                     Ничего себе, ты стал главным специалистом!
-                    Эта ступень — очень <Text bold>важный этап в твоей карьере,</Text> ведь сейчас
-                    ты начинаешь развиваться <Text bold>как руководитель!</Text>
+                    Эта ступень — очень <b>важный этап в твоей карьере,</b> ведь сейчас
+                    ты начинаешь развиваться <b>как руководитель!</b>
                 </Text>
             ),
             answers: [
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Хочу попробовать себя в проектной деятельности и других задачах</Text>
+                    getText: () => <Text><b> Хочу попробовать себя в проектной деятельности и других задачах</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Класс! Я готов к расширению зон своей ответственности и росту в должности</Text>
+                    getText: () => <Text><b> Класс! Я готов к расширению зон своей ответственности и росту в должности</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
         [GRADES.GRADE_3]: {
             getQuestion: () => (
                 <Text>
-                    Как классно иметь команду! Теперь <Text bold>у тебя
-                    получается</Text> продвигаться в решении большего количества
-                    задач. <Text bold>Куда пойдёшь дальше?</Text>
+                    Как классно иметь команду! Теперь <b>у тебя
+                    получается</b> продвигаться в решении большего количества
+                    задач. <b>Куда пойдёшь дальше?</b>
                 </Text>
             ),
             answers: [
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold> Меня заинтересовала проектная деятельность, хочу попробовать</Text>
+                    getText: () => <Text><b> Меня заинтересовала проектная деятельность, хочу попробовать</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold> Хочу выйти за рамки деятельности одного отдела и изучить задачи верхнеуровневой структуры</Text>
+                    getText: () => <Text><b> Хочу выйти за рамки деятельности одного отдела и изучить задачи верхнеуровневой структуры</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
@@ -352,13 +359,13 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.FINAL,
-                    getText: () => <Text bold> Я люблю свою работу и готов брать {'\n'}на себя больше ответственности {'\n'}за процессы </Text>
+                    getText: () => <Text><b> Я люблю свою работу и готов брать {'\n'}на себя больше ответственности {'\n'}за процессы </b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.FINAL,
-                    getText: () => <Text bold> Я хочу применять свои навыки в управлении на других площадках, в том числе, при международной ротации </Text>
+                    getText: () => <Text><b> Я хочу применять свои навыки в управлении на других площадках, в том числе, при международной ротации </b></Text>
                 },
             ]
         },
@@ -375,12 +382,14 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
-                    getText: () => <Text bold> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</Text>
+                    nextScreen: 'SCREEN_10_1',
+                    getText: () => <Text><b> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
-                    getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
+                    nextScreen: 'SCREEN_10_2',
+                    getText: () => <Text><b>Продолжить развитие{'\n'}по текущему направлению</b></Text>
                 },
             ]
         }
@@ -398,35 +407,35 @@ export const questions = {
             answers: [
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Снабжение</Text>
+                    getText: () => <Text><b>Снабжение</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Логистика</Text>
+                    getText: () => <Text><b>Логистика</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Продажи</Text>
+                    getText: () => <Text><b>Продажи</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Информационные технологии</Text>
+                    getText: () => <Text><b>Информационные технологии</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Экология</Text>
+                    getText: () => <Text><b>Экология</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Охрана труда и промышленная безопасность</Text>
+                    getText: () => <Text><b>Охрана труда и промышленная безопасность</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Управление персоналом и связи с общественностью</Text>
+                    getText: () => <Text><b>Управление персоналом и связи с общественностью</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
-                    getText: () => <Text bold>Финансы и экономика</Text>
+                    getText: () => <Text><b>Финансы и экономика</b></Text>
                 },
             ]
         },
@@ -443,15 +452,17 @@ export const questions = {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_2,
                     getText: () => (
-                        <Text bold>
-                            Мой интерес к проектной деятельности непрерывно растет.{'\n'}Хочу продолжить
+                        <Text>
+                            <b>
+                                Мой интерес к проектной деятельности непрерывно растет.{'\n'}Хочу продолжить
+                            </b>
                         </Text>
                     )
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_1,
-                    getText: () => <Text bold>Я хочу попробовать себя в роли специалиста</Text>
+                    getText: () => <Text><b>Я хочу попробовать себя в роли специалиста</b></Text>
                 },
             ]
         },
@@ -467,18 +478,18 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold> Я готов к большей ответственности и хочу брать больше проектов</Text>
+                    getText: () => <Text><b> Я готов к большей ответственности и хочу брать больше проектов</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_2,
-                    getText: () => <Text bold>Мне хочется попробовать свои силы в бизнес-задачах</Text>
+                    getText: () => <Text><b>Мне хочется попробовать свои силы в бизнес-задачах</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
@@ -493,18 +504,18 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold> У меня еще много идей, реализация которых улучшит процессы компании</Text>
+                    getText: () => <Text><b> У меня еще много идей, реализация которых улучшит процессы компании</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_3,
-                    getText: () => <Text bold>Я помогу бизнесу и компании своими решениями</Text>
+                    getText: () => <Text><b>Я помогу бизнесу и компании своими решениями</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
@@ -520,13 +531,13 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: GRADES.GRADE_4,
-                    getText: () => <Text bold> Контроль бизнеса — мой конек. Я готов к новым задачам! </Text>
+                    getText: () => <Text><b> Контроль бизнеса — мой конек. Я готов к новым задачам! </b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
                     afterConfirmGrade: GRADES.FINAL,
-                    getText: () => <Text bold>Остаться развивать мастерство на этой позиции</Text>
+                    getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
         },
@@ -543,12 +554,14 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
-                    getText: () => <Text bold> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</Text>
+                    nextScreen: 'SCREEN_10_1',
+                    getText: () => <Text><b> Я люблю свою работу! Хочу {'\n'}развить другие площадки Группы</b></Text>
                 },
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
-                    getText: () => <Text bold>Продолжить развитие{'\n'}по текущему направлению</Text>
+                    nextScreen: 'SCREEN_10_2',
+                    getText: () => <Text><b>Продолжить развитие{'\n'}по текущему направлению</b></Text>
                 },
             ]
         }

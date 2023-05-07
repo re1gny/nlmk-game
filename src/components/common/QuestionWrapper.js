@@ -57,7 +57,6 @@ const QuestionPart = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: ${({centered}) => centered ? 'center' : 'flex-start'};
-  min-height: min(85vw, 48vh);
 `;
 
 const SliderStyled = styled(Slider)`
@@ -66,12 +65,11 @@ const SliderStyled = styled(Slider)`
 `;
 
 const ButtonStyled = styled(Button)`
-  position: absolute;
-  top: calc(min(85vw, 48vh) + 40px);
-  left: 20px;
   z-index: 4;
   max-width: 190px;
   padding: 16px 48px;
+  margin-left: 20px;
+  margin-top: 10px;
   
   @media screen and (max-height: 590px) {
     top: calc(min(90vw, 50vh) + 50px);
@@ -143,7 +141,7 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
         const chosenAnswer = answers[currentIndex];
         const chosenGrade = question.nextGrade ?? chosenAnswer.nextGrade;
         setProgress(chosenAnswer.track, chosenGrade);
-        onChoose?.(chosenAnswer.track, chosenGrade, track, chosenAnswer.afterConfirmGrade);
+        onChoose?.(chosenAnswer.track, chosenGrade, track, chosenAnswer.afterConfirmGrade, chosenAnswer.nextScreen);
     }
 
     useLayoutEffect(() => {
@@ -157,7 +155,9 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
             <QuestionPart centered={centered}>
                 {post && (
                     <PostWrapper>
-                        <Text bold>Ты {post} </Text>
+                        <Text>
+                          <b>Ты {post}</b>
+                        </Text>
                     </PostWrapper>
                 )}
                 <Info>

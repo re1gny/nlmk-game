@@ -19,6 +19,7 @@ const BackIcon = styled.img`
   height: 12px;
   min-width: 12px;
   margin-right: 4px;
+  margin-top: -2px;
 `;
 
 const RetryButton = styled(Button)`

@@ -84,7 +84,7 @@ function FinishModal({ success, onNext, onRestart }) {
         {success ? (
           <>
             <Text>
-              <Text bold>Ура-ура!</Text> Всё получилось,
+              <b>Ура-ура!</b> Всё получилось,
               <br/>
               пора идти дальше?
             </Text>
@@ -93,11 +93,11 @@ function FinishModal({ success, onNext, onRestart }) {
         ) : (
           <>
             <Text>
-              <Text bold>Упс,</Text> башня собирается не по плану...
+              <b>Упс,</b> башня собирается не по плану...
               <br/>
               Ничего страшного, ты можешь
               <br/>
-              <Text bold>попробовать ещё раз!</Text>
+              <b>попробовать ещё раз!</b>
             </Text>
             <FinishButton onClick={onRestart}>Играть снова</FinishButton>
           </>
@@ -112,9 +112,9 @@ function InfoModal({ onClose }) {
     <Modal>
       <InfoModalPanel>
         <Text>
-          <Text bold>Последовательно собери башню</Text>, чтобы она была устойчива!
+          <b>Последовательно собери башню</b>, чтобы она была устойчива!
           <br/>
-          <Text bold>Выбирай</Text> фигуры слева и <Text bold>опускай</Text> их на нужные места
+          <b>Выбирай</b> фигуры слева и <b>опускай</b> их на нужные места
         </Text>
       </InfoModalPanel>
       <CloseInfoButton onClick={onClose}>Понятно</CloseInfoButton>
@@ -163,7 +163,9 @@ export function BaseTetrisGameScreen({ onNext }) {
         <RightActions>
           <RestartButton onClick={handleRestart}>
             <RestartIcon src={restartIcon} alt="" />
-            <RestartText bold>заново</RestartText>
+            <RestartText>
+              <b>заново</b>
+            </RestartText>
           </RestartButton>
           <InfoIcon src={infoIcon} alt="" onClick={handleInfoOpen} />
         </RightActions>

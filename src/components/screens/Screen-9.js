@@ -1,8 +1,12 @@
 import fomchenkova from '../../assets/images/fomchenkova.png'
 import { PersonQuote } from '../common/PersonQuoteScreen';
+import { useScreen } from '../../hooks/useScreen';
+import { SCREENS } from '../../constants/screens';
 
 export const Screen9 = () => {
-    const text = ' Рост до руководящих должностей непрост и требует ' +
+    const { next } = useScreen();
+
+    const text = 'Рост до руководящих должностей непрост и требует ' +
         'много времени и усилий, но ты можешь стать исключением. ' +
         'Брось вызов — у нас нет рамок и барьеров для твоего развития!';
     const quote = '«Не нужно ждать повышения годами.\nСейчас молодые, ' +
@@ -13,5 +17,10 @@ export const Screen9 = () => {
         name: 'Евгения Фомченкова',
         post: 'начальник управления\nпо контроллингу дивизионов'
     }
-    return <PersonQuote person={person} quote={quote} text={text} />
+
+    function handleNext() {
+        next(SCREENS.SCREEN_12);
+    }
+
+    return <PersonQuote person={person} quote={quote} text={text} onNext={handleNext} />
 }

@@ -16,7 +16,7 @@ export function Screen11() {
   );
 
   function handleNext() {
-    next(SCREENS.TRACK_1.SCREEN_2);
+    next(SCREENS.TRACK_1.SCREEN_2_1);
   }
 
   return <BaseScratchGameScreen image={scratchResultTrack1} finishText={finishText} onNext={handleNext} />

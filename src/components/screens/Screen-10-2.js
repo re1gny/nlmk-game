@@ -1,10 +1,13 @@
 import averchenkova from '../../assets/images/averchenkova.png';
 import { PersonQuote } from '../common/PersonQuoteScreen';
+import { useScreen } from '../../hooks/useScreen';
+import { SCREENS } from '../../constants/screens';
 
-export const Screen10Final = () => {
-    const text = 'Бинго! \n' +
-        'Ты ценнейший кадр нашей Компании. Успешно руководишь на нескольких ' +
-        'площадках предприятия и легко справляешься с большим объемом задач — наш герой!';
+export const Screen102 = () => {
+    const { next } = useScreen();
+
+    const text = 'Рост до следующей ступени непрост,\n' +
+      'но твои усердие и стремление расширять границы точно не останутся незамеченным. Вперед к новым вершинам!';
     const quote = '«Компания открывает перед сотрудниками\nбольшие возможности. ' +
         'Нужно быть\nактивным и работать на результат — тогда\nего заметят и предложат ' +
         'делать что-то,\nследующая дверь откроется сама»';
@@ -13,5 +16,10 @@ export const Screen10Final = () => {
         name: 'Татьяна Аверченкова',
         post: 'управляющий директор\nНЛМК'
     }
-    return <PersonQuote person={person} quote={quote} text={text} />
+
+    function handleNext() {
+        next(SCREENS.SCREEN_15);
+    }
+
+    return <PersonQuote person={person} quote={quote} text={text} onNext={handleNext} />
 }

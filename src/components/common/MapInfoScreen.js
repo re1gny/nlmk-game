@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import arrowRightSm from '../../assets/icons/arrowRightSm.svg';
 import { InfoPanel } from './InfoPanel';
 import { Button } from './Button';
-import { useState } from 'react';
-import { MapModalScreen } from './MapModalScreen';
+import React from 'react';
 import { Map } from './Map';
 
 const Wrapper = styled.div`
@@ -41,23 +40,16 @@ const Arrow = styled.div`
   height: 12px;
 `;
 
-export const TrackStartScreen = ({position, text, additionalText, onNext}) => {
-    const [isInfoPart, setIsInfoPart] = useState(false);
+export const MapInfoScreen = ({position, text, onNext}) => {
     return (
-        <Wrapper>
-            { isInfoPart ? (
-                <MapModalScreen text={additionalText} onNext={onNext} />
-            ) : (
-                <>
-                    <Map />
-                    <Info position={position} variant={'light'}>
-                        {text}
-                        <NextButton onClick={() => setIsInfoPart(true)}>
-                            <Arrow/>
-                        </NextButton>
-                    </Info>
-                </>
-            )}
-        </Wrapper>
+      <Wrapper>
+        <Map />
+        <Info position={position} variant={'light'}>
+          {text}
+          <NextButton onClick={onNext}>
+            <Arrow/>
+          </NextButton>
+        </Info>
+      </Wrapper>
     );
 };

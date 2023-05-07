@@ -52,8 +52,8 @@ export function BaseScratchGameScreen({ image, finishText, onNext }) {
       <TopWrapper>
         <Info>
           <Text>
-            Первые шаги сделаны! <Text bold>Сотри с карточки верхний слой</Text>,
-            чтобы увидеть, в какой обстановке тебе <Text bold>предстоит работать</Text>
+            Первые шаги сделаны! <b>Сотри с карточки верхний слой</b>,
+            чтобы увидеть, в какой обстановке тебе <b>предстоит работать</b>
           </Text>
         </Info>
       </TopWrapper>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useScreen } from '../../../hooks/useScreen';
+import { questions } from '../../../constants/questions';
 import { SCREENS } from '../../../constants/screens';
 import { QuestionWrapper } from '../../common/QuestionWrapper';
-import { questions } from '../../../constants/questions';
 import { TRACKS } from '../../../constants/tracks';
 import { GRADES } from '../../../constants/grades';
 import { useGameState } from '../../../hooks/useGameState';

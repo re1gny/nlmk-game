@@ -1,50 +1,29 @@
 import { MapModalScreen } from '../common/MapModalScreen';
-import { Button } from '../common/Button';
-import styled from '@emotion/styled';
 import { Text } from '../common/Text';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
 
-const ButtonStyled = styled(Button)`
-    margin-top: 16px;
-`;
-
-const SmallText = styled(Text)`
-    font-size: 12px;
-    margin-top: -4px;
-`;
-
-export const FinalScreen = () => {
+export const PreFinalScreen = () => {
     const {next} = useScreen();
     const text = (
-        <>
-            <Text bold> Коллеги тобой восхищаются. </Text>
-            <Text>
-                Ты звезда уже на нескольких площадках предприятия,
-                в том числе международных!<b> Желаем тебе успеха во всех твоих свершениях.</b>
-            </Text>
-            <Text>
-                Уверены — с каждым начинанием ты <b>будешь справляться так же легко, как с сегодняшними заданиями!</b>
-            </Text>
-        </>
+        <Text>
+          <b>Так держать!</b>
+          <br/>
+          <br/>
+          Коллеги тобой восхищаются!{'\n'}
+          Поздравляем с достижением и <b>желаем тебе успеха во всех свершениях.</b>
+          <br/>
+          <br/>
+          Уверены — <b>с каждым начинанием ты будешь справляться так же легко,</b> как с
+          сегодняшними заданиями!
+        </Text>
     );
 
-    function handleOpenLink() {
-        window.open('', '_blank');
-    }
-
     function handleNext() {
-        next(SCREENS.SCREEN_13)
+        next(SCREENS.SCREEN_15)
     }
 
     return (
-        <MapModalScreen text={text} buttonText={'К ВАКАНСИЯМ'} onNext={handleOpenLink}>
-            <ButtonStyled variant={'tertiary'} onClick={handleNext}>
-                <div>
-                    <Text bold>ТВОЙ ТРЭК НА КАРТЕ </Text>
-                    <SmallText>P. S. Ты сможешь вернуться к вакансиям</SmallText>
-                </div>
-            </ButtonStyled>
-    </MapModalScreen>
+        <MapModalScreen text={text} buttonText={'ДАЛЕЕ'} onNext={handleNext} />
     )
 }

@@ -525,7 +525,9 @@ function TetrisGameComponent({ className, onFinish }, ref) {
             </FigurePreviewListInner>
           </FigurePreviewList>
           <FigurePreviewListFooter visible={nextButtonVisible}>
-            <NextText bold onClick={handleNext}>далее</NextText>
+            <NextText onClick={handleNext}>
+              <b>далее</b>
+            </NextText>
           </FigurePreviewListFooter>
         </FigurePreviewListOuter>
         <Board ref={boardRef}>

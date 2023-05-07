@@ -8,8 +8,13 @@ import { useScreen } from '../../../hooks/useScreen';
 
 export const Screen27 = () => {
     const { next } = useScreen();
-    function handleNext() {
-        next(SCREENS.SCREEN_12);
+    function handleNext(track, grade, currentTrack, afterConfirmGrade, nextScreen) {
+        if (nextScreen) {
+            next(nextScreen);
+            return;
+        }
+
+        next(SCREENS.SCREEN_15);
     }
 
     return (

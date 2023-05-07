@@ -4,7 +4,6 @@ import { useScreen } from '../../hooks/useScreen';
 import { InfoPanel } from './InfoPanel';
 import { Text } from './Text';
 import { Button } from './Button';
-import { SCREENS } from '../../constants/screens';
 
 const Wrapper = styled.div`
   display: flex;
@@ -73,9 +72,9 @@ const ButtonStyled = styled(Button)`
   z-index: 3;
 `;
 
-export const PersonQuote = ({text, quote, person}) => {
+export const PersonQuote = ({text, quote, person, onNext}) => {
     const [isBackgroundChanged, setIsBackgroundChanged] = useState(false);
-    const { next, config } = useScreen();
+    const { config } = useScreen();
 
     useLayoutEffect(() => {
         config.setDarkBackground();
@@ -86,24 +85,22 @@ export const PersonQuote = ({text, quote, person}) => {
         };
     }, []);
 
-    function handleNext() {
-        next(SCREENS.SCREEN_12);
-    }
-
     return (
         <Wrapper>
             <Info variant={'light'}>
-                <Text bold>
-                    {text}
+                <Text>
+                    <b>{text}</b>
                 </Text>
             </Info>
             <Quote isBackgroundChanged={isBackgroundChanged}>
                 <Text>{quote}</Text>
-                <SmallText bold>© {person.name}</SmallText>
+                <SmallText>
+                  <b>© {person.name}</b>
+                </SmallText>
                 <br/>
                 <SmallText>— {person.post}</SmallText>
             </Quote>
-            <ButtonStyled onClick={handleNext}>ИДУ ДАЛЬШЕ</ButtonStyled>
+            <ButtonStyled onClick={onNext}>ИДУ ДАЛЬШЕ</ButtonStyled>
             <Person>
                 <img src={person.img} alt={''} />
             </Person>
