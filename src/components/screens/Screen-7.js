@@ -5,10 +5,10 @@ import { BaseCardsGameScreen } from '../common/BaseCardsGameScreen';
 
 export const Screen7 = () => {
     const {next} = useScreen();
-    const {track, grade, passCardsGame} = useGameState();
+    const {passCardsGame} = useGameState();
 
     function handleNext() {
-        next(SCREENS[track][grade]);
+        next(SCREENS.SCREEN_16)
         passCardsGame();
     }
 

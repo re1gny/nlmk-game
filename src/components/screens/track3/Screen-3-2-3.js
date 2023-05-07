@@ -11,5 +11,5 @@ export function Screen323() {
     next(SCREENS.TRACK_3[GRADES.GRADE_1]);
   }
 
-  return <MapPathInfoScreen position={'bottom'} onNext={handleNext} />
+  return <MapPathInfoScreen position={'top'} onNext={handleNext} />
 }

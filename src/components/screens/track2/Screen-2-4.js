@@ -28,7 +28,7 @@ export function Screen24() {
       next(SCREENS.SCREEN_5);
       return;
     }
-    next(SCREENS[nextTrack][grade]);
+    next(SCREENS.SCREEN_16);
   }
 
   return (

@@ -173,6 +173,17 @@ function createLine(prevPoint, nextPoint, prevIndex, nextIndex, width, height, p
   ];
 }
 
+function createLines(path, width, height) {
+  return path?.reduce((acc, point, index) => {
+    if (index) {
+      const prevIndex = index - 1;
+      return [...acc, createLine(path[prevIndex], point, prevIndex, index, width, height, path)];
+    }
+
+    return acc;
+  }, [])
+}
+
 function CanvasImage({ src, ...rest }) {
   const [image] = useImage(src);
   return <Image image={image} {...rest} />;
@@ -185,14 +196,7 @@ export function Map(props) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const lines = path?.reduce((acc, point, index) => {
-    if (index) {
-      const prevIndex = index - 1;
-      return [...acc, createLine(path[prevIndex], point, prevIndex, index, width, height, path)];
-    }
-
-    return acc;
-  }, []);
+  const lines = createLines(path, width, height);
 
   function updateSize() {
     const { offsetHeight, offsetWidth } = mapRef.current || {};

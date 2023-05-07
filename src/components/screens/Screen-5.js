@@ -8,22 +8,17 @@ import { useState } from 'react';
 export const Screen5 = () => {
     const {next} = useScreen();
     const {
-        messageId, track,
-        grade, setNextMessageId,
-        path,
+        messageId,
+        setNextMessageId,
         cardsGamePassed,
     } = useGameState();
 
     const [message] = useState(messages[messageId].text);
 
     function handleNext() {
-        const hadChangeTrack = [...path].slice(1)
-            .filter(prevTrack => prevTrack.split('.')[0] === track)
-            .length !== (path.length - 1);
-
         setNextMessageId();
-        if (!hadChangeTrack || cardsGamePassed) {
-            next(SCREENS[track][grade]);
+        if (cardsGamePassed) {
+            next(SCREENS.SCREEN_16)
             return;
         }
         next(SCREENS.SCREEN_6);
