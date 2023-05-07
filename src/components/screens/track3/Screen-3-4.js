@@ -9,13 +9,14 @@ import { GRADES } from '../../../constants/grades';
 
 export function Screen34() {
   const { next } = useScreen();
-  const {finishConfirmed, setProgress, setAfterConfirmGrade, setAfterConfirmTrack} = useGameState();
+  const {finishConfirmed, setProgress, setAfterConfirmScreen, setAfterConfirmGrade, setAfterConfirmTrack} = useGameState();
 
-  function handleNext(nextTrack, grade, currentTrack, afterConfirmGrade) {
+  function handleNext(nextTrack, grade, currentTrack, afterConfirmGrade, nextScreen, afterConfirmScreen) {
     if (!grade) {
-      if (!finishConfirmed && afterConfirmGrade) {
+      if (!finishConfirmed) {
         setAfterConfirmTrack(nextTrack);
         setAfterConfirmGrade(afterConfirmGrade);
+        setAfterConfirmScreen(afterConfirmScreen);
         next(SCREENS.SCREEN_8);
       } else {
         next(SCREENS.SCREEN_9);
@@ -23,7 +24,7 @@ export function Screen34() {
       return;
     }
     setProgress(nextTrack, grade);
-    if (nextTrack !== currentTrack || grade !== GRADES.GRADE_2) {
+    if (nextTrack !== currentTrack) {
       next(SCREENS.SCREEN_5);
       return;
     }

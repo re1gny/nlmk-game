@@ -23,6 +23,7 @@ export function GameStateProvider({ children }) {
   const [finishConfirmed, setFinishConfirmed] = useState(INITIAL_FINISH_CONFIRMED);
   const [afterConfirmTrack, setAfterConfirmTrack] = useState(INITIAL_TRACK);
   const [afterConfirmGrade, setAfterConfirmGrade] = useState(INITIAL_GRADE);
+  const [afterConfirmScreen, setAfterConfirmScreen] = useState(null);
 
   const handleReset = useCallback(() => {
     reset();
@@ -35,6 +36,7 @@ export function GameStateProvider({ children }) {
     setAfterConfirmTrack(INITIAL_TRACK);
     setAfterConfirmGrade(INITIAL_GRADE);
     setFinishConfirmed(INITIAL_FINISH_CONFIRMED);
+    setAfterConfirmScreen(null);
   }, [reset]);
 
   const handleSetCharacter = useCallback((character) => {
@@ -83,6 +85,7 @@ export function GameStateProvider({ children }) {
     setAfterConfirmGrade,
     finishConfirmed,
     confirmFinish: handleConfirmFinish,
+      afterConfirmScreen, setAfterConfirmScreen,
   }),
 [
     track, character, grade, path, handleSetCharacter, handleSetProgress,
@@ -93,6 +96,7 @@ export function GameStateProvider({ children }) {
     setAfterConfirmGrade,
     finishConfirmed,
     handleConfirmFinish,
+  afterConfirmScreen, setAfterConfirmScreen
 ]);
 
   return (

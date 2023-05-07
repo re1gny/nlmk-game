@@ -28,20 +28,28 @@ const ButtonStyled = styled(Button)`
 
 export const Screen8 = () => {
     const {next} = useScreen();
-    const {confirmFinish, afterConfirmTrack, afterConfirmGrade, setAfterConfirmGrade, setAfterConfirmTrack, setProgress} = useGameState();
+    const {confirmFinish, afterConfirmScreen, setAfterConfirmScreen, afterConfirmTrack, afterConfirmGrade, setAfterConfirmGrade, setAfterConfirmTrack, setProgress} = useGameState();
 
     function handleFinish() {
         next(SCREENS.SCREEN_12);
         setAfterConfirmGrade(null);
         setAfterConfirmTrack(null);
+        setAfterConfirmScreen(null);
         confirmFinish();
     }
 
     function handleNext() {
-        next(SCREENS[afterConfirmTrack][afterConfirmGrade]);
         setProgress(afterConfirmTrack, afterConfirmGrade);
+
+        if (afterConfirmScreen) {
+            next(afterConfirmScreen);
+        } else {
+            next(SCREENS[afterConfirmTrack][afterConfirmGrade]);
+        }
+
         setAfterConfirmGrade(null);
         setAfterConfirmTrack(null);
+        setAfterConfirmScreen(null);
         confirmFinish();
     }
 
