@@ -11,7 +11,10 @@ import { DialogField } from './DialogField';
 import { Text } from './Text';
 
 const Wrapper = styled.div`
-  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  height: 100%;
 `;
 
 const Info = styled(InfoPanel)`
@@ -59,22 +62,23 @@ const QuestionPart = styled.div`
   justify-content: ${({centered}) => centered ? 'center' : 'flex-start'};
 `;
 
+const FooterPart = styled.div`
+  position: relative;
+  flex-grow: 1;
+`;
+
 const SliderStyled = styled(Slider)`
   height: ${({height}) => height};
   transition: height 0.2s;
 `;
 
 const ButtonStyled = styled(Button)`
-  position: relative;
+  position: absolute;
+  bottom: min(210px, calc(100% - 60px));
+  left: 20px;
   z-index: 4;
   max-width: 190px;
   padding: 16px 48px;
-  margin-left: 20px;
-  margin-top: 10px;
-  
-  @media screen and (max-height: 590px) {
-    top: calc(min(90vw, 50vh) + 50px);
-  }
 `;
 
 const CharacterWrapper = styled.div`
@@ -184,10 +188,12 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
                 />
               {withHint && <HintText hidden={indexWasChanged}>Жми на стрелочки и выбирай свой ответ</HintText>}
             </QuestionPart>
-            <ButtonStyled onClick={handleClick}>ВЫБРАТЬ</ButtonStyled>
-            <CharacterWrapper>
+            <FooterPart>
+              <ButtonStyled onClick={handleClick}>ВЫБРАТЬ</ButtonStyled>
+              <CharacterWrapper>
                 <Character src={getCharacterPicture(character, track ?? answers[currentIndex]?.track, grade)} />
-            </CharacterWrapper>
+              </CharacterWrapper>
+            </FooterPart>
         </Wrapper>
     );
 };
