@@ -159,6 +159,10 @@ function getPathPointOffset(point, isLast) {
   return PATH_POINT_OFFSETS[point](isLast);
 }
 
+function getIsLastPoint(point, path) {
+  return path?.includes(point) && path?.indexOf(point) === path.length - 1;
+}
+
 function getLineConnectionPosition(point, width, height, isLast) {
   return getPathPointPosition(point, width, height)
     .map((position, positionIndex) =>
@@ -167,7 +171,10 @@ function getLineConnectionPosition(point, width, height, isLast) {
 }
 
 function createLine(originalPath, path, width, height) {
-  return path?.reduce((acc, point, index) => [...acc, ...getLineConnectionPosition(point, width, height, index === originalPath.length - 1)], [])
+  return path?.reduce((acc, point) => [
+    ...acc,
+    ...getLineConnectionPosition(point, width, height, getIsLastPoint(point, originalPath)),
+  ], [])
 }
 
 function CanvasImage({ src, ...rest }) {
@@ -235,9 +242,9 @@ export function Map(props) {
           {PATH_POINTS_LIST.map((point, index) => (
             <CanvasImage
               key={index}
-              src={getPathPointImage(point, index === path.length - 1)}
-              width={getPathPointSize(point, index === path.length - 1)[0]}
-              height={getPathPointSize(point, index === path.length - 1)[1]}
+              src={getPathPointImage(point, getIsLastPoint(point, path))}
+              width={getPathPointSize(point, getIsLastPoint(point, path))[0]}
+              height={getPathPointSize(point, getIsLastPoint(point, path))[1]}
               x={getPathPointPosition(point, width, height)[0]}
               y={getPathPointPosition(point, width, height)[1]}
               shadowOffsetX={4}
