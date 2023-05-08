@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import useImage from 'use-image';
 import { Stage, Layer, Image, Line } from 'react-konva';
+import { Spring, animated } from '@react-spring/konva';
 import { useGameState } from '../../hooks/useGameState';
 import { PATH_POINTS, PATH_POINTS_LIST } from '../../constants/pathPoints';
 import { TRACKS } from '../../constants/tracks';
@@ -187,12 +188,8 @@ export function Map(props) {
   const { path } = useGameState();
   const mapRef = useRef();
   const wrapperRef = useRef();
-  const lineRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [pathWasMoved, setPathWasMoved] = useState(false);
-
-  const line = withPathMove && !pathWasMoved ? createLine(path, path.slice(0, -1), width, height) : createLine(path, path, width, height)
 
   function updateSize() {
     const { offsetHeight, offsetWidth } = mapRef.current || {};
@@ -208,16 +205,9 @@ export function Map(props) {
     wrapperRef.current?.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
 
-  function animateLastLine() {
-    const newLines = createLine(path, path, width, height);
-    lineRef.current?.to({ points: newLines, duration: 1 });
-  }
-
   useEffect(() => {
     if (width && withPathMove) {
       scrollToLastPoints();
-      animateLastLine();
-      setPathWasMoved(true);
     }
   }, [width])
 
@@ -226,19 +216,42 @@ export function Map(props) {
       <MapImage ref={mapRef} src={map} alt="" onLoad={updateSize} />
       <Stage width={width} height={height}>
         <Layer>
-          <Line
-            ref={lineRef}
-            points={line}
-            x={0}
-            y={0}
-            stroke='#FFFFFF'
-            strokeWidth={5}
-            shadowOffsetX={4}
-            shadowOffsetY={4}
-            shadowBlur={7}
-            shadowColor={'rgb(0, 0, 0)'}
-            shadowOpacity={0.15}
-          />
+          {path?.length > 2 && (
+            <Line
+              points={createLine(path, path.slice(0, -1), width, height)}
+              x={0}
+              y={0}
+              stroke='#FFFFFF'
+              strokeWidth={5}
+              shadowOffsetX={4}
+              shadowOffsetY={4}
+              shadowBlur={7}
+              shadowColor={'rgb(0, 0, 0)'}
+              shadowOpacity={0.15}
+            />
+          )}
+          <Spring
+            from={{ opacity: withPathMove ? 0 : 1 }}
+            to={{ opacity: 1 }}
+            delay={600}
+            config={{ duration: 500 }}
+          >
+            {(props) => (
+              <animated.Line
+                {...props}
+                points={createLine(path, path.slice(-2), width, height)}
+                x={0}
+                y={0}
+                stroke='#FFFFFF'
+                strokeWidth={5}
+                shadowOffsetX={4}
+                shadowOffsetY={4}
+                shadowBlur={7}
+                shadowColor={'rgb(0, 0, 0)'}
+                shadowOpacity={0.15}
+              />
+            )}
+          </Spring>
           {PATH_POINTS_LIST.map((point, index) => (
             <CanvasImage
               key={index}

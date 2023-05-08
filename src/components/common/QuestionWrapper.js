@@ -74,7 +74,7 @@ const SliderStyled = styled(Slider)`
 
 const ButtonStyled = styled(Button)`
   position: absolute;
-  bottom: min(210px, calc(100% - 60px));
+  bottom: min(220px, calc(100% - 60px));
   left: 20px;
   z-index: 4;
   max-width: 190px;
