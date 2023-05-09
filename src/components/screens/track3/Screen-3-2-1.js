@@ -8,7 +8,7 @@ export function Screen321() {
   const { next } = useScreen();
 
   function handleNext() {
-    next(SCREENS.TRACK_3.SCREEN_2_1);
+    next(SCREENS.TRACK_3.SCREEN_2_2);
   }
   const text = (
       <Text>
