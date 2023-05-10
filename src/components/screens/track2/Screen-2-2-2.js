@@ -19,5 +19,5 @@ export function Screen222() {
         интернет вещей, машинное обучение и нейронные сети.</b>
       </Text>
   )
-  return <MapModalScreen onNext={handleNext} text={text} />
+  return <MapModalScreen onNext={handleNext} text={text} title='Бонус: факт о НЛМК' />
 }

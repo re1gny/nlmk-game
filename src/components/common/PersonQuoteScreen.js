@@ -20,7 +20,7 @@ const Info = styled(InfoPanel)`
 const Quote = styled.div`
   color: #FFFFFF;
   white-space: pre-line;
-  margin-top: 6.6vw;
+  margin-top: 5%;
   position: relative;
   z-index: 1;
   animation: bgAppear 1000ms both;
@@ -100,7 +100,7 @@ export const PersonQuote = ({text, quote, person, onNext}) => {
                 <br/>
                 <SmallText>— {person.post}</SmallText>
             </Quote>
-            <ButtonStyled onClick={onNext}>ИДУ ДАЛЬШЕ</ButtonStyled>
+            <ButtonStyled onClick={onNext}>ДАЛЕЕ</ButtonStyled>
             <Person>
                 <img src={person.img} alt={''} />
             </Person>

@@ -21,5 +21,5 @@ export function Screen322() {
         с использованием искусственного интеллекта и машинного обучения.
       </Text>
   )
-  return <MapModalScreen onNext={handleNext} text={text} />
+  return <MapModalScreen onNext={handleNext} text={text} title='Бонус: факт о НЛМК' />
 }

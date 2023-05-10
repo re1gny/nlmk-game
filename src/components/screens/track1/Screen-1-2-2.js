@@ -23,6 +23,6 @@ export function Screen122() {
         состав воздуха в нем соответствует городам, не имеющим крупных производств.
       </Text>
   )
-  return <MapModalScreen onNext={handleNext} text={text} />
+  return <MapModalScreen onNext={handleNext} text={text} title='Бонус: факт о НЛМК' />
 }
 
