@@ -19,7 +19,7 @@ export const Screen9 = () => {
     }
 
     function handleNext() {
-        next(SCREENS.SCREEN_12);
+        next(SCREENS.SCREEN_12_1);
     }
 
     return <PersonQuote person={person} quote={quote} text={text} onNext={handleNext} />

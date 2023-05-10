@@ -14,7 +14,7 @@ export const Screen37 = () => {
             return;
         }
 
-        next(SCREENS.SCREEN_12);
+        next(SCREENS.SCREEN_12_2);
     }
 
     return (

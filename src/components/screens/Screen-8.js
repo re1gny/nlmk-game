@@ -31,7 +31,7 @@ export const Screen8 = () => {
     const {confirmFinish, afterConfirmScreen, setAfterConfirmScreen, afterConfirmTrack, afterConfirmGrade, setAfterConfirmGrade, setAfterConfirmTrack, setProgress} = useGameState();
 
     function handleFinish() {
-        next(SCREENS.SCREEN_12);
+        next(SCREENS.SCREEN_12_1);
         setAfterConfirmGrade(null);
         setAfterConfirmTrack(null);
         setAfterConfirmScreen(null);

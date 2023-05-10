@@ -37,7 +37,8 @@ import { Screen36 } from '../components/screens/track3/Screen-3-6';
 import { Screen26 } from '../components/screens/track2/Screen-2-6';
 import { Screen16 } from '../components/screens/track1/Screen-1-6';
 import { TetrisScreen } from '../components/screens/Screen-11';
-import { PreFinalScreen } from '../components/screens/Screen-12';
+import { PreFinalScreen1 } from '../components/screens/Screen-12-1';
+import { PreFinalScreen2 } from '../components/screens/Screen-12-2';
 import { FinalScreen } from '../components/screens/Screen-15';
 import { MapScreen } from '../components/screens/Screen-13';
 import { Screen37 } from '../components/screens/track3/Screen-3-7';
@@ -61,7 +62,8 @@ export const SCREENS = {
   SCREEN_10_1: 'SCREEN_10_1',
   SCREEN_10_2: 'SCREEN_10_2',
   SCREEN_11: 'SCREEN_11',
-  SCREEN_12: 'SCREEN_12',
+  SCREEN_12_1: 'SCREEN_12_1',
+  SCREEN_12_2: 'SCREEN_12_2',
   SCREEN_13: 'SCREEN_13',
   SCREEN_14: 'SCREEN_14',
   SCREEN_15: 'SCREEN_15',
@@ -117,7 +119,8 @@ export const SCREEN_COMPONENTS = {
   [SCREENS.SCREEN_10_1]: Screen101,
   [SCREENS.SCREEN_10_2]: Screen102,
   [SCREENS.SCREEN_11]: TetrisScreen,
-  [SCREENS.SCREEN_12]: PreFinalScreen,
+  [SCREENS.SCREEN_12_1]: PreFinalScreen1,
+  [SCREENS.SCREEN_12_2]: PreFinalScreen2,
   [SCREENS.SCREEN_13]: MapScreen,
   [SCREENS.SCREEN_14]: PreTetrisScreen,
   [SCREENS.SCREEN_15]: FinalScreen,
