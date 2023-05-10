@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 
 const TextWrapper = styled.div`
   position: relative;
-  padding: 16px 8px;
+  padding: 16px;
   min-height: 60px;
   height: auto;
   background: #FFFFFF;
