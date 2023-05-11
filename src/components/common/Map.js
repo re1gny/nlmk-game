@@ -198,11 +198,13 @@ export function Map(props) {
   }
 
   function scrollToLastPoints() {
-    const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
-    const [scrollLeftStart] = getPathPointPosition(path[path.length - 2], width, height) || [0, 0];
-    const [scrollLeftEnd] = getPathPointPosition(path[path.length - 1], width, height) || [0, 0];
-    const scrollLeft = (scrollLeftStart + scrollLeftEnd) / 2 - wrapperWidth / 2;
-    wrapperRef.current?.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    if (path?.length > 1) {
+      const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
+      const [scrollLeftStart] = getPathPointPosition(path[path.length - 2], width, height) || [0, 0];
+      const [scrollLeftEnd] = getPathPointPosition(path[path.length - 1], width, height) || [0, 0];
+      const scrollLeft = (scrollLeftStart + scrollLeftEnd) / 2 - wrapperWidth / 2;
+      wrapperRef.current?.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
   }
 
   useEffect(() => {
@@ -230,28 +232,30 @@ export function Map(props) {
               shadowOpacity={0.15}
             />
           )}
-          <Spring
-            from={{ opacity: withPathMove ? 0 : 1 }}
-            to={{ opacity: 1 }}
-            delay={600}
-            config={{ duration: 500 }}
-          >
-            {(props) => (
-              <animated.Line
-                {...props}
-                points={createLine(path, path.slice(-2), width, height)}
-                x={0}
-                y={0}
-                stroke='#FFFFFF'
-                strokeWidth={5}
-                shadowOffsetX={4}
-                shadowOffsetY={4}
-                shadowBlur={7}
-                shadowColor={'rgb(0, 0, 0)'}
-                shadowOpacity={0.15}
-              />
-            )}
-          </Spring>
+          {path?.length > 1 && (
+            <Spring
+              from={{ opacity: withPathMove ? 0 : 1 }}
+              to={{ opacity: 1 }}
+              delay={600}
+              config={{ duration: 500 }}
+            >
+              {(props) => (
+                <animated.Line
+                  {...props}
+                  points={createLine(path, path.slice(-2), width, height)}
+                  x={0}
+                  y={0}
+                  stroke='#FFFFFF'
+                  strokeWidth={5}
+                  shadowOffsetX={4}
+                  shadowOffsetY={4}
+                  shadowBlur={7}
+                  shadowColor={'rgb(0, 0, 0)'}
+                  shadowOpacity={0.15}
+                />
+              )}
+            </Spring>
+          )}
           {PATH_POINTS_LIST.map((point, index) => (
             <CanvasImage
               key={index}

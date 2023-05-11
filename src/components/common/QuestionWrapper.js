@@ -145,8 +145,10 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
     function handleClick() {
         const chosenAnswer = answers[currentIndex];
         const chosenGrade = question.nextGrade ?? chosenAnswer.nextGrade;
-        setProgress(chosenAnswer.track, chosenGrade);
-        onChoose?.(chosenAnswer.track, chosenGrade, track, chosenAnswer.afterConfirmGrade, chosenAnswer.nextScreen, chosenAnswer.afterConfirmScreen);
+        if (chosenAnswer.track && chosenGrade) {
+          setProgress(chosenAnswer.track, chosenGrade);
+        }
+        onChoose?.(chosenAnswer.track, chosenGrade, track, chosenAnswer.nextScreen);
     }
 
     useLayoutEffect(() => {

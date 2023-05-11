@@ -28,28 +28,15 @@ const ButtonStyled = styled(Button)`
 
 export const Screen8 = () => {
     const {next} = useScreen();
-    const {confirmFinish, afterConfirmScreen, setAfterConfirmScreen, afterConfirmTrack, afterConfirmGrade, setAfterConfirmGrade, setAfterConfirmTrack, setProgress} = useGameState();
+    const {confirmFinish, track, grade} = useGameState();
 
     function handleFinish() {
         next(SCREENS.SCREEN_12_1);
-        setAfterConfirmGrade(null);
-        setAfterConfirmTrack(null);
-        setAfterConfirmScreen(null);
         confirmFinish();
     }
 
-    function handleNext() {
-        setProgress(afterConfirmTrack, afterConfirmGrade);
-
-        if (afterConfirmScreen) {
-            next(afterConfirmScreen);
-        } else {
-            next(SCREENS[afterConfirmTrack][afterConfirmGrade]);
-        }
-
-        setAfterConfirmGrade(null);
-        setAfterConfirmTrack(null);
-        setAfterConfirmScreen(null);
+    function handleBack() {
+        next(SCREENS[track][grade]);
         confirmFinish();
     }
 
@@ -71,7 +58,7 @@ export const Screen8 = () => {
             </Info>
             <ButtonWrapper>
                 <Button variant={'secondary'} onClick={handleFinish}>Остаюсь на этой позиции</Button>
-                <ButtonStyled onClick={handleNext}>ДАЛЕЕ</ButtonStyled>
+                <ButtonStyled onClick={handleBack}>ИЗМЕНИТЬ ВЫБОР</ButtonStyled>
             </ButtonWrapper>
         </Wrapper>
     )

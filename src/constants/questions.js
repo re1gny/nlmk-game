@@ -148,7 +148,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.GRADE_3,
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
@@ -180,7 +179,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.GRADE_4,
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
@@ -202,8 +200,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_1,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.FINAL,
-                    afterConfirmScreen: 'SCREEN_14',
                     getText: () => (
                         <Text>
                             <b>
@@ -317,7 +313,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.GRADE_3,
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
@@ -344,7 +339,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.GRADE_4,
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
@@ -365,8 +359,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_2,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.FINAL,
-                    afterConfirmScreen: 'SCREEN_14',
                     getText: () => <Text><b> Я хочу применять свои навыки в управлении на других площадках, в том числе, при международной ротации </b></Text>
                 },
             ]
@@ -490,7 +482,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.GRADE_3,
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
@@ -516,7 +507,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.GRADE_4,
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]
@@ -538,8 +528,6 @@ export const questions = {
                 {
                     track: TRACKS.TRACK_3,
                     nextGrade: null,
-                    afterConfirmGrade: GRADES.FINAL,
-                    afterConfirmScreen: 'SCREEN_14',
                     getText: () => <Text><b>Остаться развивать мастерство на этой позиции</b></Text>
                 },
             ]

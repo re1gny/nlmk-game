@@ -8,7 +8,7 @@ import { useScreen } from '../../../hooks/useScreen';
 
 export const Screen37 = () => {
     const { next } = useScreen();
-    function handleNext(track, grade, currentTrack, afterConfirmGrade, nextScreen) {
+    function handleNext(track, grade, currentTrack, nextScreen) {
         if (nextScreen) {
             next(nextScreen);
             return;
