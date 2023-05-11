@@ -3,9 +3,7 @@ import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
 import startScreenGirl from '../../assets/images/startScreenGirl.svg';
 import startScreenBackground from '../../assets/images/startScreenBackground.svg';
-import arrowRightLong from '../../assets/icons/arrowRightLong.svg';
-import heart from '../../assets/icons/heart.svg';
-import { Button } from '../common/Button';
+import { StartButton } from '../common/StartButton';
 
 const Wrapper = styled.div`
   padding: 4.5vh 10px;
@@ -51,12 +49,6 @@ const Subtitle = styled(StartText)`
   }
 `;
 
-const IconsBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const ImageWrapper = styled.div`
   position: absolute;
   bottom: 0;
@@ -70,15 +62,9 @@ const Image = styled.img`
     height: 100%;
 `;
 
-const ButtonStyled = styled(Button)`
+const ButtonStyled = styled(StartButton)`
   margin: auto auto 0;
-  width: auto;
-  padding: 15px 30px;
-  border: none;
-`;
-
-const HeartIcon = styled.img`
-    margin-left: 18px;
+  width: 252px;
 `;
 
 export function Screen1() {
@@ -95,12 +81,7 @@ export function Screen1() {
                 Сейчас ты откроешь возможности своего карьерного пути в Группе НЛМК.
             </Title>
             <Subtitle>следуй сердцу!</Subtitle>
-            <ButtonStyled variant={'secondary'} onClick={handleNext}>
-                <IconsBlock>
-                    <img src={arrowRightLong} alt={''}/>
-                    <HeartIcon src={heart} alt={''}/>
-                </IconsBlock>
-            </ButtonStyled>
+            <ButtonStyled onStart={handleNext} />
         </Content>
         <ImageWrapper>
             <Image src={startScreenGirl} alt={''} />
