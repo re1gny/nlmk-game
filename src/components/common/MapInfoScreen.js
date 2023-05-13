@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import arrowRightSm from '../../assets/icons/arrowRightSm.svg';
 import { InfoPanel } from './InfoPanel';
 import { Button } from './Button';
-import React from 'react';
+import React, { useState } from 'react';
 import { Map } from './Map';
 
 const Wrapper = styled.div`
@@ -19,6 +19,16 @@ const Info = styled(InfoPanel)`
   ${({position}) => position === 'bottom' ? 'bottom: 27px' : 'top: 27px'};
   margin-right: 27px;
   margin-left: 27px;
+  animation: appear 0.2s both;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 const NextButton = styled(Button)`
@@ -41,15 +51,28 @@ const Arrow = styled.div`
 `;
 
 export const MapInfoScreen = ({position, text, onNext}) => {
+  const [infoVisible, setInfoVisible] = useState(true);
+
+  function handleActiveObjectChange(object, tooltipPosition) {
+    if (!object || position !== tooltipPosition) {
+      setInfoVisible(true);
+      return;
+    }
+
+    setInfoVisible(false);
+  }
+
     return (
       <Wrapper>
-        <Map />
-        <Info position={position} variant={'light'}>
-          {text}
-          <NextButton onClick={onNext}>
-            <Arrow/>
-          </NextButton>
-        </Info>
+        <Map onActiveObjectChange={handleActiveObjectChange} />
+        {infoVisible && (
+          <Info position={position} variant={'light'}>
+            {text}
+            <NextButton onClick={onNext}>
+              <Arrow/>
+            </NextButton>
+          </Info>
+        )}
       </Wrapper>
     );
 };

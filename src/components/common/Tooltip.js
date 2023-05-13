@@ -6,10 +6,18 @@ import { Text } from './Text';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import { useRef } from 'react';
 
-const Wrapper = styled.div`
-  padding-bottom: 32px;
+const Wrapper = styled(Panel)`
+  position: relative;
+  display: inline-flex;
+  background: #FFFFFF;
+  border: 2px solid #002366;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
   max-width: 100%;
   animation: appear 0.2s both;
+  z-index: 1000;
 
   @keyframes appear {
     0% {
@@ -21,21 +29,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const WrapperInner = styled(Panel)`
-  position: relative;
-  display: inline-flex;
-  background: #FFFFFF;
-  border: 2px solid #002366;
-  text-align: center;
-  padding: 16px;
-  width: 100%;
-`;
-
 const Content = styled(Text)`
   color: #003399;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const InfoIcon = styled.img`
@@ -57,20 +52,16 @@ const Tail = styled.div`
   background-size: cover;
 `;
 
-export function Tooltip({ className, children, onClose }) {
+export function Tooltip({ className, children, withTail = true, onClose }) {
   const wrapperRef = useRef();
 
   useOnClickOutside(wrapperRef, onClose);
 
   return (
     <Wrapper ref={wrapperRef} className={className}>
-      <WrapperInner>
-        <InfoIcon src={info} alt="" />
-        <Content>
-          <b>{children}</b>
-        </Content>
-        <Tail />
-      </WrapperInner>
+      <InfoIcon src={info} alt="" />
+      <Content>{children}</Content>
+      {withTail && <Tail />}
     </Wrapper>
   )
 }

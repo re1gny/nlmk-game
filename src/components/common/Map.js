@@ -5,6 +5,7 @@ import { Stage, Layer, Image, Line } from 'react-konva';
 import { Spring, animated } from '@react-spring/konva';
 import { useGameState } from '../../hooks/useGameState';
 import { PATH_POINTS, PATH_POINTS_LIST } from '../../constants/pathPoints';
+import { MAP_OBJECTS_LIST, MAP_OBJECTS } from '../../constants/mapObjects';
 import { TRACKS } from '../../constants/tracks';
 import { GRADES } from '../../constants/grades';
 import map from '../../assets/images/map.jpg';
@@ -17,12 +18,14 @@ import track1GradeFinalPoint from '../../assets/icons/track1GradeFinalPoint.svg'
 import track2GradeFinalPoint from '../../assets/icons/track2GradeFinalPoint.svg';
 import track3GradeFinalPoint from '../../assets/icons/track3GradeFinalPoint.svg';
 import { FloatingTooltip } from './FloatingTooltip';
+import { FixedTooltip } from './FixedTooltip';
 
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
   overflow: auto;
+  transform: translateZ(0);
 
   &::-webkit-scrollbar{
     display: none;
@@ -58,19 +61,39 @@ const PATH_POINT_IMAGES = {
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.FINAL]]: () => finalPoint,
 };
 
-const PATH_POINT_NAME = {
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: 'Высококвалифицированный рабочий',
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: 'Мастер',
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: 'Начальник участка',
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: 'Начальник цеха',
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: 'Участник проектной команды',
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: 'Менеджер проекта',
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: 'Руководитель проекта',
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: 'Руководитель проектного офиса',
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: 'Ведущий специалист',
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: 'Главный специалист',
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: 'Начальник отдела',
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: 'Начальник управления',
+const MAP_OBJECT_IMAGES = {
+  [MAP_OBJECTS.OBJECT_1]: startPoint,
+  [MAP_OBJECTS.OBJECT_2]: finalPoint,
+  [MAP_OBJECTS.OBJECT_3]: finalPoint,
+};
+
+const PATH_POINT_DESCRIPTION = {
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: <b>Высококвалифицированный рабочий</b>,
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: <b>Мастер</b>,
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: <b>Начальник участка</b>,
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: <b>Начальник цеха</b>,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: <b>Участник проектной команды</b>,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: <b>Менеджер проекта</b>,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: <b>Руководитель проекта</b>,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: <b>Руководитель проектного офиса</b>,
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: <b>Ведущий специалист</b>,
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: <b>Главный специалист</b>,
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: <b>Начальник отдела</b>,
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: <b>Начальник управления</b>,
+};
+
+const MAP_OBJECT_DESCRIPTION = {
+  [MAP_OBJECTS.OBJECT_1]: 'Высококвалифицированный рабочий',
+  [MAP_OBJECTS.OBJECT_2]: 'Мастер',
+  [MAP_OBJECTS.OBJECT_3]: 'Начальник участка',
+};
+
+const MAP_OBJECTS_WITH_BOTTOM_DESCRIPTION = [MAP_OBJECTS.OBJECT_1, MAP_OBJECTS.OBJECT_3];
+
+const MAP_OBJECT_SIZES = {
+  [MAP_OBJECTS.OBJECT_1]: [35, 35],
+  [MAP_OBJECTS.OBJECT_2]: [46, 69],
+  [MAP_OBJECTS.OBJECT_3]: [46, 69],
 };
 
 const PATH_POINT_SIZES = {
@@ -92,7 +115,7 @@ const PATH_POINT_SIZES = {
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.FINAL]]: () => [46, 69],
 };
 
-const BASE_PATH_POINT_POSITIONS = {
+const PATH_POINT_POSITIONS = {
   [PATH_POINTS.START]: [200.52, 605.36],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: [465.16, 290.82],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: [830.04, 312.16],
@@ -109,6 +132,12 @@ const BASE_PATH_POINT_POSITIONS = {
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: [1069, 763],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: [1516, 785.35],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.FINAL]]: [1830.24, 550.86],
+};
+
+const MAP_OBJECTS_POSITIONS = {
+  [MAP_OBJECTS.OBJECT_1]: [0, 0],
+  [MAP_OBJECTS.OBJECT_2]: [100, 0],
+  [MAP_OBJECTS.OBJECT_3]: [50, 50],
 };
 
 function createBasePointOffset() {
@@ -144,8 +173,15 @@ const PATH_POINT_OFFSETS = {
 
 function getPathPointPosition(point, width, height) {
   return [
-    width / BASE_WIDTH * BASE_PATH_POINT_POSITIONS[point][0],
-    height / BASE_HEIGHT * BASE_PATH_POINT_POSITIONS[point][1],
+    width / BASE_WIDTH * PATH_POINT_POSITIONS[point][0],
+    height / BASE_HEIGHT * PATH_POINT_POSITIONS[point][1],
+  ];
+}
+
+function getMapObjectPosition(object, width, height) {
+  return [
+    width / BASE_WIDTH * MAP_OBJECTS_POSITIONS[object][0],
+    height / BASE_HEIGHT * MAP_OBJECTS_POSITIONS[object][1],
   ];
 }
 
@@ -156,8 +192,19 @@ function getPathPointSize(point, isLast, width, height) {
   ];
 }
 
+function getMapObjectSize(object, width, height) {
+  return [
+    width / BASE_WIDTH * MAP_OBJECT_SIZES[object][0],
+    height / BASE_HEIGHT * MAP_OBJECT_SIZES[object][1],
+  ];
+}
+
 function getPathPointImage(point, isLast) {
   return PATH_POINT_IMAGES[point](isLast);
+}
+
+function getMapObjectImage(object) {
+  return MAP_OBJECT_IMAGES[object];
 }
 
 function getPathPointOffset(point, isLast, width, height) {
@@ -167,6 +214,14 @@ function getPathPointOffset(point, isLast, width, height) {
 
 function getIsLastPoint(point, path) {
   return path?.includes(point) && path?.indexOf(point) === path.length - 1;
+}
+
+function getIsActiveMapObject(object, active) {
+  return active && object === active;
+}
+
+function getMapObjectDescriptionPlacement(object) {
+  return MAP_OBJECTS_WITH_BOTTOM_DESCRIPTION.includes(object) ? 'bottom' : 'top';
 }
 
 function getLineConnectionPosition(point, isLast, width, height) {
@@ -206,19 +261,31 @@ function scrollToPoints(container, width, height, points) {
   container.scrollTo({ left, behavior: 'smooth' });
 }
 
+function scrollToObject(container, width, height, object) {
+  if (!container || !object) {
+    return;
+  }
+
+  const wrapperWidth = container.offsetWidth;
+  const left = getMapObjectPosition(object, width, height)[0] - wrapperWidth / 2;
+
+  container.scrollTo({ left, behavior: 'smooth' });
+}
+
 function CanvasImage({ src, ...rest }) {
   const [image] = useImage(src);
   return <Image image={image} {...rest} />;
 }
 
 export function Map(props) {
-  const { className, withPathMove } = props;
+  const { className, withPathMove, onActivePointChange, onActiveObjectChange } = props;
   const { path } = useGameState();
   const mapRef = useRef();
   const wrapperRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const [activePoint, setActivePoint] = useState(null);
+  const [activeObject, setActiveObject] = useState(null);
 
   function updateSize() {
     const { offsetHeight, offsetWidth } = mapRef.current || {};
@@ -228,16 +295,36 @@ export function Map(props) {
 
   function removeActivePoint() {
     setActivePoint(null);
+    onActivePointChange?.(null);
   }
 
   function selectActivePoint(point) {
     setActivePoint(point);
+    onActivePointChange?.(point);
     scrollToPoints(wrapperRef.current, width, height, [point]);
+  }
+
+  function removeActiveObject() {
+    setActiveObject(null);
+    onActiveObjectChange?.(null);
+  }
+
+  function selectActiveObject(object) {
+    setActiveObject(object);
+    onActiveObjectChange?.(object, getMapObjectDescriptionPlacement(object));
+    scrollToObject(wrapperRef.current, width, height, object);
   }
 
   function handlePointClick(event, point) {
     event?.evt?.stopPropagation();
     selectActivePoint(point);
+    removeActiveObject();
+  }
+
+  function handleObjectClick(event, object) {
+    event?.evt?.stopPropagation();
+    selectActiveObject(object);
+    removeActivePoint();
   }
 
   useEffect(() => {
@@ -247,76 +334,107 @@ export function Map(props) {
   }, [width])
 
   return (
-    <Wrapper className={className} ref={wrapperRef}>
-      <MapImage ref={mapRef} src={map} alt="" onLoad={updateSize} />
-      <Stage width={width} height={height}>
-        <Layer>
-          {path?.length > 2 && (
-            <Line
-              points={createLine(path, path.slice(0, -1), width, height)}
-              x={0}
-              y={0}
-              stroke='#FF6600'
-              strokeWidth={5}
-              shadowOffsetX={4}
-              shadowOffsetY={4}
-              shadowBlur={7}
-              shadowColor={'rgb(0, 0, 0)'}
-              shadowOpacity={0.15}
-            />
-          )}
-          {path?.length > 1 && (
-            <Spring
-              from={{ opacity: withPathMove ? 0 : 1 }}
-              to={{ opacity: 1 }}
-              delay={600}
-              config={{ duration: 500 }}
-            >
-              {(props) => (
-                <animated.Line
-                  {...props}
-                  points={createLine(path, path.slice(-2), width, height)}
-                  x={0}
-                  y={0}
-                  stroke='#FF6600'
-                  strokeWidth={5}
-                  shadowOffsetX={4}
-                  shadowOffsetY={4}
-                  shadowBlur={7}
-                  shadowColor={'rgb(0, 0, 0)'}
-                  shadowOpacity={0.15}
-                />
-              )}
-            </Spring>
-          )}
-          {PATH_POINTS_LIST.map((point, index) => (
-            <CanvasImage
-              key={index}
-              src={getPathPointImage(point, getIsLastPoint(point, path))}
-              width={getPathPointSize(point, getIsLastPoint(point, path), width, height)[0]}
-              height={getPathPointSize(point, getIsLastPoint(point, path), width, height)[1]}
-              x={getPathPointPosition(point, width, height)[0]}
-              y={getPathPointPosition(point, width, height)[1]}
-              shadowOffsetX={4}
-              shadowOffsetY={4}
-              shadowBlur={7}
-              shadowColor={'rgb(0, 0, 0)'}
-              shadowOpacity={0.15}
-              onMouseDown={(event) => handlePointClick(event, point)}
-              onTouchStart={(event) => handlePointClick(event, point)}
-            />
-          ))}
-        </Layer>
-      </Stage>
-      {!!activePoint && PATH_POINT_NAME[activePoint] && (
-        <FloatingTooltip
-          x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), width, height)[0]}
-          y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), width, height)[1]}
-          onClose={removeActivePoint}
+    <>
+      <Wrapper className={className} ref={wrapperRef}>
+        <MapImage ref={mapRef} src={map} alt="" onLoad={updateSize} />
+        <Stage width={width} height={height}>
+          <Layer>
+            {MAP_OBJECTS_LIST.map((object, index) => (
+              <CanvasImage
+                key={index}
+                src={getMapObjectImage(object)}
+                width={getMapObjectSize(object, width, height)[0]}
+                height={getMapObjectSize(object, width, height)[1]}
+                x={getMapObjectPosition(object, width, height)[0]}
+                y={getMapObjectPosition(object, width, height)[1]}
+                shadowOffsetX={getIsActiveMapObject(object, activeObject) ? -3 : 4}
+                shadowOffsetY={getIsActiveMapObject(object, activeObject) ? 3 : 4}
+                shadowBlur={getIsActiveMapObject(object, activeObject) ? 8 : 7}
+                shadowColor={getIsActiveMapObject(object, activeObject) ? '#72B3DD' : 'rgb(0, 0, 0)'}
+                shadowOpacity={getIsActiveMapObject(object, activeObject) ? 1 : 0.15}
+                onMouseDown={(event) => handleObjectClick(event, object)}
+                onTouchStart={(event) => handleObjectClick(event, object)}
+              />
+            ))}
+          </Layer>
+          <Layer>
+            {path?.length > 2 && (
+              <Line
+                points={createLine(path, path.slice(0, -1), width, height)}
+                x={0}
+                y={0}
+                stroke='#FF6600'
+                strokeWidth={5}
+                shadowOffsetX={4}
+                shadowOffsetY={4}
+                shadowBlur={7}
+                shadowColor={'rgb(0, 0, 0)'}
+                shadowOpacity={0.15}
+              />
+            )}
+            {path?.length > 1 && (
+              <Spring
+                from={{ opacity: withPathMove ? 0 : 1 }}
+                to={{ opacity: 1 }}
+                delay={600}
+                config={{ duration: 500 }}
+              >
+                {(props) => (
+                  <animated.Line
+                    {...props}
+                    points={createLine(path, path.slice(-2), width, height)}
+                    x={0}
+                    y={0}
+                    stroke='#FF6600'
+                    strokeWidth={5}
+                    shadowOffsetX={4}
+                    shadowOffsetY={4}
+                    shadowBlur={7}
+                    shadowColor={'rgb(0, 0, 0)'}
+                    shadowOpacity={0.15}
+                  />
+                )}
+              </Spring>
+            )}
+          </Layer>
+          <Layer>
+            {PATH_POINTS_LIST.map((point, index) => (
+              <CanvasImage
+                key={index}
+                src={getPathPointImage(point, getIsLastPoint(point, path))}
+                width={getPathPointSize(point, getIsLastPoint(point, path), width, height)[0]}
+                height={getPathPointSize(point, getIsLastPoint(point, path), width, height)[1]}
+                x={getPathPointPosition(point, width, height)[0]}
+                y={getPathPointPosition(point, width, height)[1]}
+                shadowOffsetX={4}
+                shadowOffsetY={4}
+                shadowBlur={7}
+                shadowColor={'rgb(0, 0, 0)'}
+                shadowOpacity={0.15}
+                onMouseDown={(event) => handlePointClick(event, point)}
+                onTouchStart={(event) => handlePointClick(event, point)}
+              />
+            ))}
+          </Layer>
+        </Stage>
+        {!!activePoint && PATH_POINT_DESCRIPTION[activePoint] && (
+          <FloatingTooltip
+            x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), width, height)[0]}
+            y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), width, height)[1]}
+            onClose={removeActivePoint}
+          >
+            {PATH_POINT_DESCRIPTION[activePoint]}
+          </FloatingTooltip>
+        )}
+      </Wrapper>
+      {!!activeObject && MAP_OBJECT_DESCRIPTION[activeObject] && (
+        <FixedTooltip
+          position={getMapObjectDescriptionPlacement(activeObject)}
+          onClose={removeActiveObject}
         >
-          {PATH_POINT_NAME[activePoint]}
-        </FloatingTooltip>
+          {MAP_OBJECT_DESCRIPTION[activeObject]}
+        </FixedTooltip>
       )}
-    </Wrapper>
+    </>
   )
 }
