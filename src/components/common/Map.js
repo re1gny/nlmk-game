@@ -16,6 +16,7 @@ import track3GradePoint from '../../assets/icons/track3GradePoint.svg';
 import track1GradeFinalPoint from '../../assets/icons/track1GradeFinalPoint.svg';
 import track2GradeFinalPoint from '../../assets/icons/track2GradeFinalPoint.svg';
 import track3GradeFinalPoint from '../../assets/icons/track3GradeFinalPoint.svg';
+import { FloatingTooltip } from './FloatingTooltip';
 
 const Wrapper = styled.div`
   position: relative;
@@ -35,24 +36,21 @@ const MapImage = styled.img`
   height: 100%;
 `;
 
-const BASE_WIDTH = 1127;
-const BASE_HEIGHT = 697;
+const BASE_WIDTH = 1920;
+const BASE_HEIGHT = 1080;
 
 const PATH_POINT_IMAGES = {
   [PATH_POINTS.START]: () => startPoint,
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: (last) => last ? track1GradeFinalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: (last) => last ? track1GradeFinalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: (last) => last ? track1GradeFinalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: (last) => last ? track1GradeFinalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: (last) => last ? track1GradeFinalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.FINAL]]: () => finalPoint,
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: (last) => last ? track2GradeFinalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: (last) => last ? track2GradeFinalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: (last) => last ? track2GradeFinalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: (last) => last ? track2GradeFinalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: (last) => last ? track2GradeFinalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.FINAL]]: () => finalPoint,
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: (last) => last ? track3GradeFinalPoint : track3GradePoint,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: (last) => last ? track3GradeFinalPoint : track3GradePoint,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: (last) => last ? track3GradeFinalPoint : track3GradePoint,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: (last) => last ? track3GradeFinalPoint : track3GradePoint,
@@ -60,21 +58,33 @@ const PATH_POINT_IMAGES = {
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.FINAL]]: () => finalPoint,
 };
 
+const PATH_POINT_NAME = {
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: 'Высококвалифицированный рабочий',
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: 'Мастер',
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: 'Начальник участка',
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: 'Начальник цеха',
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: 'Участник проектной команды',
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: 'Менеджер проекта',
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: 'Руководитель проекта',
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: 'Руководитель проектного офиса',
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: 'Ведущий специалист',
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: 'Главный специалист',
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: 'Начальник отдела',
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: 'Начальник управления',
+};
+
 const PATH_POINT_SIZES = {
   [PATH_POINTS.START]: () => [35, 35],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.FINAL]]: () => [46, 69],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.FINAL]]: () => [46, 69],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: (last) => last ? [27, 61] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: (last) => last ? [27, 61] : [20, 20],
@@ -83,25 +93,22 @@ const PATH_POINT_SIZES = {
 };
 
 const BASE_PATH_POINT_POSITIONS = {
-  [PATH_POINTS.START]: [34.26, 373],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: [159.2, 97.19],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: [298.3, 220.53],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: [499.06, 165.01],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: [663.83, 114.78],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: [806.77, 134.11],
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.FINAL]]: [1018, 289],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: [185.2, 319.67],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: [336.3, 353.44],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: [489.06, 313.56],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: [598.76, 358.44],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: [858.73, 325.56],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.FINAL]]: [1018, 289],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: [114.2, 510.1],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: [283.26, 564.98],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: [469.06, 567.98],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: [655.83, 510.72],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: [801.73, 539.72],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.FINAL]]: [1018, 289],
+  [PATH_POINTS.START]: [200.52, 605.36],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: [465.16, 290.82],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: [830.04, 312.16],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: [1094.79, 307.64],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: [1434.04, 370.74],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.FINAL]]: [1830.24, 550.86],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: [467.16, 527.3],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: [896.04, 465.07],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: [1150.79, 594.19],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: [1497, 536.19],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.FINAL]]: [1830.24, 550.86],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: [524.16, 781.73],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: [745, 756.61],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: [1069, 763],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: [1516, 785.35],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.FINAL]]: [1830.24, 550.86],
 };
 
 function createBasePointOffset() {
@@ -118,19 +125,16 @@ function createFinalPointOffset(point, isLast) {
 
 const PATH_POINT_OFFSETS = {
   [PATH_POINTS.START]: () => createBasePointOffset(),
-  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.START], isLast),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1], isLast),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2], isLast),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3], isLast),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4], isLast),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.FINAL]]: (isLast) => createFinalPointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.FINAL], isLast),
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.START], isLast),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1], isLast),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2], isLast),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3], isLast),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4], isLast),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.FINAL]]: (isLast) => createFinalPointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.FINAL], isLast),
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.START], isLast),
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1], isLast),
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2], isLast),
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: (isLast) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3], isLast),
@@ -145,10 +149,10 @@ function getPathPointPosition(point, width, height) {
   ];
 }
 
-function getPathPointSize(point, isLast) {
+function getPathPointSize(point, isLast, width, height) {
   return [
-    PATH_POINT_SIZES[point](isLast)[0],
-    PATH_POINT_SIZES[point](isLast)[1],
+    width / BASE_WIDTH * PATH_POINT_SIZES[point](isLast)[0],
+    height / BASE_HEIGHT * PATH_POINT_SIZES[point](isLast)[1],
   ];
 }
 
@@ -156,26 +160,50 @@ function getPathPointImage(point, isLast) {
   return PATH_POINT_IMAGES[point](isLast);
 }
 
-function getPathPointOffset(point, isLast) {
-  return PATH_POINT_OFFSETS[point](isLast);
+function getPathPointOffset(point, isLast, width, height) {
+  const offsets = PATH_POINT_OFFSETS[point](isLast);
+  return [width / BASE_WIDTH * offsets[0], height / BASE_HEIGHT * offsets[1]];
 }
 
 function getIsLastPoint(point, path) {
   return path?.includes(point) && path?.indexOf(point) === path.length - 1;
 }
 
-function getLineConnectionPosition(point, width, height, isLast) {
+function getLineConnectionPosition(point, isLast, width, height) {
   return getPathPointPosition(point, width, height)
     .map((position, positionIndex) =>
-      position + getPathPointSize(point, isLast)[positionIndex] / 2 + getPathPointOffset(point, isLast)[positionIndex]
+      position
+      + getPathPointSize(point, isLast, width, height)[positionIndex] / 2
+      + getPathPointOffset(point, isLast, width, height)[positionIndex]
     );
+}
+
+function getTooltipConnectionPosition(point, isLast, width, height) {
+  const [x, y] = getPathPointPosition(point, width, height);
+  return [x + getPathPointSize(point, isLast, width, height)[0] / 2, y];
 }
 
 function createLine(originalPath, path, width, height) {
   return path?.reduce((acc, point) => [
     ...acc,
-    ...getLineConnectionPosition(point, width, height, getIsLastPoint(point, originalPath)),
+    ...getLineConnectionPosition(point, getIsLastPoint(point, originalPath), width, height),
   ], [])
+}
+
+function scrollToPoints(container, width, height, points) {
+  if (!container || !points.length) {
+    return;
+  }
+
+  const wrapperWidth = container.offsetWidth;
+  const existingPoints = points.filter(Boolean);
+  const pointsLeftAverage = existingPoints.reduce(
+    (acc, point) => acc + getPathPointPosition(point, width, height)[0],
+    0,
+  ) / existingPoints.length;
+  const left = pointsLeftAverage - wrapperWidth / 2;
+
+  container.scrollTo({ left, behavior: 'smooth' });
 }
 
 function CanvasImage({ src, ...rest }) {
@@ -190,6 +218,7 @@ export function Map(props) {
   const wrapperRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [activePoint, setActivePoint] = useState(null);
 
   function updateSize() {
     const { offsetHeight, offsetWidth } = mapRef.current || {};
@@ -197,19 +226,23 @@ export function Map(props) {
     setWidth(offsetWidth);
   }
 
-  function scrollToLastPoints() {
-    if (path?.length > 1) {
-      const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
-      const [scrollLeftStart] = getPathPointPosition(path[path.length - 2], width, height) || [0, 0];
-      const [scrollLeftEnd] = getPathPointPosition(path[path.length - 1], width, height) || [0, 0];
-      const scrollLeft = (scrollLeftStart + scrollLeftEnd) / 2 - wrapperWidth / 2;
-      wrapperRef.current?.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-    }
+  function removeActivePoint() {
+    setActivePoint(null);
+  }
+
+  function selectActivePoint(point) {
+    setActivePoint(point);
+    scrollToPoints(wrapperRef.current, width, height, [point]);
+  }
+
+  function handlePointClick(event, point) {
+    event?.evt?.stopPropagation();
+    selectActivePoint(point);
   }
 
   useEffect(() => {
-    if (width && withPathMove) {
-      scrollToLastPoints();
+    if (width && withPathMove && path?.length > 1) {
+      scrollToPoints(wrapperRef.current, width, height, [path[path.length - 2], path[path.length - 1]]);
     }
   }, [width])
 
@@ -223,7 +256,7 @@ export function Map(props) {
               points={createLine(path, path.slice(0, -1), width, height)}
               x={0}
               y={0}
-              stroke='#FFFFFF'
+              stroke='#FF6600'
               strokeWidth={5}
               shadowOffsetX={4}
               shadowOffsetY={4}
@@ -245,7 +278,7 @@ export function Map(props) {
                   points={createLine(path, path.slice(-2), width, height)}
                   x={0}
                   y={0}
-                  stroke='#FFFFFF'
+                  stroke='#FF6600'
                   strokeWidth={5}
                   shadowOffsetX={4}
                   shadowOffsetY={4}
@@ -260,8 +293,8 @@ export function Map(props) {
             <CanvasImage
               key={index}
               src={getPathPointImage(point, getIsLastPoint(point, path))}
-              width={getPathPointSize(point, getIsLastPoint(point, path))[0]}
-              height={getPathPointSize(point, getIsLastPoint(point, path))[1]}
+              width={getPathPointSize(point, getIsLastPoint(point, path), width, height)[0]}
+              height={getPathPointSize(point, getIsLastPoint(point, path), width, height)[1]}
               x={getPathPointPosition(point, width, height)[0]}
               y={getPathPointPosition(point, width, height)[1]}
               shadowOffsetX={4}
@@ -269,10 +302,21 @@ export function Map(props) {
               shadowBlur={7}
               shadowColor={'rgb(0, 0, 0)'}
               shadowOpacity={0.15}
+              onMouseDown={(event) => handlePointClick(event, point)}
+              onTouchStart={(event) => handlePointClick(event, point)}
             />
           ))}
         </Layer>
       </Stage>
+      {!!activePoint && PATH_POINT_NAME[activePoint] && (
+        <FloatingTooltip
+          x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), width, height)[0]}
+          y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), width, height)[1]}
+          onClose={removeActivePoint}
+        >
+          {PATH_POINT_NAME[activePoint]}
+        </FloatingTooltip>
+      )}
     </Wrapper>
   )
 }
