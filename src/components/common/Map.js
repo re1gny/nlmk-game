@@ -9,6 +9,27 @@ import { MAP_OBJECTS_LIST, MAP_OBJECTS } from '../../constants/mapObjects';
 import { TRACKS } from '../../constants/tracks';
 import { GRADES } from '../../constants/grades';
 import map from '../../assets/images/map.jpg';
+import mapObject1 from '../../assets/images/mapObject1.svg';
+import mapObject2 from '../../assets/images/mapObject2.svg';
+import mapObject3 from '../../assets/images/mapObject3.svg';
+import mapObject4 from '../../assets/images/mapObject4.svg';
+import mapObject5 from '../../assets/images/mapObject5.svg';
+import mapObject6 from '../../assets/images/mapObject6.svg';
+import mapObject7 from '../../assets/images/mapObject7.svg';
+import mapObject8 from '../../assets/images/mapObject8.svg';
+import mapObject9 from '../../assets/images/mapObject9.svg';
+import mapObject10 from '../../assets/images/mapObject10.svg';
+import mapObject11 from '../../assets/images/mapObject11.svg';
+import mapObject12 from '../../assets/images/mapObject12.svg';
+import mapObject13 from '../../assets/images/mapObject13.svg';
+import mapObject14 from '../../assets/images/mapObject14.svg';
+import mapObject15 from '../../assets/images/mapObject15.svg';
+import mapObject16 from '../../assets/images/mapObject16.svg';
+import mapObject17 from '../../assets/images/mapObject17.svg';
+import mapObject18 from '../../assets/images/mapObject18.svg';
+import mapObject19 from '../../assets/images/mapObject19.svg';
+import mapObject20 from '../../assets/images/mapObject20.svg';
+import mapObject21 from '../../assets/images/mapObject21.svg';
 import lockedPoint from '../../assets/icons/lock.svg';
 import startPoint from '../../assets/icons/startPoint.svg';
 import finalPoint from '../../assets/icons/finalPoint.svg';
@@ -58,9 +79,27 @@ const PATH_POINT_IMAGES = {
 };
 
 const MAP_OBJECT_IMAGES = {
-  [MAP_OBJECTS.OBJECT_1]: startPoint,
-  [MAP_OBJECTS.OBJECT_2]: finalPoint,
-  [MAP_OBJECTS.OBJECT_3]: finalPoint,
+  [MAP_OBJECTS.OBJECT_1]: mapObject1,
+  [MAP_OBJECTS.OBJECT_2]: mapObject2,
+  [MAP_OBJECTS.OBJECT_3]: mapObject3,
+  [MAP_OBJECTS.OBJECT_4]: mapObject4,
+  [MAP_OBJECTS.OBJECT_5]: mapObject5,
+  [MAP_OBJECTS.OBJECT_6]: mapObject6,
+  [MAP_OBJECTS.OBJECT_7]: mapObject7,
+  [MAP_OBJECTS.OBJECT_8]: mapObject8,
+  [MAP_OBJECTS.OBJECT_9]: mapObject9,
+  [MAP_OBJECTS.OBJECT_10]: mapObject10,
+  [MAP_OBJECTS.OBJECT_11]: mapObject11,
+  [MAP_OBJECTS.OBJECT_12]: mapObject12,
+  [MAP_OBJECTS.OBJECT_13]: mapObject13,
+  [MAP_OBJECTS.OBJECT_14]: mapObject14,
+  [MAP_OBJECTS.OBJECT_15]: mapObject15,
+  [MAP_OBJECTS.OBJECT_16]: mapObject16,
+  [MAP_OBJECTS.OBJECT_17]: mapObject17,
+  [MAP_OBJECTS.OBJECT_18]: mapObject18,
+  [MAP_OBJECTS.OBJECT_19]: mapObject19,
+  [MAP_OBJECTS.OBJECT_20]: mapObject20,
+  [MAP_OBJECTS.OBJECT_21]: mapObject21,
 };
 
 const PATH_POINT_DESCRIPTION = {
@@ -79,17 +118,66 @@ const PATH_POINT_DESCRIPTION = {
 };
 
 const MAP_OBJECT_DESCRIPTION = {
-  [MAP_OBJECTS.OBJECT_1]: 'Высококвалифицированный рабочий',
-  [MAP_OBJECTS.OBJECT_2]: 'Мастер',
-  [MAP_OBJECTS.OBJECT_3]: 'Начальник участка',
+  [MAP_OBJECTS.OBJECT_1]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_2]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_3]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_4]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_5]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_6]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_7]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_8]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_9]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_10]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_11]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_12]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_13]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_14]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_15]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_16]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_17]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_18]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_19]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_20]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
+  [MAP_OBJECTS.OBJECT_21]: <>Большая часть мостов в мире сделана из стали. А НЛМК — <b>мировой лидер по производству</b> этого материала</>,
 };
 
-const MAP_OBJECTS_WITH_BOTTOM_DESCRIPTION = [MAP_OBJECTS.OBJECT_1, MAP_OBJECTS.OBJECT_3];
+const MAP_OBJECTS_WITH_BOTTOM_DESCRIPTION = [
+  MAP_OBJECTS.OBJECT_1,
+  MAP_OBJECTS.OBJECT_2,
+  MAP_OBJECTS.OBJECT_4,
+  MAP_OBJECTS.OBJECT_5,
+  MAP_OBJECTS.OBJECT_6,
+  MAP_OBJECTS.OBJECT_7,
+  MAP_OBJECTS.OBJECT_8,
+  MAP_OBJECTS.OBJECT_9,
+  MAP_OBJECTS.OBJECT_10,
+  MAP_OBJECTS.OBJECT_11,
+  MAP_OBJECTS.OBJECT_12,
+  MAP_OBJECTS.OBJECT_13,
+];
 
 const MAP_OBJECT_SIZES = {
-  [MAP_OBJECTS.OBJECT_1]: [35, 35],
-  [MAP_OBJECTS.OBJECT_2]: [46, 69],
-  [MAP_OBJECTS.OBJECT_3]: [46, 69],
+  [MAP_OBJECTS.OBJECT_1]: [22.64, 15.71],
+  [MAP_OBJECTS.OBJECT_2]: [16.66, 28.04],
+  [MAP_OBJECTS.OBJECT_3]: [50.27, 78.49],
+  [MAP_OBJECTS.OBJECT_4]: [112.88, 173.19],
+  [MAP_OBJECTS.OBJECT_5]: [172.95, 77.13],
+  [MAP_OBJECTS.OBJECT_6]: [212.31, 182.75],
+  [MAP_OBJECTS.OBJECT_7]: [65.75, 28.9],
+  [MAP_OBJECTS.OBJECT_8]: [133.89, 109.9],
+  [MAP_OBJECTS.OBJECT_9]: [75.16, 64.1],
+  [MAP_OBJECTS.OBJECT_10]: [170.76, 145.77],
+  [MAP_OBJECTS.OBJECT_11]: [54.49, 76.28],
+  [MAP_OBJECTS.OBJECT_12]: [136.26, 151.92],
+  [MAP_OBJECTS.OBJECT_13]: [22.64, 15.71],
+  [MAP_OBJECTS.OBJECT_14]: [123.59, 123.77],
+  [MAP_OBJECTS.OBJECT_15]: [112.81, 112.97],
+  [MAP_OBJECTS.OBJECT_16]: [68.47, 106.89],
+  [MAP_OBJECTS.OBJECT_17]: [22.64, 15.71],
+  [MAP_OBJECTS.OBJECT_18]: [16.66, 28.04],
+  [MAP_OBJECTS.OBJECT_19]: [15.71, 22.64],
+  [MAP_OBJECTS.OBJECT_20]: [15.71, 22.64],
+  [MAP_OBJECTS.OBJECT_21]: [22.64, 15.71],
 };
 
 const PATH_POINT_SIZES = {
@@ -127,9 +215,27 @@ const PATH_POINT_POSITIONS = {
 };
 
 const MAP_OBJECTS_POSITIONS = {
-  [MAP_OBJECTS.OBJECT_1]: [0, 0],
-  [MAP_OBJECTS.OBJECT_2]: [100, 0],
-  [MAP_OBJECTS.OBJECT_3]: [50, 50],
+  [MAP_OBJECTS.OBJECT_1]: [223.03, 296.19],
+  [MAP_OBJECTS.OBJECT_2]: [351, 177],
+  [MAP_OBJECTS.OBJECT_3]: [205, 793],
+  [MAP_OBJECTS.OBJECT_4]: [560.52, 232.14],
+  [MAP_OBJECTS.OBJECT_5]: [627.42, 362.99],
+  [MAP_OBJECTS.OBJECT_6]: [902.09, 54.77],
+  [MAP_OBJECTS.OBJECT_7]: [1213.47, 45.78],
+  [MAP_OBJECTS.OBJECT_8]: [1359.22, 7.21],
+  [MAP_OBJECTS.OBJECT_9]: [1662.18, -16.62],
+  [MAP_OBJECTS.OBJECT_10]: [1636.86, 50.1],
+  [MAP_OBJECTS.OBJECT_11]: [936.65, 422.25],
+  [MAP_OBJECTS.OBJECT_12]: [1612.9, 305.94],
+  [MAP_OBJECTS.OBJECT_13]: [1762.23, 449.24],
+  [MAP_OBJECTS.OBJECT_14]: [499, 980],
+  [MAP_OBJECTS.OBJECT_15]: [970.88, 689.73],
+  [MAP_OBJECTS.OBJECT_16]: [1220.63, 648.99],
+  [MAP_OBJECTS.OBJECT_17]: [817.25, 802.7],
+  [MAP_OBJECTS.OBJECT_18]: [1127.68, 748.44],
+  [MAP_OBJECTS.OBJECT_19]: [967.11, 859.36],
+  [MAP_OBJECTS.OBJECT_20]: [1133, 956],
+  [MAP_OBJECTS.OBJECT_21]: [1403.56, 963.03],
 };
 
 function createBasePointOffset() {
@@ -222,10 +328,6 @@ function getIsLocked(point, path) {
   return !path?.includes(point);
 }
 
-function getIsActiveMapObject(object, active) {
-  return active && object === active;
-}
-
 function getMapObjectDescriptionPlacement(object) {
   return MAP_OBJECTS_WITH_BOTTOM_DESCRIPTION.includes(object) ? 'bottom' : 'top';
 }
@@ -273,7 +375,7 @@ function scrollToObject(container, width, height, object) {
   }
 
   const wrapperWidth = container.offsetWidth;
-  const left = getMapObjectPosition(object, width, height)[0] - wrapperWidth / 2;
+  const left = getMapObjectPosition(object, width, height)[0] + getMapObjectSize(object, width, height)[0] / 2 - wrapperWidth / 2;
 
   container.scrollTo({ left, behavior: 'smooth' });
 }
@@ -353,11 +455,10 @@ export function Map(props) {
                 height={getMapObjectSize(object, width, height)[1]}
                 x={getMapObjectPosition(object, width, height)[0]}
                 y={getMapObjectPosition(object, width, height)[1]}
-                shadowOffsetX={getIsActiveMapObject(object, activeObject) ? -3 : 4}
-                shadowOffsetY={getIsActiveMapObject(object, activeObject) ? 3 : 4}
-                shadowBlur={getIsActiveMapObject(object, activeObject) ? 8 : 7}
-                shadowColor={getIsActiveMapObject(object, activeObject) ? '#72B3DD' : 'rgb(0, 0, 0)'}
-                shadowOpacity={getIsActiveMapObject(object, activeObject) ? 1 : 0.15}
+                shadowOffsetX={-3}
+                shadowOffsetY={3}
+                shadowBlur={8}
+                shadowColor={'#72B3DD'}
                 onMouseDown={(event) => handleObjectClick(event, object)}
                 onTouchStart={(event) => handleObjectClick(event, object)}
               />
