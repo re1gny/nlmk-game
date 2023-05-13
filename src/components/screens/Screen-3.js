@@ -59,12 +59,11 @@ const Content = styled.div`
 
 export const Screen3 = () => {
     const {next} = useScreen();
-    const {character, start} = useGameState();
+    const {character} = useGameState();
     const picture = getCharacterPicture(character, 'casual', 0);
 
     function handleNext() {
         next(SCREENS.SCREEN_4)
-        start()
     }
 
     return (

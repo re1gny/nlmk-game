@@ -116,7 +116,7 @@ export const Screen2 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isChosen, setIsChosen] = useState(false);
   const { next } = useScreen();
-  const { setCharacter } = useGameState();
+  const { setCharacter, start } = useGameState();
 
   const slideData = Object
     .values(charactersInfo)
@@ -127,6 +127,7 @@ export const Screen2 = () => {
   function handleNext() {
     setIsChosen(true);
     setCharacter(slideData[currentIndex].id);
+    start();
     setTimeout(() => next(SCREENS.SCREEN_3), 800);
   }
 

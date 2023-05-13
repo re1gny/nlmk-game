@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { GameStateContext } from '../contexts/GameState';
 import { PATH_POINTS } from '../constants/pathPoints';
 import { useScreen } from '../hooks/useScreen';
+import { GRADES } from '../constants/grades';
 
 const INITIAL_PATH = [];
 const INITIAL_CHARACTER = 5;
@@ -56,7 +57,16 @@ export function GameStateProvider({ children }) {
   const handleSetProgress = useCallback((track, grade) => {
     setTrack(track);
     setGrade(grade);
-    if (!grade || !PATH_POINTS[track][grade]) return;
+
+    if (grade === GRADES.FINAL) {
+      setPath(prev => prev.includes(PATH_POINTS.FINAL) ? prev : [...prev, PATH_POINTS.FINAL]);
+      return;
+    }
+
+    if (!grade || !PATH_POINTS[track][grade]) {
+      return;
+    }
+
     setPath(prev => prev.includes(PATH_POINTS[track][grade]) ? prev : [...prev, PATH_POINTS[track][grade]]);
   }, []);
 
