@@ -10,7 +10,7 @@ import { useGameState } from '../../../hooks/useGameState';
 export const Screen36 = () => {
     const { next } = useScreen();
     const {finishConfirmed, setProgress} = useGameState();
-    function handleNext(nextTrack, grade, currentTrack) {
+    function handleNext(nextTrack, grade) {
         if (!grade) {
             if (!finishConfirmed) {
                 next(SCREENS.SCREEN_8);
@@ -20,11 +20,7 @@ export const Screen36 = () => {
             return;
         }
         setProgress(nextTrack, grade);
-        if (nextTrack !== currentTrack) {
-            next(SCREENS.SCREEN_5);
-            return;
-        }
-        next(SCREENS.SCREEN_16);
+        next(SCREENS.SCREEN_14);
     }
 
     return (

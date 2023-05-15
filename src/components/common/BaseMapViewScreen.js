@@ -73,7 +73,7 @@ export function BaseMapViewScreen({ onBack }) {
 
   return (
     <>
-      <Map onActiveObjectChange={handleActiveObjectChange} />
+      <Map withOverlay withAllPoints onActiveObjectChange={handleActiveObjectChange} />
       {backActionVisible && (
         <BackButton onClick={onBack}>
           <BackIcon src={arrowLeftIcon} alt="" />
