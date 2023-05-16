@@ -8,8 +8,8 @@ export function Screen223() {
   const { next } = useScreen();
 
   function handleNext() {
-    next(SCREENS.TRACK_2[GRADES.GRADE_1]);
+    next(SCREENS.TRACK_3[GRADES.GRADE_1]);
   }
 
-  return <MapPathInfoScreen position={'bottom'} onNext={handleNext} />
+  return <MapPathInfoScreen position={'top'} onNext={handleNext} />
 }

@@ -4,11 +4,14 @@ import { TRACKS } from '../../../constants/tracks';
 import { GRADES } from '../../../constants/grades';
 import { useScreen } from '../../../hooks/useScreen';
 import { SCREENS } from '../../../constants/screens';
+import { useGameState } from '../../../hooks/useGameState';
 
 export const Screen10 = () => {
     const {next} = useScreen();
+    const {setProgress} = useGameState();
 
-    function handleChoose(track) {
+    function handleChoose(track, grade) {
+        setProgress(track, grade);
         next(SCREENS[track]['SCREEN_1']);
     }
 

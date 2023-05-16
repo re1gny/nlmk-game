@@ -18,5 +18,5 @@ export function Screen221() {
       </Text>
   )
 
-  return <MapInfoScreen position={'bottom'} onNext={handleNext} text={text} />
+  return <MapInfoScreen position={'top'} onNext={handleNext} text={text} />
 }

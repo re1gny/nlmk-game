@@ -131,7 +131,7 @@ const HintText = styled(Text)`
 export const QuestionWrapper = ({withHint, question, questionNumber, track, grade, onChoose, post, centered = false}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const answers = question.answers;
-    const {character, setProgress} = useGameState();
+    const {character} = useGameState();
     const [contentHeight, setContentHeight] = useState(null);
     const [indexWasChanged, setIndexWasChanged] = useState(false);
 
@@ -145,9 +145,6 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
     function handleClick() {
         const chosenAnswer = answers[currentIndex];
         const chosenGrade = question.nextGrade ?? chosenAnswer.nextGrade;
-        if (chosenAnswer.track && chosenGrade) {
-          setProgress(chosenAnswer.track, chosenGrade);
-        }
         onChoose?.(chosenAnswer.track, chosenGrade, track, chosenAnswer.nextScreen);
     }
 

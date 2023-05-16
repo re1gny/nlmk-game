@@ -60,6 +60,7 @@ const MapImageWrapper = styled.div`
 `;
 
 const MapImage = styled.img`
+  display: block;
   height: 100%;
 `;
 
