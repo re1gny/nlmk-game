@@ -35,7 +35,7 @@ export function Screen24() {
           track={TRACKS.TRACK_2}
           grade={1}
           onChoose={handleNext}
-          post={'Главный специалист'}
+          post={'Менеджер проекта'}
       />
   )
 }

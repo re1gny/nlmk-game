@@ -35,7 +35,7 @@ export function Screen34() {
           track={TRACKS.TRACK_3}
           grade={1}
           onChoose={handleNext}
-          post={'Менеджер проекта'}
+          post={'Главный специалист'}
       />
   )
 }
