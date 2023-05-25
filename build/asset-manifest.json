@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.ce5ecf5e.css",
-    "main.js": "./static/js/main.f1c77adb.js",
+    "main.js": "./static/js/main.de44812e.js",
     "static/media/map.jpg": "./static/media/map.8a8c86e360edadef40af.jpg",
     "static/media/mapObject6.svg": "./static/media/mapObject6.c3a8da3cfcd0970cba7f4bb6fbb0d092.svg",
     "static/media/mapObject12.svg": "./static/media/mapObject12.3f734c52236a2502fcb9bce59a3d1332.svg",
@@ -112,11 +112,11 @@
     "static/media/card3.svg": "./static/media/card3.396cabd1ec7adb596774704290fef49e.svg",
     "static/media/info.svg": "./static/media/info.7a22e09ce7ba0a8562fffecc42d74805.svg",
     "static/media/cardBack.svg": "./static/media/cardBack.34e1c06b6a7ad5f4fe62b54ec5456c47.svg",
+    "index.html": "./index.html",
     "static/media/startScreenBackground.svg": "./static/media/startScreenBackground.b7c0658c5a9666f9371fc6c622f14ed2.svg",
     "static/media/restart.svg": "./static/media/restart.b04f204f965ced02254026a83b8d994c.svg",
     "static/media/screenBackdrop.svg": "./static/media/screenBackdrop.794031a04c8a6ae5cc4a3c2cc30b1a45.svg",
     "static/media/figure4.svg": "./static/media/figure4.9c6af5656f2fbd6195fd6f94a1cc5db2.svg",
-    "index.html": "./index.html",
     "static/media/figure3.svg": "./static/media/figure3.2105bc135f90c9e82814d692eb691dde.svg",
     "static/media/figure2.svg": "./static/media/figure2.8f6a08cb7e7512da8eae73efddd28b6c.svg",
     "static/media/tooltipInfo.svg": "./static/media/tooltipInfo.e31e211e60798761565df1f62b0e18ce.svg",
@@ -145,10 +145,10 @@
     "static/media/track1GradePoint.svg": "./static/media/track1GradePoint.c454ab22e3c742d38b799f66b8689d95.svg",
     "static/media/startPoint.svg": "./static/media/startPoint.de1b277068ad91da828f267003cec569.svg",
     "main.ce5ecf5e.css.map": "./static/css/main.ce5ecf5e.css.map",
-    "main.f1c77adb.js.map": "./static/js/main.f1c77adb.js.map"
+    "main.de44812e.js.map": "./static/js/main.de44812e.js.map"
   },
   "entrypoints": [
     "static/css/main.ce5ecf5e.css",
-    "static/js/main.f1c77adb.js"
+    "static/js/main.de44812e.js"
   ]
 }
