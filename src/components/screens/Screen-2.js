@@ -11,6 +11,7 @@ import { Text } from '../common/Text';
 import { InfoPanel } from '../common/InfoPanel';
 import { Slider } from '../common/Slider';
 import { Button } from '../common/Button';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -125,6 +126,7 @@ export const Screen2 = () => {
   const sliderInfo = Array.from({length: slideData.length});
 
   function handleNext() {
+    reachMetrikaGoal('character');
     setIsChosen(true);
     setCharacter(slideData[currentIndex].id);
     start();

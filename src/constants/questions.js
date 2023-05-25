@@ -62,30 +62,37 @@ export const questions = {
             nextGrade: GRADES.GRADE_1,
             answers: [
                 {
+                    id: '1',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Горнодобывающее производство</b></Text>
                 },
                 {
+                    id: '2',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Коксохимическое производство</b></Text>
                 },
                 {
+                    id: '3',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Аглодоменное производство</b></Text>
                 },
                 {
+                    id: '4',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Сталеплавильное производство</b></Text>
                 },
                 {
+                    id: '5',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Прокатное производство</b></Text>
                 },
                 {
+                    id: '6',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Энергетическое производство</b></Text>
                 },
                 {
+                    id: '7',
                     track: TRACKS.TRACK_1,
                     getText: () => <Text><b>Ремонты</b></Text>
                 },
@@ -247,26 +254,32 @@ export const questions = {
             nextGrade: GRADES.GRADE_1,
             answers: [
                 {
+                    id: '1',
                     track: TRACKS.TRACK_2,
                     getText: () => <Text><b>Технология и технические функции</b></Text>
                 },
                 {
+                    id: '2',
                     track: TRACKS.TRACK_2,
                     getText: () => <Text><b>Переработка вторичных ресурсов</b></Text>
                 },
                 {
+                    id: '3',
                     track: TRACKS.TRACK_2,
                     getText: () => <Text><b>Автоматизация и цифровизация</b></Text>
                 },
                 {
+                    id: '4',
                     track: TRACKS.TRACK_2,
                     getText: () => <Text><b>Энергетика</b></Text>
                 },
                 {
+                    id: '5',
                     track: TRACKS.TRACK_2,
                     getText: () => <Text><b>Развитие системы ремонтов</b></Text>
                 },
                 {
+                    id: '6',
                     track: TRACKS.TRACK_2,
                     getText: () => <Text><b>Исследования и разработки</b></Text>
                 },
@@ -407,34 +420,42 @@ export const questions = {
             nextGrade: GRADES.GRADE_1,
             answers: [
                 {
+                    id: '1',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Снабжение</b></Text>
                 },
                 {
+                    id: '2',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Логистика</b></Text>
                 },
                 {
+                    id: '3',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Продажи</b></Text>
                 },
                 {
+                    id: '4',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Информационные технологии</b></Text>
                 },
                 {
+                    id: '5',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Экология</b></Text>
                 },
                 {
+                    id: '6',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Охрана труда и промышленная безопасность</b></Text>
                 },
                 {
+                    id: '7',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Управление персоналом и связи с общественностью</b></Text>
                 },
                 {
+                    id: '8',
                     track: TRACKS.TRACK_3,
                     getText: () => <Text><b>Финансы и экономика</b></Text>
                 },

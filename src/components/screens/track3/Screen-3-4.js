@@ -6,12 +6,14 @@ import { useGameState } from '../../../hooks/useGameState';
 import { questions } from '../../../constants/questions';
 import { TRACKS } from '../../../constants/tracks';
 import { GRADES } from '../../../constants/grades';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 export function Screen34() {
   const { next } = useScreen();
   const {finishConfirmed, setProgress} = useGameState();
 
   function handleNext(nextTrack, grade, currentTrack) {
+    reachMetrikaGoal('q4');
     if (!grade) {
       if (!finishConfirmed) {
         next(SCREENS.SCREEN_8);

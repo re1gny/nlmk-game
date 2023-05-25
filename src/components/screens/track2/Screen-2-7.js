@@ -5,10 +5,12 @@ import { TRACKS } from '../../../constants/tracks';
 import { GRADES } from '../../../constants/grades';
 import React from 'react';
 import { useScreen } from '../../../hooks/useScreen';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 export const Screen27 = () => {
     const { next } = useScreen();
     function handleNext(track, grade, currentTrack, nextScreen) {
+        reachMetrikaGoal('q7');
         if (nextScreen) {
             next(nextScreen);
             return;

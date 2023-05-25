@@ -5,6 +5,7 @@ import { Text } from '../common/Text';
 import styled from '@emotion/styled';
 import { InfoPanel } from '../common/InfoPanel';
 import { Button } from '../common/Button';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ export const PreTetrisScreen = () => {
     }, []);
 
     function handleNext() {
+        reachMetrikaGoal('tower-start');
         next(SCREENS.SCREEN_11);
     }
 

@@ -2,6 +2,7 @@ import fomchenkova from '../../assets/images/fomchenkova.png'
 import { PersonQuote } from '../common/PersonQuoteScreen';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 export const Screen9 = () => {
     const { next } = useScreen();
@@ -19,6 +20,7 @@ export const Screen9 = () => {
     }
 
     function handleNext() {
+        reachMetrikaGoal('finish');
         next(SCREENS.SCREEN_12_1);
     }
 

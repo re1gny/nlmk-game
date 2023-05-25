@@ -6,11 +6,13 @@ import { GRADES } from '../../../constants/grades';
 import React from 'react';
 import { useScreen } from '../../../hooks/useScreen';
 import { useGameState } from '../../../hooks/useGameState';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 export const Screen16 = () => {
     const { next } = useScreen();
     const {finishConfirmed, setProgress} = useGameState();
     function handleNext(nextTrack, grade) {
+        reachMetrikaGoal('q6');
         if (!grade) {
             if (!finishConfirmed) {
                 next(SCREENS.SCREEN_8);

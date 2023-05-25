@@ -5,6 +5,7 @@ import { Button } from '../common/Button';
 import { SCREENS } from '../../constants/screens';
 import { useScreen } from '../../hooks/useScreen';
 import { useGameState } from '../../hooks/useGameState';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled.div`
   padding: min(17.8vh, 119px) 19px 20px;
@@ -31,7 +32,8 @@ export const Screen8 = () => {
     const {confirmFinish, track, grade} = useGameState();
 
     function handleFinish() {
-        next(SCREENS.SCREEN_12_1);
+        reachMetrikaGoal('stay-here');
+        next(SCREENS.SCREEN_9);
         confirmFinish();
     }
 

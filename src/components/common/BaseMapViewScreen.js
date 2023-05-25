@@ -4,6 +4,7 @@ import { Button } from './Button';
 import arrowLeftIcon from '../../assets/icons/arrowLeft.svg';
 import { useGameState } from '../../hooks/useGameState';
 import { Map } from './Map';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const BackButton = styled(Button)`
   position: absolute;
@@ -71,6 +72,11 @@ export function BaseMapViewScreen({ onBack }) {
     setRetryActionVisible(false);
   }
 
+  function handleReset() {
+    reachMetrikaGoal('again');
+    reset();
+  }
+
   return (
     <>
       <Map withOverlay withAllPoints onActiveObjectChange={handleActiveObjectChange} />
@@ -81,7 +87,7 @@ export function BaseMapViewScreen({ onBack }) {
         </BackButton>
       )}
       {retryActionVisible && (
-        <RetryButton variant="tertiary" onClick={reset}>
+        <RetryButton variant="tertiary" onClick={handleReset}>
           ПРОЙТИ ЕЩЁ РАЗ
         </RetryButton>
       )}

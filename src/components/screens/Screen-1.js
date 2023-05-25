@@ -4,6 +4,7 @@ import { SCREENS } from '../../constants/screens';
 import startScreenGirl from '../../assets/images/startScreenGirl.svg';
 import startScreenBackground from '../../assets/images/startScreenBackground.svg';
 import { StartButton } from '../common/StartButton';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled.div`
   padding: 4.5vh 10px;
@@ -71,6 +72,7 @@ export function Screen1() {
   const { next } = useScreen();
 
   function handleNext() {
+    reachMetrikaGoal('start');
     next(SCREENS.SCREEN_2);
   }
 

@@ -2,6 +2,7 @@ import averchenkova from '../../assets/images/averchenkova.png';
 import { PersonQuote } from '../common/PersonQuoteScreen';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 export const Screen102 = () => {
     const { next } = useScreen();
@@ -18,6 +19,7 @@ export const Screen102 = () => {
     }
 
     function handleNext() {
+        reachMetrikaGoal('finish');
         next(SCREENS.SCREEN_12_2);
     }
 

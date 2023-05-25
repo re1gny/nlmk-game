@@ -6,12 +6,14 @@ import { QuestionWrapper } from '../../common/QuestionWrapper';
 import { TRACKS } from '../../../constants/tracks';
 import { GRADES } from '../../../constants/grades';
 import { useGameState } from '../../../hooks/useGameState';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 export function Screen13() {
   const { next } = useScreen();
   const {setProgress} = useGameState();
 
   function handleNext(nextTrack, grade, currentTrack) {
+    reachMetrikaGoal('q3');
     setProgress(nextTrack, grade);
     if (nextTrack !== currentTrack) {
       next(SCREENS.SCREEN_5);

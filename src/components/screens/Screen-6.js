@@ -2,6 +2,7 @@ import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
 import { Text } from '../common/Text';
 import { MapModalScreen } from '../common/MapModalScreen';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 export const Screen6 = () => {
     const {next} = useScreen();
@@ -17,6 +18,7 @@ export const Screen6 = () => {
     )
 
     function handleNext() {
+        reachMetrikaGoal('rotation-start');
         next(SCREENS.SCREEN_7)
     }
     return <MapModalScreen title='Ротация внутри компании' text={text} onNext={handleNext}/>

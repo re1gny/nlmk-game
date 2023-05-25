@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Text } from '../common/Text';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const ButtonStyled = styled(Button)`
     margin-top: 16px;
@@ -35,6 +36,7 @@ export const FinalScreen = () => {
     );
 
     function handleOpenLink() {
+        reachMetrikaGoal('vacancy');
         window.open('', '_blank');
     }
 
