@@ -71,10 +71,10 @@ const Content = styled.div`
   }
 `;
 
-export function Modal({ children, className, opacity = '0.3', placement = 'center' }) {
+export function Modal({ children, className, withBackdrop = true, opacity = '0.3', placement = 'center' }) {
   return (
     <Wrapper>
-      <Backdrop opacity={opacity}/>
+      {withBackdrop && <Backdrop opacity={opacity}/>}
       <Content className={className} placement={placement}>{children}</Content>
     </Wrapper>
   );

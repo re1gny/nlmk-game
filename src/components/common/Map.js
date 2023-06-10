@@ -36,6 +36,8 @@ import finalPoint from '../../assets/icons/finalPoint.svg';
 import track1GradePoint from '../../assets/icons/track1GradePoint.svg';
 import track2GradePoint from '../../assets/icons/track2GradePoint.svg';
 import track3GradePoint from '../../assets/icons/track3GradePoint.svg';
+import tooltipInfo from '../../assets/icons/tooltipInfo.svg';
+import tooltipCheck from '../../assets/icons/tooltipCheck.svg';
 import { FloatingTooltip } from './FloatingTooltip';
 import { FixedTooltip } from './FixedTooltip';
 
@@ -78,14 +80,17 @@ const BASE_HEIGHT = 1080;
 
 const PATH_POINT_IMAGES = {
   [PATH_POINTS.START]: (last, locked) => locked ? lockedPoint : startPoint,
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track1GradePoint,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track1GradePoint,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track2GradePoint,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track2GradePoint,
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track3GradePoint,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track3GradePoint,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track3GradePoint,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: (last, locked) => locked ? lockedPoint : last ? finalPoint : track3GradePoint,
@@ -118,18 +123,22 @@ const MAP_OBJECT_IMAGES = {
 };
 
 const PATH_POINT_DESCRIPTION = {
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: <b>Рабочий</b>,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: <b>Высококвалифицированный рабочий</b>,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: <b>Мастер</b>,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: <b>Начальник участка</b>,
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: <b>Начальник цеха</b>,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: <b>Специалист</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: <b>Участник проектной команды</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: <b>Менеджер проекта</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: <b>Руководитель проекта</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: <b>Руководитель проектного офиса</b>,
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: <b>Специалист</b>,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: <b>Ведущий специалист</b>,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: <b>Главный специалист</b>,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: <b>Начальник отдела</b>,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: <b>Начальник управления</b>,
+  [PATH_POINTS.FINAL]: <b>Директор</b>,
 };
 
 const MAP_OBJECT_DESCRIPTION = {
@@ -344,14 +353,17 @@ const MAP_OBJECT_SIZES = {
 
 const PATH_POINT_SIZES = {
   [PATH_POINTS.START]: (last, locked) => locked ? [34, 41] : [35, 35],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: (last, locked) => locked ? [34, 41] : last ? [46, 69] : [20, 20],
@@ -360,20 +372,23 @@ const PATH_POINT_SIZES = {
 };
 
 const PATH_POINT_POSITIONS = {
-  [PATH_POINTS.START]: [200.52, 605.36],
+  [PATH_POINTS.START]: [61, 588],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: [210, 434],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: [465.16, 290.82],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: [830.04, 312.16],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: [1094.79, 307.64],
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: [1434.04, 370.74],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: [231, 612],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: [467.16, 527.3],
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: [896.04, 465.07],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: [825.04, 521.07],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: [1150.79, 594.19],
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: [1497, 536.19],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: [524.16, 781.73],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: [298, 751],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: [499, 784],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: [745, 756.61],
-  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: [1069, 763],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: [1078, 897],
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: [1516, 785.35],
-  [PATH_POINTS.FINAL]: [1830.24, 550.86],
+  [PATH_POINTS.FINAL]: [1800.24, 550.86],
 };
 
 const MAP_OBJECTS_POSITIONS = {
@@ -426,14 +441,17 @@ function createFinalPointOffset(point, isLast, isLocked) {
 
 const PATH_POINT_OFFSETS = {
   [PATH_POINTS.START]: () => createBasePointOffset(),
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.START], last, locked),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1], last, locked),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2], last, locked),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3], last, locked),
   [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4], last, locked),
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.START], last, locked),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1], last, locked),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2], last, locked),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3], last, locked),
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4], last, locked),
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.START], last, locked),
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1], last, locked),
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2], last, locked),
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: (last, locked) => createGradePointOffset(PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3], last, locked),
@@ -689,6 +707,7 @@ export function Map(props) {
         </Stage>
         {!!activePoint && PATH_POINT_DESCRIPTION[activePoint] && (
           <FloatingTooltip
+            icon={tooltipCheck}
             x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), getIsLocked(activePoint, path), width, height)[0]}
             y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), getIsLocked(activePoint, path), width, height)[1]}
             onClose={removeActivePoint}
@@ -699,6 +718,7 @@ export function Map(props) {
       </Wrapper>
       {!!activeObject && MAP_OBJECT_DESCRIPTION[activeObject] && (
         <FixedTooltip
+          icon={tooltipInfo}
           position={getMapObjectDescriptionPlacement(activeObject)}
           onClose={removeActiveObject}
         >

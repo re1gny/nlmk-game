@@ -27,13 +27,13 @@ const ButtonStyled = styled(Button)`
     margin-top: 16px;
 `;
 
-export const Screen8 = () => {
+export const Screen81 = () => {
     const {next} = useScreen();
     const {confirmFinish, track, grade} = useGameState();
 
     function handleFinish() {
         reachMetrikaGoal('stay-here');
-        next(SCREENS.SCREEN_9);
+        next(SCREENS.SCREEN_9_1);
         confirmFinish();
     }
 

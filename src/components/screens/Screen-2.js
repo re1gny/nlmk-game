@@ -59,9 +59,19 @@ const CharacterWrapper = styled.div`
   margin: 0 auto;
 `;
 
+const CHARACTER_ID_TO_OFFSET_LEFT_MAP = {
+  0: 0,
+  1: 30,
+  2: 30,
+  3: 10,
+  4: 30,
+  5: 20,
+}
+
 const CharacterImage = styled.img`
+  width: 100%;
   height: 100%;
-  margin-left: 30px;
+  margin-left: ${({ id }) => CHARACTER_ID_TO_OFFSET_LEFT_MAP[id]}px;
 `;
 
 const SliderStyled = styled(Slider)`
@@ -155,7 +165,7 @@ export const Screen2 = () => {
       )}
       renderContent={() => (
         <CharacterWrapper>
-          <CharacterImage src={slideData[currentIndex]?.image} alt={''}/>
+          <CharacterImage id={slideData[currentIndex]?.id} src={slideData[currentIndex]?.image} alt={''}/>
         </CharacterWrapper>
       )}
     />

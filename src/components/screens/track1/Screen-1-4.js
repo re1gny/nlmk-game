@@ -16,9 +16,9 @@ export function Screen14() {
     reachMetrikaGoal('q4');
     if (!grade) {
       if (!finishConfirmed) {
-        next(SCREENS.SCREEN_8);
+        next(SCREENS.SCREEN_8_1);
       } else {
-        next(SCREENS.SCREEN_9);
+        next(SCREENS.SCREEN_9_1);
       }
       return;
     }

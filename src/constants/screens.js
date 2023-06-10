@@ -26,8 +26,10 @@ import { Screen6 } from '../components/screens/Screen-6';
 import { Screen7 } from '../components/screens/Screen-7';
 import { Screen24 } from '../components/screens/track2/Screen-2-4';
 import { Screen34 } from '../components/screens/track3/Screen-3-4';
-import { Screen8 } from '../components/screens/Screen-8';
-import { Screen9 } from '../components/screens/Screen-9';
+import { Screen81 } from '../components/screens/Screen-8-1';
+import { Screen82 } from '../components/screens/Screen-8-2';
+import { Screen91 } from '../components/screens/Screen-9-1';
+import { Screen92 } from '../components/screens/Screen-9-2';
 import { Screen101 } from '../components/screens/Screen-10-1';
 import { Screen102 } from '../components/screens/Screen-10-2';
 import { Screen15 } from '../components/screens/track1/Screen-1-5';
@@ -57,8 +59,10 @@ export const SCREENS = {
   SCREEN_5: 'SCREEN_5',
   SCREEN_6: 'SCREEN_6',
   SCREEN_7: 'SCREEN_7',
-  SCREEN_8: 'SCREEN_8',
-  SCREEN_9: 'SCREEN_9',
+  SCREEN_8_1: 'SCREEN_8_1',
+  SCREEN_8_2: 'SCREEN_8_2',
+  SCREEN_9_1: 'SCREEN_9_1',
+  SCREEN_9_2: 'SCREEN_9_2',
   SCREEN_10_1: 'SCREEN_10_1',
   SCREEN_10_2: 'SCREEN_10_2',
   SCREEN_11: 'SCREEN_11',
@@ -114,8 +118,10 @@ export const SCREEN_COMPONENTS = {
   [SCREENS.SCREEN_5]: Screen5,
   [SCREENS.SCREEN_6]: Screen6,
   [SCREENS.SCREEN_7]: Screen7,
-  [SCREENS.SCREEN_8]: Screen8,
-  [SCREENS.SCREEN_9]: Screen9,
+  [SCREENS.SCREEN_8_1]: Screen81,
+  [SCREENS.SCREEN_8_2]: Screen82,
+  [SCREENS.SCREEN_9_1]: Screen91,
+  [SCREENS.SCREEN_9_2]: Screen92,
   [SCREENS.SCREEN_10_1]: Screen101,
   [SCREENS.SCREEN_10_2]: Screen102,
   [SCREENS.SCREEN_11]: TetrisScreen,

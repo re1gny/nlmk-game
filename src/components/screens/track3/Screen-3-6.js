@@ -15,9 +15,9 @@ export const Screen36 = () => {
         reachMetrikaGoal('q6');
         if (!grade) {
             if (!finishConfirmed) {
-                next(SCREENS.SCREEN_8);
+                next(SCREENS.SCREEN_8_2);
             } else {
-                next(SCREENS.SCREEN_9);
+                next(SCREENS.SCREEN_9_2);
             }
             return;
         }

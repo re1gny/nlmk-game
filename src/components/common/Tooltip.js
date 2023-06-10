@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import tail from '../../assets/icons/tooltipTail.svg';
-import info from '../../assets/icons/tooltipInfo.svg';
 import { Panel } from './Panel';
 import { Text } from './Text';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
@@ -33,7 +32,7 @@ const Content = styled(Text)`
   color: #003399;
 `;
 
-const InfoIcon = styled.img`
+const Icon = styled.img`
   position: absolute;
   top: 0;
   right: 8px;
@@ -52,14 +51,14 @@ const Tail = styled.div`
   background-size: cover;
 `;
 
-export function Tooltip({ className, children, withTail = true, onClose }) {
+export function Tooltip({ className, children, withTail = true, icon, onClose }) {
   const wrapperRef = useRef();
 
   useOnClickOutside(wrapperRef, onClose);
 
   return (
     <Wrapper ref={wrapperRef} className={className}>
-      <InfoIcon src={info} alt="" />
+      <Icon src={icon} alt="" />
       <Content>{children}</Content>
       {withTail && <Tail />}
     </Wrapper>

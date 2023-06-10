@@ -4,7 +4,7 @@ import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
 import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
-export const Screen9 = () => {
+export const Screen92 = () => {
     const { next } = useScreen();
 
     const text = 'Рост до руководящих должностей непрост и требует ' +
