@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.ce5ecf5e.css",
-    "main.js": "./static/js/main.d1c9d8c3.js",
+    "main.js": "./static/js/main.3895de87.js",
     "static/media/map.jpg": "./static/media/map.8a8c86e360edadef40af.jpg",
     "static/media/mapObject6.svg": "./static/media/mapObject6.c3a8da3cfcd0970cba7f4bb6fbb0d092.svg",
     "static/media/scratchResultTrack3.png": "./static/media/scratchResultTrack3.5989a6c47b4fb769303c.png",
@@ -96,7 +96,6 @@
     "static/media/mapObject2.svg": "./static/media/mapObject2.df4b78e523e469620d31d540a807b7f9.svg",
     "static/media/figurePlaceholder3.svg": "./static/media/figurePlaceholder3.7226297b5c650d133386795433667b07.svg",
     "static/media/mapObject9.svg": "./static/media/mapObject9.e70216a67e790636bacc1dd11dc9ccd8.svg",
-    "static/media/heart.svg": "./static/media/heart.a036e9ae7dab33b0bbf3bb4bf16527bf.svg",
     "static/media/card8.svg": "./static/media/card8.fa906b59203ca9f584bd9c65fe2e2783.svg",
     "static/media/mapObject16.svg": "./static/media/mapObject16.e15ba6cb52a85a5d36d6c98c4401cf96.svg",
     "static/media/mapObject3.svg": "./static/media/mapObject3.cde81b1bd6807af31bbc42d59a66c999.svg",
@@ -118,6 +117,7 @@
     "static/media/restart.svg": "./static/media/restart.b04f204f965ced02254026a83b8d994c.svg",
     "static/media/screenBackdrop.svg": "./static/media/screenBackdrop.794031a04c8a6ae5cc4a3c2cc30b1a45.svg",
     "static/media/figure4.svg": "./static/media/figure4.9c6af5656f2fbd6195fd6f94a1cc5db2.svg",
+    "static/media/heart.svg": "./static/media/heart.311269efd6e974cd155f375d6b3da6d6.svg",
     "static/media/figure3.svg": "./static/media/figure3.2105bc135f90c9e82814d692eb691dde.svg",
     "static/media/figure2.svg": "./static/media/figure2.8f6a08cb7e7512da8eae73efddd28b6c.svg",
     "static/media/tooltipInfo.svg": "./static/media/tooltipInfo.e31e211e60798761565df1f62b0e18ce.svg",
@@ -147,10 +147,10 @@
     "static/media/track1GradePoint.svg": "./static/media/track1GradePoint.c454ab22e3c742d38b799f66b8689d95.svg",
     "static/media/startPoint.svg": "./static/media/startPoint.de1b277068ad91da828f267003cec569.svg",
     "main.ce5ecf5e.css.map": "./static/css/main.ce5ecf5e.css.map",
-    "main.d1c9d8c3.js.map": "./static/js/main.d1c9d8c3.js.map"
+    "main.3895de87.js.map": "./static/js/main.3895de87.js.map"
   },
   "entrypoints": [
     "static/css/main.ce5ecf5e.css",
-    "static/js/main.d1c9d8c3.js"
+    "static/js/main.3895de87.js"
   ]
 }
