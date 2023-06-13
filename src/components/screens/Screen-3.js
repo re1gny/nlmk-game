@@ -22,9 +22,11 @@ const Info = styled(InfoPanel)`
 `;
 
 const ButtonStyled = styled(Button)`
+  position: relative;
   max-width: 249px;
   margin: 0 auto;
   padding: 25px 0;
+  z-index: 1;
 `;
 
 const CharacterWrapper = styled.div`

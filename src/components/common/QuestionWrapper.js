@@ -96,6 +96,9 @@ const CharacterWrapper = styled.div`
 `;
 
 const Character = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 89vw;
   height: 206vw;
   max-width: 335px;
