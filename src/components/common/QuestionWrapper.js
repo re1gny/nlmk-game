@@ -44,15 +44,16 @@ const ArrowButton = styled(Button)`
   width: 25px;
   background-repeat: no-repeat;
   background-position: center;
+  padding: 40px;
 `;
 
 const ArrowLeft = styled(ArrowButton)`
-  left: 0;
+  left: -20px;
   background-image: url(${arrowLeft});
 `;
 
 const ArrowRight = styled(ArrowButton)`
-  right: 0;
+  right: -20px;
   background-image: url(${arrowRight});
 `;
 

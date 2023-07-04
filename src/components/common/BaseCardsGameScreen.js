@@ -82,7 +82,7 @@ function InfoModal({ onClose }) {
           </b>
         </Text>
       </InfoModalPanel>
-      <CloseInfoButton onClick={onClose}>Адаптироваться</CloseInfoButton>
+      <CloseInfoButton onClick={onClose}>Попробовать</CloseInfoButton>
     </Modal>
   );
 }

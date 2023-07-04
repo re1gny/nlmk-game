@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import useImage from 'use-image';
-import { Stage, Layer, Image, Line } from 'react-konva';
+import { Stage, Layer, Image, Line, Group, Rect } from 'react-konva';
 import { Spring, animated } from '@react-spring/konva';
 import { useGameState } from '../../hooks/useGameState';
 import { PATH_POINTS, PATH_POINTS_LIST, AVAILABLE_PATHS } from '../../constants/pathPoints';
@@ -391,6 +391,26 @@ const PATH_POINT_POSITIONS = {
   [PATH_POINTS.FINAL]: [1800.24, 550.86],
 };
 
+const PATH_POINT_PADDINGS = {
+  [PATH_POINTS.START]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.START]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_1]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_2]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_3]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_1][GRADES.GRADE_4]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_2]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_3]]: [16, 16],
+  [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_4]]: [16, 16],
+  [PATH_POINTS.FINAL]: [16, 16],
+};
+
 const MAP_OBJECTS_POSITIONS = {
   [MAP_OBJECTS.OBJECT_1]: [223.03, 296.19],
   [MAP_OBJECTS.OBJECT_2]: [351, 177],
@@ -413,6 +433,30 @@ const MAP_OBJECTS_POSITIONS = {
   [MAP_OBJECTS.OBJECT_19]: [967.11, 859.36],
   [MAP_OBJECTS.OBJECT_20]: [1133, 956],
   [MAP_OBJECTS.OBJECT_21]: [1403.56, 963.03],
+};
+
+const MAP_OBJECTS_PADDINGS = {
+  [MAP_OBJECTS.OBJECT_1]: [10, 10],
+  [MAP_OBJECTS.OBJECT_2]: [10, 10],
+  [MAP_OBJECTS.OBJECT_3]: [10, 10],
+  [MAP_OBJECTS.OBJECT_4]: [0, 0],
+  [MAP_OBJECTS.OBJECT_5]: [0, 0],
+  [MAP_OBJECTS.OBJECT_6]: [0, 0],
+  [MAP_OBJECTS.OBJECT_7]: [10, 10],
+  [MAP_OBJECTS.OBJECT_8]: [10, 10],
+  [MAP_OBJECTS.OBJECT_9]: [10, 10],
+  [MAP_OBJECTS.OBJECT_10]: [0, 0],
+  [MAP_OBJECTS.OBJECT_11]: [10, 10],
+  [MAP_OBJECTS.OBJECT_12]: [0, 0],
+  [MAP_OBJECTS.OBJECT_13]: [10, 10],
+  [MAP_OBJECTS.OBJECT_14]: [10, 10],
+  [MAP_OBJECTS.OBJECT_15]: [10, 10],
+  [MAP_OBJECTS.OBJECT_16]: [10, 10],
+  [MAP_OBJECTS.OBJECT_17]: [10, 10],
+  [MAP_OBJECTS.OBJECT_18]: [10, 10],
+  [MAP_OBJECTS.OBJECT_19]: [10, 10],
+  [MAP_OBJECTS.OBJECT_20]: [10, 10],
+  [MAP_OBJECTS.OBJECT_21]: [10, 10],
 };
 
 function createBasePointOffset() {
@@ -560,9 +604,21 @@ function scrollToObject(container, width, height, object) {
   container.scrollTo({ left, behavior: 'smooth' });
 }
 
-function CanvasImage({ src, ...rest }) {
+function CanvasImage({ src, width, height, x, y, padding, onMouseDown, onTouchStart, ...rest }) {
   const [image] = useImage(src);
-  return <Image image={image} {...rest} />;
+  const [paddingY, paddingX] = padding;
+
+  const containerWidth = width + paddingX * 2;
+  const containerHeight = height + paddingY * 2;
+  const containerX = x - paddingX;
+  const containerY = y - paddingY;
+
+  return (
+    <Group onMouseDown={onMouseDown} onTouchStart={onTouchStart}>
+      <Rect x={containerX} y={containerY} width={containerWidth} height={containerHeight} />
+      <Image image={image} x={x} y={y} width={width} height={height} {...rest} />
+    </Group>
+  );
 }
 
 export function Map(props) {
@@ -638,6 +694,7 @@ export function Map(props) {
                 height={getMapObjectSize(object, width, height)[1]}
                 x={getMapObjectPosition(object, width, height)[0]}
                 y={getMapObjectPosition(object, width, height)[1]}
+                padding={MAP_OBJECTS_PADDINGS[object]}
                 onMouseDown={(event) => handleObjectClick(event, object)}
                 onTouchStart={(event) => handleObjectClick(event, object)}
               />
@@ -699,6 +756,7 @@ export function Map(props) {
                 shadowBlur={7}
                 shadowColor={'rgb(0, 0, 0)'}
                 shadowOpacity={0.15}
+                padding={PATH_POINT_PADDINGS[point]}
                 onMouseDown={(event) => handlePointClick(event, point)}
                 onTouchStart={(event) => handlePointClick(event, point)}
               />

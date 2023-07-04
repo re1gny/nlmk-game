@@ -42,15 +42,16 @@ const ArrowBtn = styled(Button)`
   width: 25px;
   background-repeat: no-repeat;
   background-position: center;
+  padding: 40px;
 `;
 
 const LeftButton = styled(ArrowBtn)`
-  left: 19px;
+  left: 0;
   background-image: url(${arrowLeft});
 `;
 
 const RightButton = styled(ArrowBtn)`
-  right: 19px;
+  right: 0;
   background-image: url(${arrowRight});
 `;
 
