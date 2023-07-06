@@ -51,10 +51,10 @@ const Tail = styled.div`
   background-size: cover;
 `;
 
-export function Tooltip({ className, children, withTail = true, icon, onClose }) {
+export function Tooltip({ className, children, bounds, withTail = true, icon, onClose }) {
   const wrapperRef = useRef();
 
-  useOnClickOutside(wrapperRef, onClose);
+  useOnClickOutside(wrapperRef, onClose, bounds);
 
   return (
     <Wrapper ref={wrapperRef} className={className}>

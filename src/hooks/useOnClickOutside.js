@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 
-export function useOnClickOutside(ref, handler) {
+export function useOnClickOutside(ref, handler, boundsRef) {
   useEffect(() => {
     const listener = (event) => {
+      if (boundsRef?.current && !boundsRef.current.contains(event.target)) {
+        return;
+      }
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }
@@ -17,6 +20,6 @@ export function useOnClickOutside(ref, handler) {
       document.removeEventListener("touchstart", listener);
     };
   },
-    [ref, handler]
+    [ref, boundsRef, handler]
   );
 }

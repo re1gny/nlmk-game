@@ -628,7 +628,8 @@ export function Map(props) {
   const wrapperRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [activePoint, setActivePoint] = useState(null);
+  const initialActivePoint = path[path.length - 1] || null;
+  const [activePoint, setActivePoint] = useState(initialActivePoint);
   const [activeObject, setActiveObject] = useState(null);
 
   function updateSize() {
@@ -673,7 +674,7 @@ export function Map(props) {
 
   useEffect(() => {
     if (width && withPathMove && path?.length > 1) {
-      scrollToPoints(wrapperRef.current, width, height, [path[path.length - 2], path[path.length - 1]]);
+      scrollToPoints(wrapperRef.current, width, height, [path[path.length - 1]]);
     }
   }, [width])
 
@@ -768,6 +769,7 @@ export function Map(props) {
             icon={tooltipCheck}
             x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), getIsLocked(activePoint, path), width, height)[0]}
             y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), getIsLocked(activePoint, path), width, height)[1]}
+            bounds={wrapperRef}
             onClose={removeActivePoint}
           >
             {PATH_POINT_DESCRIPTION[activePoint]}
@@ -778,6 +780,7 @@ export function Map(props) {
         <FixedTooltip
           icon={tooltipInfo}
           position={getMapObjectDescriptionPlacement(activeObject)}
+          bounds={wrapperRef}
           onClose={removeActiveObject}
         >
           {MAP_OBJECT_DESCRIPTION[activeObject]}
