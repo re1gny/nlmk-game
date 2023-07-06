@@ -4,14 +4,14 @@ import { MapMovingScreen } from '../common/MapMovingScreen';
 import { SCREENS } from '../../constants/screens';
 
 export const BeforeNextScreen = () => {
-    const {next} = useScreen();
+    const {next, params} = useScreen();
     const {
         track,
         grade,
     } = useGameState();
 
     function handleNext() {
-        next(SCREENS[track][grade]);
+        next(params?.nextScreen || SCREENS[track][grade]);
     }
     return <MapMovingScreen onNext={handleNext} />
 }

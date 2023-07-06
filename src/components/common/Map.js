@@ -622,13 +622,14 @@ function CanvasImage({ src, width, height, x, y, padding, onMouseDown, onTouchSt
 }
 
 export function Map(props) {
-  const { className, withPathMove, withAllPoints, withOverlay, onActivePointChange, onActiveObjectChange } = props;
+  const { className, usePrevPath = true, withPathMove, withAllPoints, withOverlay, onActivePointChange, onActiveObjectChange } = props;
   const { path } = useGameState();
+  const pathToDisplay = usePrevPath ? path.slice(0, -1) : path;
   const mapRef = useRef();
   const wrapperRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const initialActivePoint = path[path.length - 1] || null;
+  const initialActivePoint = pathToDisplay[pathToDisplay.length - 1] || null;
   const [activePoint, setActivePoint] = useState(initialActivePoint);
   const [activeObject, setActiveObject] = useState(null);
 
@@ -673,8 +674,8 @@ export function Map(props) {
   }
 
   useEffect(() => {
-    if (width && withPathMove && path?.length > 1) {
-      scrollToPoints(wrapperRef.current, width, height, [path[path.length - 1]]);
+    if (width && withPathMove && pathToDisplay?.length > 1) {
+      scrollToPoints(wrapperRef.current, width, height, [pathToDisplay[pathToDisplay.length - 1]]);
     }
   }, [width])
 
@@ -702,9 +703,9 @@ export function Map(props) {
             ))}
           </Layer>
           <Layer>
-            {path?.length > 2 && (
+            {pathToDisplay?.length > 2 && (
               <Line
-                points={createLine(path, path.slice(0, -1), width, height)}
+                points={createLine(pathToDisplay, pathToDisplay.slice(0, -1), width, height)}
                 x={0}
                 y={0}
                 stroke='#FF6600'
@@ -717,7 +718,7 @@ export function Map(props) {
                 lineCap='round'
               />
             )}
-            {path?.length > 1 && (
+            {pathToDisplay?.length > 1 && (
               <Spring
                 from={{ opacity: withPathMove ? 0 : 1 }}
                 to={{ opacity: 1 }}
@@ -727,7 +728,7 @@ export function Map(props) {
                 {(props) => (
                   <animated.Line
                     {...props}
-                    points={createLine(path, path.slice(-2), width, height)}
+                    points={createLine(pathToDisplay, pathToDisplay.slice(-2), width, height)}
                     x={0}
                     y={0}
                     stroke='#FF6600'
@@ -744,12 +745,12 @@ export function Map(props) {
             )}
           </Layer>
           <Layer>
-            {(withAllPoints ? PATH_POINTS_LIST : path)?.map((point, index) => (
+            {(withAllPoints ? PATH_POINTS_LIST : pathToDisplay)?.map((point, index) => (
               <CanvasImage
                 key={index}
-                src={getPathPointImage(point, getIsLastPoint(point, path), getIsLocked(point, path))}
-                width={getPathPointSize(point, getIsLastPoint(point, path), getIsLocked(point, path), width, height)[0]}
-                height={getPathPointSize(point, getIsLastPoint(point, path), getIsLocked(point, path), width, height)[1]}
+                src={getPathPointImage(point, getIsLastPoint(point, pathToDisplay), getIsLocked(point, pathToDisplay))}
+                width={getPathPointSize(point, getIsLastPoint(point, pathToDisplay), getIsLocked(point, pathToDisplay), width, height)[0]}
+                height={getPathPointSize(point, getIsLastPoint(point, pathToDisplay), getIsLocked(point, pathToDisplay), width, height)[1]}
                 x={getPathPointPosition(point, width, height)[0]}
                 y={getPathPointPosition(point, width, height)[1]}
                 shadowOffsetX={4}
@@ -767,8 +768,8 @@ export function Map(props) {
         {!!activePoint && PATH_POINT_DESCRIPTION[activePoint] && (
           <FloatingTooltip
             icon={tooltipCheck}
-            x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), getIsLocked(activePoint, path), width, height)[0]}
-            y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, path), getIsLocked(activePoint, path), width, height)[1]}
+            x={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, pathToDisplay), getIsLocked(activePoint, pathToDisplay), width, height)[0]}
+            y={getTooltipConnectionPosition(activePoint, getIsLastPoint(activePoint, pathToDisplay), getIsLocked(activePoint, pathToDisplay), width, height)[1]}
             bounds={wrapperRef}
             onClose={removeActivePoint}
           >

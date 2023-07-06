@@ -8,6 +8,8 @@ import { useState } from 'react';
 export const Screen5 = () => {
     const {next} = useScreen();
     const {
+        grade,
+        track,
         messageId,
         setNextMessageId,
         cardsGamePassed,
@@ -18,7 +20,7 @@ export const Screen5 = () => {
     function handleNext() {
         setNextMessageId();
         if (cardsGamePassed) {
-            next(SCREENS.SCREEN_16)
+            next(SCREENS[track][grade])
             return;
         }
         next(SCREENS.SCREEN_6);

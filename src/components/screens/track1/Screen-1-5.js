@@ -23,7 +23,7 @@ export const Screen15 = () => {
         }
         setProgress(nextTrack, grade);
         if (nextTrack !== currentTrack) {
-            next(SCREENS.SCREEN_5);
+            next(SCREENS.SCREEN_16, {nextScreen: SCREENS.SCREEN_5});
             return;
         }
         next(SCREENS.SCREEN_16);

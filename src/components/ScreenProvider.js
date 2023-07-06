@@ -11,17 +11,20 @@ export function ScreenProvider({ children }) {
   ////////////////////////////////////////////////////////////////////////
   const initialScreen = screenParam ?? SCREENS.SCREEN_1;
   const [screen, setScreen] = useState(initialScreen);
+  const [params, setParams] = useState(null);
   const [screenSwitching, setScreenSwitching] = useState(false);
   const [background, setBackground] = useState('light');
 
   const reset = useCallback(() => {
     setScreen(initialScreen)
+    setParams(null);
   }, [initialScreen]);
 
-  const next = useCallback((screen) => {
+  const next = useCallback((screen, params) => {
     setScreenSwitching(true);
     setTimeout(() => {
       setScreen(screen);
+      setParams(params || null);
       setScreenSwitching(false);
     }, SCREEN_SWITCH_DURATION)
   }, []);
@@ -39,7 +42,7 @@ export function ScreenProvider({ children }) {
     [background, setDarkBackground, setLightBackground],
     );
   const value = useMemo(
-    () => ({ screen, next, reset, config, screenSwitching }),
+    () => ({ screen, params, next, reset, config, screenSwitching }),
     [screen, next, reset, config, screenSwitching],
     );
 

@@ -22,7 +22,7 @@ export const Screen16 = () => {
             return;
         }
         setProgress(nextTrack, grade);
-        next(SCREENS.SCREEN_14);
+        next(SCREENS.SCREEN_16, {nextScreen: SCREENS.SCREEN_14});
     }
 
     return (

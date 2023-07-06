@@ -112,7 +112,7 @@ export function BaseMapViewScreen({ withInfoModal = true, onBack }) {
 
   return (
     <>
-      <Map withOverlay withAllPoints onActiveObjectChange={handleActiveObjectChange} />
+      <Map withOverlay withAllPoints usePrevPath={false} onActiveObjectChange={handleActiveObjectChange} />
       {backActionVisible && !infoModalVisible && (
         <BackButton onClick={onBack}>
           <BackIcon src={arrowLeftIcon} alt="" />

@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 export const INITIAL_SCREEN = {
   screen: null,
+  params: null,
   screenSwitching: false,
   config: {
     background: null,
