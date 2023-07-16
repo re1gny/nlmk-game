@@ -8,17 +8,13 @@ import { useScreen } from '../../../hooks/useScreen';
 import { useGameState } from '../../../hooks/useGameState';
 import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
-export const Screen36 = () => {
+export const Screen162 = () => {
     const { next } = useScreen();
-    const {finishConfirmed, setProgress} = useGameState();
+    const {setProgress} = useGameState();
     function handleNext(nextTrack, grade) {
-        reachMetrikaGoal('q6');
+        reachMetrikaGoal('q7');
         if (!grade) {
-            if (!finishConfirmed) {
-                next(SCREENS.SCREEN_8_2);
-            } else {
-                next(SCREENS.SCREEN_9_2);
-            }
+            next(SCREENS.SCREEN_9_2);
             return;
         }
         setProgress(nextTrack, grade);
@@ -27,12 +23,12 @@ export const Screen36 = () => {
 
     return (
         <QuestionWrapper
-            question={questions[TRACKS.TRACK_3][GRADES.GRADE_4]}
-            questionNumber={6}
-            track={TRACKS.TRACK_3}
+            question={questions[TRACKS.TRACK_1][GRADES.GRADE_4][1]}
+            questionNumber={7}
+            track={TRACKS.TRACK_1}
             grade={1}
             onChoose={handleNext}
-            post={'Начальник управления'}
+            post={'Начальник цеха'}
         />
     )
 }

@@ -35,9 +35,11 @@ import { Screen102 } from '../components/screens/Screen-10-2';
 import { Screen15 } from '../components/screens/track1/Screen-1-5';
 import { Screen25 } from '../components/screens/track2/Screen-2-5';
 import { Screen35 } from '../components/screens/track3/Screen-3-5';
-import { Screen36 } from '../components/screens/track3/Screen-3-6';
+import { Screen361 } from '../components/screens/track3/Screen-3-6-1';
+import { Screen362 } from '../components/screens/track3/Screen-3-6-2';
 import { Screen26 } from '../components/screens/track2/Screen-2-6';
-import { Screen16 } from '../components/screens/track1/Screen-1-6';
+import { Screen161 } from '../components/screens/track1/Screen-1-6-1';
+import { Screen162 } from '../components/screens/track1/Screen-1-6-2';
 import { TetrisScreen } from '../components/screens/Screen-11';
 import { PreFinalScreen1 } from '../components/screens/Screen-12-1';
 import { PreFinalScreen2 } from '../components/screens/Screen-12-2';
@@ -84,6 +86,7 @@ export const SCREENS = {
     [GRADES.GRADE_4]: 'TRACK_1.GRADE_4',
     [GRADES.FINAL]: 'TRACK_1.FINAL',
     SCREEN_4: 'TRACK_1.SCREEN_4',
+    SCREEN_5: 'TRACK_1.SCREEN_5',
   },
   TRACK_2: {
     [GRADES.START]: 'TRACK_2.START',
@@ -107,6 +110,7 @@ export const SCREENS = {
     [GRADES.GRADE_3]: 'TRACK_3.GRADE_3',
     [GRADES.GRADE_4]: 'TRACK_3.GRADE_4',
     [GRADES.FINAL]: 'TRACK_3.FINAL',
+    SCREEN_5: 'TRACK_3.SCREEN_5',
   },
 };
 
@@ -139,9 +143,10 @@ export const SCREEN_COMPONENTS = {
   [SCREENS.TRACK_1[GRADES.GRADE_1]]: Screen13,
   [SCREENS.TRACK_1[GRADES.GRADE_2]]: Screen14,
   [SCREENS.TRACK_1[GRADES.GRADE_3]]: Screen15,
-  [SCREENS.TRACK_1[GRADES.GRADE_4]]: Screen16,
+  [SCREENS.TRACK_1[GRADES.GRADE_4]]: Screen161,
   [SCREENS.TRACK_1[GRADES.FINAL]]: Screen17,
   [SCREENS.TRACK_1.SCREEN_4]: Screen14,
+  [SCREENS.TRACK_1.SCREEN_5]: Screen162,
   [SCREENS.TRACK_2[GRADES.START]]: Screen20,
   [SCREENS.TRACK_2.SCREEN_1]: Screen21,
   [SCREENS.TRACK_2.SCREEN_2_1]: Screen221,
@@ -160,6 +165,7 @@ export const SCREEN_COMPONENTS = {
   [SCREENS.TRACK_3[GRADES.GRADE_1]]: Screen33,
   [SCREENS.TRACK_3[GRADES.GRADE_2]]: Screen34,
   [SCREENS.TRACK_3[GRADES.GRADE_3]]: Screen35,
-  [SCREENS.TRACK_3[GRADES.GRADE_4]]: Screen36,
+  [SCREENS.TRACK_3[GRADES.GRADE_4]]: Screen361,
   [SCREENS.TRACK_3[GRADES.FINAL]]: Screen37,
+  [SCREENS.TRACK_3.SCREEN_5]: Screen362,
 };
