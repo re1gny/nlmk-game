@@ -10,10 +10,18 @@ import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 export const Screen361 = () => {
     const { next } = useScreen();
-    const {setProgress} = useGameState();
+    const {finishConfirmed, setProgress} = useGameState();
     function handleNext(nextTrack, grade) {
         reachMetrikaGoal('q6');
         if (!grade) {
+            if (!finishConfirmed) {
+                next(SCREENS.SCREEN_8_1);
+            } else {
+                next(SCREENS.SCREEN_9_1);
+            }
+            return;
+        }
+        if (grade === GRADES.GRADE_4) {
             next(SCREENS.TRACK_3.SCREEN_5);
             return;
         }

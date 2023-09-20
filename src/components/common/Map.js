@@ -131,7 +131,7 @@ const PATH_POINT_DESCRIPTION = {
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.START]]: <b>Специалист</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_1]]: <b>Участник проектной команды</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_2]]: <b>Менеджер проекта</b>,
-  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: <b>Руководитель проекта</b>,
+  [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_3]]: <b>Руководитель проектов</b>,
   [PATH_POINTS[TRACKS.TRACK_2][GRADES.GRADE_4]]: <b>Руководитель проектного офиса</b>,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.START]]: <b>Специалист</b>,
   [PATH_POINTS[TRACKS.TRACK_3][GRADES.GRADE_1]]: <b>Ведущий специалист</b>,
