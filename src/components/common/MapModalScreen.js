@@ -14,15 +14,19 @@ const ButtonStyled = styled(Button)`
   padding-bottom: 28px;
 `;
 
-export const MapModalScreen = ({text, title, onNext, children, buttonText = 'ВПЕРЕД'}) => {
+export const MapModalScreen = ({text, title, onNext, children, buttonText = 'ВПЕРЕД', modalKey, renderContent}) => {
     return <>
         <Map />
-        <Modal opacity={'0.6'}>
-            <Info title={title}>
-                {text}
-            </Info>
-            {children}
-            <ButtonStyled onClick={onNext}>{buttonText}</ButtonStyled>
+        <Modal modalKey={modalKey} opacity={'0.6'}>
+            {renderContent ? renderContent({title, text, children, buttonText, onNext}) : (
+              <>
+                <Info title={title}>
+                  {text}
+                </Info>
+                {children}
+                <ButtonStyled onClick={onNext}>{buttonText}</ButtonStyled>
+              </>
+            )}
         </Modal>
     </>
 }
