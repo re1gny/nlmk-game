@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import { MapModalScreen } from '../common/MapModalScreen';
 import { Button } from '../common/Button';
 import styled from '@emotion/styled';
@@ -56,6 +56,8 @@ export const LotteryScreen = () => {
     const [isAgreedError, setIsAgreedError] = useState(false);
     const [isEmailError, setIsEmailError] = useState(false);
     const [isTakingPart, setIsTakingPart] = useState(false);
+    const isAgreedErrorTimerRef = useRef(null)
+    const isEmailErrorTimerRef = useRef(null)
 
     const {next} = useScreen();
     const text = (
@@ -79,21 +81,43 @@ export const LotteryScreen = () => {
         </>
     );
 
+    function handleSaveEmail(email) {
+        const url = `https://script.google.com/macros/s/AKfycbx1x1TVbq4NWM9twkFzWLneLpP56Jn7tUWcvNDpch407oliWE6St3k_MIO4BydfF20U/exec?email=${email}`
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.send();
+    }
+
     function handleTakePart() {
         if (!email) {
+            clearTimeout(isEmailErrorTimerRef.current)
             setIsEmailError(true);
-            setTimeout(() => setIsEmailError(false), 1000);
+            isEmailErrorTimerRef.current = setTimeout(() => setIsEmailError(false), 1000);
         }
 
         if (!isAgreed) {
+            clearTimeout(isAgreedErrorTimerRef.current)
             setIsAgreedError(true);
-            setTimeout(() => setIsAgreedError(false), 1000);
+            isAgreedErrorTimerRef.current = setTimeout(() => setIsAgreedError(false), 1000);
         }
 
         if (email && isAgreed) {
             setIsTakingPart(true)
+            handleSaveEmail(email)
             setTimeout(() => handleNext(), 2000)
         }
+    }
+
+    function handleEmailChange(value) {
+        clearTimeout(isEmailErrorTimerRef.current)
+        setIsEmailError(false)
+        setEmail(value)
+    }
+
+    function handleIsAgreedChange(value) {
+        clearTimeout(isAgreedErrorTimerRef.current)
+        setIsAgreedError(false)
+        setIsAgreed(value)
     }
 
     function handleNext() {
@@ -107,7 +131,7 @@ export const LotteryScreen = () => {
                     <Info>{successText}</Info>
                     <SuccessInfo>
                         <svg width="25" height="19" viewBox="0 0 25 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M24.5396 2.62003C25.0146 2.14507 25.0146 1.37501 24.5396 0.900045C24.0646 0.425083 23.2946 0.425083 22.8196 0.900045L8.19922 15.5204L2.17875 9.49996C1.70379 9.025 0.933723 9.025 0.458761 9.49996C-0.0162016 9.97492 -0.0162014 10.745 0.458761 11.22L7.33872 18.0999C7.56612 18.3273 7.86117 18.4458 8.15909 18.4555C8.48374 18.4663 8.81189 18.3478 9.0597 18.0999L24.5396 2.62003Z" fill="#003399"/>
+                            <path fillRule="evenodd" clipRule="evenodd" d="M24.5396 2.62003C25.0146 2.14507 25.0146 1.37501 24.5396 0.900045C24.0646 0.425083 23.2946 0.425083 22.8196 0.900045L8.19922 15.5204L2.17875 9.49996C1.70379 9.025 0.933723 9.025 0.458761 9.49996C-0.0162016 9.97492 -0.0162014 10.745 0.458761 11.22L7.33872 18.0999C7.56612 18.3273 7.86117 18.4458 8.15909 18.4555C8.48374 18.4663 8.81189 18.3478 9.0597 18.0999L24.5396 2.62003Z" fill="#003399"/>
                         </svg>
                     </SuccessInfo>
                 </>
@@ -118,8 +142,8 @@ export const LotteryScreen = () => {
             <>
                 <Info>{text}</Info>
                 <FieldInfo>
-                    <InputStyled value={email} error={isEmailError} placeholder='example@post.ru' onChange={setEmail} />
-                    <CheckboxStyled value={isAgreed} error={isAgreedError} label={label} onChange={setIsAgreed} />
+                    <InputStyled value={email} error={isEmailError} placeholder='example@post.ru' onChange={handleEmailChange} />
+                    <CheckboxStyled value={isAgreed} error={isAgreedError} label={label} onChange={handleIsAgreedChange} />
                 </FieldInfo>
                 <ButtonStyled1 onClick={onNext}>{buttonText}</ButtonStyled1>
                 <ButtonStyled2 variant={'tertiary'} onClick={handleNext}>

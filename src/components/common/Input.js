@@ -18,7 +18,7 @@ const Wrapper = styled.input`
   transition: color 0.2s;
 
   &::placeholder {
-    color: ${({error}) => error ? 'red' : '#00236633'};
+    color: ${({error}) => error ? '#F63D5E' : '#00236633'};
     transition: color 0.2s;
   }
 `;

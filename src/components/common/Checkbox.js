@@ -25,7 +25,7 @@ const Label = styled(Text)`
   font-size: 10px;
   line-height: 13px;
   font-weight: 350;
-  color: ${({error}) => error ? 'red' : '#002366'};
+  color: ${({error}) => error ? '#F63D5E' : '#002366'};
   transition: color 0.2s;
 `;
 
@@ -35,7 +35,7 @@ const Checkmark = styled.span`
   left: 0;
   height: 22px;
   width: 22px;
-  background-color: ${({value, error}) => error ? 'red' : value ? '#002366' : '#fff'};
+  background-color: ${({value, error}) => error ? '#F63D5E' : value ? '#002366' : '#fff'};
   transition: background-color 0.2s;
   border-radius: 3px;
   border: 1px solid #90A2B7;
