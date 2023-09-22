@@ -58,8 +58,8 @@ export const LotteryScreen = () => {
     const [isTakingPart, setIsTakingPart] = useState(false);
     const isAgreedErrorTimerRef = useRef(null)
     const isEmailErrorTimerRef = useRef(null)
-
     const {next} = useScreen();
+
     const text = (
         <Text>
             <b>Оставляй почту,</b> чтобы участвовать 
