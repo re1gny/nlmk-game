@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "./static/css/main.ce5ecf5e.css",
-    "main.js": "./static/js/main.b1049f9d.js",
+    "main.js": "./static/js/main.5d8f0acc.js",
     "static/media/map.jpg": "./static/media/map.8a8c86e360edadef40af.jpg",
     "static/media/mapObject6.svg": "./static/media/mapObject6.c3a8da3cfcd0970cba7f4bb6fbb0d092.svg",
+    "static/media/infoPeople.png": "./static/media/infoPeople.19cd9a78e1d1a7634b3c.png",
     "static/media/scratchResultTrack3.png": "./static/media/scratchResultTrack3.5989a6c47b4fb769303c.png",
     "static/media/mapObject12.svg": "./static/media/mapObject12.3f734c52236a2502fcb9bce59a3d1332.svg",
     "static/media/circe-light.ttf": "./static/media/circe-light.61755338a0e56c46dab8.ttf",
@@ -12,7 +13,6 @@
     "static/media/rusakov.png": "./static/media/rusakov.1ff7d19defff51383268.png",
     "static/media/scratchResultTrack2.png": "./static/media/scratchResultTrack2.01a715ddcff8b0c495ac.png",
     "static/media/scratchResultTrack1.png": "./static/media/scratchResultTrack1.ee5262c7c223006872cd.png",
-    "static/media/averchenkova.png": "./static/media/averchenkova.dd6128fcc76dd8228af3.png",
     "static/media/fomchenkova.png": "./static/media/fomchenkova.7101f535d0d6dae1ec3b.png",
     "static/media/BebasNeue-Regular.ttf": "./static/media/BebasNeue-Regular.7d2f1e3c43251f14336c.ttf",
     "static/media/BebasNeue-Bold.ttf": "./static/media/BebasNeue-Bold.0fff693ee8f49e3b60f2.ttf",
@@ -147,10 +147,10 @@
     "static/media/track1GradePoint.svg": "./static/media/track1GradePoint.c454ab22e3c742d38b799f66b8689d95.svg",
     "static/media/startPoint.svg": "./static/media/startPoint.de1b277068ad91da828f267003cec569.svg",
     "main.ce5ecf5e.css.map": "./static/css/main.ce5ecf5e.css.map",
-    "main.b1049f9d.js.map": "./static/js/main.b1049f9d.js.map"
+    "main.5d8f0acc.js.map": "./static/js/main.5d8f0acc.js.map"
   },
   "entrypoints": [
     "static/css/main.ce5ecf5e.css",
-    "static/js/main.b1049f9d.js"
+    "static/js/main.5d8f0acc.js"
   ]
 }
