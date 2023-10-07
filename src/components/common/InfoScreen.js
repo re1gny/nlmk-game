@@ -9,8 +9,10 @@ import { Button } from './Button';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100%;
-  padding: 32% 20px 20px;
+  padding: 20px;
 `;
 
 const Info = styled(InfoPanel)`
@@ -19,21 +21,8 @@ const Info = styled(InfoPanel)`
   z-index: 3;
 `;
 
-const ImageWrapper = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-  z-index: 2;
-
-  & img {
-    width: 100%;
-  }
-`;
-
 const ButtonStyled = styled(Button)`
-  margin-top: auto;
+  margin-top: 16px;
   position: relative;
   padding: 28.5px;
   z-index: 3;
@@ -57,9 +46,6 @@ export const InfoScreen = ({text, onNext}) => {
                 </Text>
             </Info>
             <ButtonStyled onClick={onNext}>ИДУ ДАЛЬШЕ</ButtonStyled>
-            <ImageWrapper>
-                <img src={infoPeopleImage} alt={''} />
-            </ImageWrapper>
         </Wrapper>
     )
 }
