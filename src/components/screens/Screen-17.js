@@ -8,6 +8,7 @@ import { SCREENS } from '../../constants/screens';
 import { ModalInfoPanel } from '../common/ModalInfoPanel';
 import { Input } from '../common/Input';
 import { Checkbox } from '../common/Checkbox';
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 const Info = styled(ModalInfoPanel)`
   padding: 14px 21px;
@@ -104,6 +105,7 @@ export const LotteryScreen = () => {
         if (email && isAgreed) {
             setIsTakingPart(true)
             handleSaveEmail(email)
+            reachMetrikaGoal('email');
             setTimeout(() => handleNext(), 2000)
         }
     }
