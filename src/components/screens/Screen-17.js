@@ -63,21 +63,21 @@ export const LotteryScreen = () => {
     const text = (
         <Text>
             <b>Оставляй почту,</b> чтобы участвовать 
-            в конкурсе и <b>выиграть призы</b> от НЛМК, 
-            а также первым получать предложения по вакансиям!
+            в&nbsp;конкурсе и&nbsp;<b>выиграть призы</b> от&nbsp;НЛМК,
+            а&nbsp;также первым получать предложения по&nbsp;вакансиям!
         </Text>
     );
     const successText = (
         <Text>
-            <b>Ты участвуешь в розыгрыше!</b>
+            <b>Ты участвуешь в&nbsp;розыгрыше!</b>
             <br/>
-            В случае победы сообщим по почте
+            В случае победы сообщим по&nbsp;почте
         </Text>
     );
     const label = (
         <>
-            Я согласен(а) на <SmallTextLink target='blank' href='https://fut.ru/personal_data_policy/'>обработку 
-            персональных данных</SmallTextLink> и получение информационных сообщений
+            Я согласен(а) на&nbsp;<SmallTextLink target='blank' href='https://fut.ru/personal_data_policy/'>обработку
+            персональных данных</SmallTextLink> и&nbsp;получение информационных сообщений
         </>
     );
 

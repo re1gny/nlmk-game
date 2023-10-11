@@ -46,20 +46,20 @@ export const Screen82 = () => {
         <Wrapper>
             <Info>
                 <Text>
-                    <b>Круто, что ты оказался на этом этапе!</b>
+                    <b>Круто, что ты&nbsp;оказался на&nbsp;этом этапе!</b>
                     <br/>
                     <br/>
-                    В Группе НЛМК не обязательно постоянно расти в
-                    должности: ты можешь <b>посвятить время развитию
-                    на своей позиции, наращивать экспертизу
-                    и делиться знаниями с коллегами.</b>
+                    В Группе НЛМК не обязательно постоянно расти в&nbsp;должности:
+                    ты&nbsp;можешь <b>посвятить время развитию
+                    на&nbsp;своей позиции, наращивать экспертизу
+                    и&nbsp;делиться знаниями с&nbsp;коллегами.</b>
                     <br/>
                     <br/>
-                    <b>Маленькими шагами к большой цели!</b>
+                    <b>Маленькими шагами к&nbsp;большой цели!</b>
                 </Text>
             </Info>
             <ButtonWrapper>
-                <Button variant={'secondary'} onClick={handleFinish}>Остаюсь на этой позиции</Button>
+                <Button variant={'secondary'} onClick={handleFinish}>Остаюсь на&nbsp;этой позиции</Button>
                 <ButtonStyled onClick={handleBack}>ИЗМЕНИТЬ ВЫБОР</ButtonStyled>
             </ButtonWrapper>
         </Wrapper>

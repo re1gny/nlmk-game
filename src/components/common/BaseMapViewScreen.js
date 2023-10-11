@@ -123,11 +123,11 @@ export function BaseMapViewScreen({ withInfoModal = true, onBack }) {
         <Modal withBackdrop={false}>
           <Info variant={'light'}>
             <Text>
-              Обрати внимание: на карте есть <b>синие объекты —</b> они все сделаны 
-              с использованием <b>продукции НЛМК!</b>
+              Обрати внимание: на&nbsp;карте есть <b>синие объекты —</b> они все сделаны
+              с&nbsp;использованием <b>продукции НЛМК!</b>
               <br/>
               <br/>
-              <b>Кликай по ним,</b> чтобы узнать интересные факты
+              <b>Кликай по&nbsp;ним,</b> чтобы узнать интересные факты
             </Text>
             <NextButton onClick={handleCloseInfoModal}>
               <Arrow />

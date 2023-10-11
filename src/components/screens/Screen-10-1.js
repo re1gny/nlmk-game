@@ -6,7 +6,7 @@ import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 export const Screen101 = () => {
     const { next } = useScreen();
 
-    const text = 'Ты ценнейший специалист нашей Компании. Успешно руководишь несколькими площадками предприятия и легко справляешься с большим объемом задач — наш герой!';
+    const text = 'Ты ценнейший специалист нашей Компании. Успешно руководишь несколькими площадками предприятия и\xa0легко справляешься с\xa0большим объемом задач — наш герой!';
 
     function handleNext() {
         reachMetrikaGoal('finish');

@@ -93,7 +93,7 @@ function FinishModal({ success, onNext, onRestart }) {
         ) : (
           <>
             <Text>
-              <b>Упс,</b> башня собирается не по плану...
+              <b>Упс,</b> башня собирается не&nbsp;по&nbsp;плану...
               <br/>
               Ничего страшного, ты можешь
               <br/>
@@ -114,7 +114,7 @@ function InfoModal({ onClose }) {
         <Text>
           <b>Последовательно собери башню</b>, чтобы она была устойчива!
           <br/>
-          <b>Выбирай</b> фигуры слева и <b>опускай</b> их на нужные места
+          <b>Выбирай</b> фигуры слева и&nbsp;<b>опускай</b> их на&nbsp;нужные места
         </Text>
       </InfoModalPanel>
       <CloseInfoButton onClick={onClose}>Понятно</CloseInfoButton>

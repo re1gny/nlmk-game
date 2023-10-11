@@ -80,7 +80,7 @@ export function Screen1() {
     <Wrapper>
         <Content>
             <Title>
-              Здесь ты узнаешь, какие карьерные маршруты есть в Группе НЛМК
+              Здесь ты узнаешь, какие карьерные маршруты есть в&nbsp;Группе НЛМК
             </Title>
             <Subtitle>следуй за сердцем!</Subtitle>
             <ButtonStyled onStart={handleNext} />

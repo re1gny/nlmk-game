@@ -89,8 +89,8 @@ const CharacterWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 67.466vw;
-  max-width: 255px;
+  width: 75.466vw;
+  max-width: 280px;
   overflow: hidden;
   height: 65.333vw;
   max-height: 245px;
@@ -188,7 +188,7 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
                         </DialogFieldStyled>
                     )}
                 />
-              {withHint && <HintText hidden={indexWasChanged}>Жми на стрелочки и выбирай свой ответ</HintText>}
+              {withHint && <HintText hidden={indexWasChanged}>Жми на&nbsp;стрелочки и&nbsp;выбирай свой ответ</HintText>}
             </QuestionPart>
             <FooterPart>
               <ButtonStyled onClick={handleClick}>ВЫБРАТЬ</ButtonStyled>
