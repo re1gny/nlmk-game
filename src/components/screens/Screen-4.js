@@ -14,12 +14,13 @@ const TRACK_TO_GOAL_NAME_MAPPER = {
 
 export const Screen4 = () => {
     const {next} = useScreen();
-    const {setProgress} = useGameState();
+    const {setProgress, setCharacterTrack} = useGameState();
 
     function handleChoose(track, grade) {
         reachMetrikaGoal('q1');
         reachMetrikaGoal(TRACK_TO_GOAL_NAME_MAPPER[track]);
         setProgress(track, grade);
+        setCharacterTrack(track);
         next(SCREENS[track][grade])
     }
 

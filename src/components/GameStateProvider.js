@@ -17,6 +17,7 @@ export function GameStateProvider({ children }) {
 
   const [path, setPath] = useState(INITIAL_PATH)
   const [character, setCharacter] = useState(INITIAL_CHARACTER)
+  const [characterTrack, setCharacterTrack] = useState(INITIAL_TRACK)
   const [track, setTrack] = useState(INITIAL_TRACK)
   const [grade, setGrade] = useState(INITIAL_GRADE)
   const [messageId, setMessageId] = useState(INITIAL_MESSAGE_ID);
@@ -28,6 +29,7 @@ export function GameStateProvider({ children }) {
     setPath(INITIAL_PATH);
     setCharacter(INITIAL_CHARACTER);
     setTrack(INITIAL_TRACK);
+    setCharacterTrack(INITIAL_TRACK);
     setGrade(INITIAL_GRADE);
     setMessageId(INITIAL_MESSAGE_ID);
     setCardsGamePassed(INITIAL_CARDS_GAME_PASSED);
@@ -85,12 +87,14 @@ export function GameStateProvider({ children }) {
     passCardsGame: handlePassCardsGame,
     finishConfirmed,
     confirmFinish: handleConfirmFinish,
+    characterTrack,
+    setCharacterTrack,
   }),
 [
     track, character, grade, path, handleSetCharacter, handleSetProgress,
     handleReset, handleStart, handleSetNextMessageId, messageId, cardsGamePassed, handlePassCardsGame,
     finishConfirmed,
-    handleConfirmFinish,
+    handleConfirmFinish, characterTrack, setCharacterTrack,
 ]);
 
   return (

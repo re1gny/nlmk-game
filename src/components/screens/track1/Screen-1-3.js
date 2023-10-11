@@ -10,12 +10,13 @@ import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 export function Screen13() {
   const { next } = useScreen();
-  const {setProgress} = useGameState();
+  const {setProgress, setCharacterTrack} = useGameState();
 
   function handleNext(nextTrack, grade, currentTrack) {
     reachMetrikaGoal('q3');
     setProgress(nextTrack, grade);
     if (nextTrack !== currentTrack) {
+      setTimeout(() => setCharacterTrack(nextTrack), 1000)
       next(SCREENS.SCREEN_16, {nextScreen: SCREENS.SCREEN_5});
       return;
     }

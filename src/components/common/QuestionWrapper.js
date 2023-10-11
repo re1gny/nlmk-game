@@ -134,7 +134,7 @@ const HintText = styled(Text)`
 export const QuestionWrapper = ({withHint, question, questionNumber, track, grade, onChoose, post, centered = false}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const answers = question.answers;
-    const {character} = useGameState();
+    const {character, characterTrack} = useGameState();
     const [contentHeight, setContentHeight] = useState(null);
     const [indexWasChanged, setIndexWasChanged] = useState(false);
 
@@ -193,7 +193,7 @@ export const QuestionWrapper = ({withHint, question, questionNumber, track, grad
             <FooterPart>
               <ButtonStyled onClick={handleClick}>ВЫБРАТЬ</ButtonStyled>
               <CharacterWrapper>
-                <Character src={getCharacterPicture(character, track ?? answers[currentIndex]?.track, grade)} />
+                <Character src={getCharacterPicture(character, characterTrack ?? answers[currentIndex]?.track, grade)} />
               </CharacterWrapper>
             </FooterPart>
         </Wrapper>
