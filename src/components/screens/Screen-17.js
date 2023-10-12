@@ -63,8 +63,8 @@ export const LotteryScreen = () => {
 
     const text = (
         <Text>
-            <b>Оставляй почту,</b> чтобы участвовать 
-            в&nbsp;конкурсе и&nbsp;<b>выиграть призы</b> от&nbsp;НЛМК,
+            <b>Оставляй почту,</b> чтобы участвовать
+            в&nbsp;<b>розыгрыше призов</b> от&nbsp;НЛМК <b>1&nbsp;декабря</b>,
             а&nbsp;также первым получать предложения по&nbsp;вакансиям!
         </Text>
     );
@@ -83,7 +83,7 @@ export const LotteryScreen = () => {
     );
 
     function handleSaveEmail(email) {
-        const url = `https://script.google.com/macros/s/AKfycbx1x1TVbq4NWM9twkFzWLneLpP56Jn7tUWcvNDpch407oliWE6St3k_MIO4BydfF20U/exec?email=${email}`
+        const url = `https://script.google.com/macros/s/AKfycbxF_Zbs3h8tzT8lGX33Ubt-9b78BrODU4WGXVtLEeNFv7AHe591dHlCbUkI9SxwOXWfZQ/exec?email=${email}`
         const xhr = new XMLHttpRequest();
         xhr.open('POST', url);
         xhr.send();
