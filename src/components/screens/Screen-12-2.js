@@ -19,7 +19,7 @@ export const PreFinalScreen2 = () => {
     );
 
     function handleNext() {
-        next(SCREENS.SCREEN_17)
+        next(SCREENS.SCREEN_15)
     }
 
     return (
