@@ -39,7 +39,7 @@ export const FinalScreen = () => {
 
     function handleOpenLink() {
         reachMetrikaGoal('vacancy');
-        window.open('https://hh.ru/employer/988387', '_blank');
+        window.open('https://vk.com/nlmk.future', '_blank');
     }
 
     function handleNext() {
