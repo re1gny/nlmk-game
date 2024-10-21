@@ -22,9 +22,9 @@ const Input = styled.input`
 const Label = styled(Text)`
   display: block;
   margin-left: 41px;
-  font-size: 10px;
-  line-height: 13px;
-  font-weight: 350;
+  font-size: 9px;
+  line-height: 10.8px;
+  font-weight: 400;
   color: ${({error}) => error ? '#F63D5E' : '#002366'};
   transition: color 0.2s;
 `;

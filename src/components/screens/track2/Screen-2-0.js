@@ -9,11 +9,11 @@ import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 const ANSWER_ID_TO_GOAL_NAME_MAPPER = {
     '1': 'dir-tech',
-    '2': 'dir-recycl',
-    '3': 'dir-auto',
-    '4': 'dir-energy',
-    '5': 'dir-repair',
-    '6': 'dir-rnd',
+    '2': 'dir-recycle',
+    '3': 'dir-automation',
+    '4': 'dir-energetic',
+    '5': 'dir-systemrepair',
+    '6': 'dir-developmentresearch',
 };
 
 export const Screen20 = () => {

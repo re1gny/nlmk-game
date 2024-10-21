@@ -18,7 +18,6 @@ export const Screen6 = () => {
     )
 
     function handleNext() {
-        reachMetrikaGoal('rotation-start');
         next(SCREENS.SCREEN_7)
     }
     return <MapModalScreen title='Ротация внутри компании' text={text} onNext={handleNext}/>

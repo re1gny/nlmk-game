@@ -1,4 +1,5 @@
 import {useState, useRef} from 'react';
+import { FTClient } from 'ft-client';
 import { MapModalScreen } from '../common/MapModalScreen';
 import { Button } from '../common/Button';
 import styled from '@emotion/styled';
@@ -51,6 +52,8 @@ const SmallTextLink = styled.a`
     color: inherit;
 `;
 
+const ftClient = new FTClient('https://games-admin.fut.ru/api/', 'nlmk-career-map')
+
 export const LotteryScreen = () => {
     const [email, setEmail] = useState('');
     const [isAgreed, setIsAgreed] = useState(false);
@@ -78,15 +81,13 @@ export const LotteryScreen = () => {
     const label = (
         <>
             Я согласен(а) на&nbsp;<SmallTextLink target='blank' href='https://fut.ru/personal_data_policy/'>обработку
-            персональных данных</SmallTextLink> и&nbsp;получение информационных сообщений
+            персональных данных</SmallTextLink> и&nbsp;получение информационных сообщений,
+            а&nbsp;также с&nbsp;<SmallTextLink  target='blank' href='https://nlmk-career-map.fut.ru/agreement.pdf'>правилами проведения акции</SmallTextLink>.
         </>
     );
 
     function handleSaveEmail(email) {
-        const url = `https://script.google.com/macros/s/AKfycbxSM_sTQvcPMQ2EG1MTQTRpLkmzb_agbM8uW7uPPi7uD-Pt3duODrKhwz2P-dj4jgBZ/exec?email=${email}`
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.send();
+        ftClient.createRecord({ email });
     }
 
     function handleTakePart() {
@@ -105,8 +106,8 @@ export const LotteryScreen = () => {
         if (email && isAgreed) {
             setIsTakingPart(true)
             handleSaveEmail(email)
-            reachMetrikaGoal('email');
-            setTimeout(() => handleNext(), 2000)
+            reachMetrikaGoal('mail');
+            setTimeout(() => next(SCREENS.SCREEN_15), 2000)
         }
     }
 
@@ -123,6 +124,7 @@ export const LotteryScreen = () => {
     }
 
     function handleNext() {
+        reachMetrikaGoal('nomail');
         next(SCREENS.SCREEN_15)
     }
 

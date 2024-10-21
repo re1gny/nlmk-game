@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, {useLayoutEffect, useRef, useState} from 'react';
 import styled from '@emotion/styled';
 import { Text } from './Text';
 import { Modal } from './Modal';
@@ -7,6 +7,7 @@ import { Button } from './Button';
 import { CardsGame, UNIQ_CARDS_AMOUNT } from './CardsGame';
 import { useScreen } from '../../hooks/useScreen';
 import infoIcon from '../../assets/icons/info.svg';
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 const TopWrapper = styled.div`
   display: flex;
@@ -90,6 +91,7 @@ export function BaseCardsGameScreen({ onNext }) {
   const [guessedAmount, setGuessedAmount] = useState(0);
   const [finishModalOpened, setFinishModalOpened] = useState(false);
   const [infoModalOpened, setInfoModalOpened] = useState(true);
+  const isStartedRef = useRef(false);
 
   function handleGuess() {
     setGuessedAmount(prev => prev + 1);
@@ -104,7 +106,12 @@ export function BaseCardsGameScreen({ onNext }) {
   }
 
   function handleInfoClose() {
+    if (!isStartedRef.current) {
+      reachMetrikaGoal('gamecard');
+    }
+
     setInfoModalOpened(false);
+    isStartedRef.current = true;
   }
 
   useLayoutEffect(() => {

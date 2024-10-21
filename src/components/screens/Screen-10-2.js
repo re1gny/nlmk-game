@@ -1,7 +1,6 @@
 import { InfoScreen } from '../common/InfoScreen';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
-import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 export const Screen102 = () => {
     const { next } = useScreen();
@@ -9,7 +8,6 @@ export const Screen102 = () => {
     const text = 'Рост до\xa0следующей ступени непрост, но\xa0твои усердие и\xa0стремление расширять границы точно не\xa0останутся незамеченным. Вперед к\xa0новым вершинам!';
 
     function handleNext() {
-        reachMetrikaGoal('finish');
         next(SCREENS.SCREEN_12_2);
     }
 

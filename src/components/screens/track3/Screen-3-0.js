@@ -9,13 +9,13 @@ import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 const ANSWER_ID_TO_GOAL_NAME_MAPPER = {
     '1': 'dir-supply',
-    '2': 'dir-log',
+    '2': 'dir-logistics',
     '3': 'dir-sales',
     '4': 'dir-it',
     '5': 'dir-ecology',
-    '6': 'dir-snh',
-    '7': 'hrnpr',
-    '8': 'dir-enf',
+    '6': 'dir-industrialsafety',
+    '7': 'dir-publicrelations',
+    '8': 'dir-economicsfinance',
 };
 
 export const Screen30 = () => {

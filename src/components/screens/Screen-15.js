@@ -43,6 +43,7 @@ export const FinalScreen = () => {
     }
 
     function handleNext() {
+        reachMetrikaGoal('again');
         next(SCREENS.SCREEN_13)
     }
 

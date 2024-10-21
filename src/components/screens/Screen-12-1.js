@@ -2,6 +2,7 @@ import { MapModalScreen } from '../common/MapModalScreen';
 import { Text } from '../common/Text';
 import { useScreen } from '../../hooks/useScreen';
 import { SCREENS } from '../../constants/screens';
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 export const PreFinalScreen1 = () => {
     const {next} = useScreen();
@@ -19,6 +20,7 @@ export const PreFinalScreen1 = () => {
     );
 
     function handleNext() {
+        reachMetrikaGoal('finish');
         next(SCREENS.SCREEN_15)
     }
 
