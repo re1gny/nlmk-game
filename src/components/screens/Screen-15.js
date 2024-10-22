@@ -48,7 +48,7 @@ export const FinalScreen = () => {
     }
 
     return (
-        <MapModalScreen text={text} buttonText={'ВАКАНСИИ'} onNext={handleOpenLink}>
+        <MapModalScreen text={text} buttonText={'БОЛЬШЕ О НЛМК'} onNext={handleOpenLink}>
             <ButtonStyled variant={'tertiary'} onClick={handleNext}>
                 <div>
                     <LargeText>

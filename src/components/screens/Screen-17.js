@@ -80,7 +80,7 @@ export const LotteryScreen = () => {
     );
     const label = (
         <>
-            Я согласен(а) на&nbsp;<SmallTextLink target='blank' href='https://fut.ru/personal_data_policy/'>обработку
+            Я согласен(а) на&nbsp;<SmallTextLink target='blank' href='https://fut.ru/personal-data'>обработку
             персональных данных</SmallTextLink> и&nbsp;получение информационных сообщений,
             а&nbsp;также с&nbsp;<SmallTextLink  target='blank' href='https://nlmk-career-map.fut.ru/agreement.pdf'>правилами проведения акции</SmallTextLink>.
         </>
