@@ -21,7 +21,7 @@ export const PreFinalScreen2 = () => {
 
     function handleNext() {
         reachMetrikaGoal('finish');
-        next(SCREENS.SCREEN_17)
+        next(SCREENS.SCREEN_15)
     }
 
     return (
